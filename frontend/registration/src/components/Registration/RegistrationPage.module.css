@@ -84,10 +84,18 @@
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
-    border: none;
+    border: 1px solid #b9b9b9;
     border-radius: 10px;
     font-size: 1rem;
     box-sizing: border-box;
+    background: #16314b;
+    color: #ffffff;
+}
+
+.formWrapper input:focus {
+    border-color: #52b3d1;
+    box-shadow: 0 0 0 3px #52b3d1;
+    outline: none;
 }
 
 .checkboxWrapper {
@@ -135,6 +143,7 @@
 
 .supportLink:hover {
     color: #5bcaa5;
+
 }
 
 /*--------------------------ПРАВАЯ ЧАСТЬ--------------------------------*/
