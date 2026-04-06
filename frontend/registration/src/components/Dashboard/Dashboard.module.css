@@ -1,0 +1,216 @@
+.dashboard {
+    min-height: 100vh;
+    background: #0A0C10;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------------------хедер----------------- */
+.topBar {
+    width: 100%;
+    height: 80px;
+    background: #1A1D26;
+    padding: 0 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+.topBarContent {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+}
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.aiIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 15px;
+    color: #12273b;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: white;
+}
+
+/*-------------------строка поиска---------------- */
+.searchBar {
+    display: flex;
+    align-items: center;
+    background: #2A2D3A;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    gap: 10px;
+    width: 500px;
+    height: 45px;
+    transition: all 0.2s;
+}
+
+.searchBar i {
+    color: #A0AABF;
+    font-size: 1rem;
+}
+
+.searchBar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.searchBar input::placeholder {
+    color: #A0AABF;
+}
+
+.searchBar:focus-within {
+    background: #3A3F4E;
+    box-shadow: 0 0 0 2px #28c577;
+}
+
+.userMenu {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: auto; /* прижимает иконки к правому краю */
+    color: white;
+}
+
+/* ---------------левая панель + контент-------------- */
+.mainLayout {
+    display: flex;
+    flex: 1;
+}
+
+/* -----------------Левая панель --------------- */
+.leftProfile {
+    width: 280px;
+    background: #0F1117;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 20px 32px 24px;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+    height: calc(100vh - 80px); 
+    position: sticky;
+    top: 80px; /* чтобы панель начиналась сразу под хедером */
+}
+
+.leftProTop {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.leftProMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.leftProItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #A0AABF;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.leftProItem.active {
+    background: #1A1D26;
+    color: white;
+    font-weight: 600;
+}
+
+.leftProItem:not(.active):hover {
+    background: #1A1D26;
+    color: white;
+}
+
+.leftProItem .leftProIcon {
+    width: 24px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.leftUser {
+    border-top: 1px solid #1A1D26;
+    padding-top: 20px;
+}
+
+.leftUserbadge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 40px;
+    background: #0F1117;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.leftUserbadge:hover {
+    background: #1A1D26;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(145deg, #2D2F3E, #1A1D26);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userInfo {
+    flex: 1;
+}
+
+.userName {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: white;
+}
+
+.userRole {
+    font-size: 0.7rem;
+    color: #A0AABF;
+}
+
+/* ---------------Правая область ------------ */
+.rightContent {
+    flex: 1;
+    padding: 32px 40px;
+    background: #0A0C10;
+    overflow-y: auto;
+    color: white;
+}
+
