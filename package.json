@@ -1,7 +1,10 @@
 {
   "dependencies": {
-    "@nestjs/common": "^11.1.17",
-    "@nestjs/core": "^10.4.22",
-    "@nestjs/mapped-types": "*"
+    "@nestjs/common": "^11.1.18",
+    "@nestjs/core": "^11.1.18",
+    "@nestjs/mapped-types": "*",
+    "@nestjs/typeorm": "^11.0.1",
+    "pg": "^8.20.0",
+    "typeorm": "^0.3.28"
   }
 }
