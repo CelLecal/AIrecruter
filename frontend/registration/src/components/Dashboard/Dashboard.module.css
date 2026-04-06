@@ -205,7 +205,8 @@
     color: #A0AABF;
 }
 
-/* ---------------Правая область ------------ */
+/* -------------------Правая область---------------- */
+
 .rightContent {
     flex: 1;
     padding: 32px 40px;
@@ -214,3 +215,61 @@
     color: white;
 }
 
+.Header {
+    margin-bottom: 2rem;
+}
+
+.Header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.Header p {
+    font-size: 1rem;
+    color: #A0AABF;
+    margin-bottom: 0.5rem;
+}
+
+/*контейнер для карточек*/
+.metricsGrid {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metricCard {
+    flex: 1;
+    background: #1A1D26;
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: left;
+    transition: box-shadow 0.2s;
+    height: 220px;
+     border: 1px solid #8883e4;
+}
+
+.metricCard:hover {
+    box-shadow: 0 0 15px #8352d1; 
+}
+
+.metricValue {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.metricLabel {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: white;
+}
+
+.metricSub {
+    display: block;
+    font-size: 0.8rem;
+    color: #A0AABF;
+}
