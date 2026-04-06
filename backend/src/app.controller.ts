@@ -25,8 +25,8 @@ export class AppController {
   getDashboard(): string {
     return this.dashboardService.getDashboard();
   }
-  @Get('auth')
-  getAuth(): string {
-    return this.authService.getAuth();
-  }
+  // @Get('auth')
+  // getAuth(): string {
+  //   return this.authService.getAuth();
+  // }
 }
