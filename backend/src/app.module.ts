@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CandidatesModule } from './candidates/candidates.module';
-// import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { CandidatesModule } from './candidates/candidates.module';
     //     password: 'your_password',
     //     database: 'your_database',
     //     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    //     synchronize: true, // ВАЖНО: false для продакшена],
+    //     synchronize: true,
     //   }),
   ],
   controllers: [AppController],
