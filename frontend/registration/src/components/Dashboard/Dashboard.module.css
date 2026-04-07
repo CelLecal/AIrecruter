@@ -398,3 +398,23 @@
     color: #ff5d5d;
 }
 
+/*------------------последняя активность---------*/
+
+.extraContainer {
+    width: 100%;
+    background: #1A1D26;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-top: 0;            
+    transition: box-shadow 0.2s;
+}
+
+.extraContainer h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+
+
