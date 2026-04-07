@@ -23,7 +23,6 @@ const Dashboard: React.FC = () => {
                     </div>
                     <div className={styles.userMenu}>
                         <i className="fas fa-bell"></i>
-                        <i className="fas fa-user-circle"></i>
                     </div>
                 </div>
             </header>
@@ -129,7 +128,7 @@ const Dashboard: React.FC = () => {
                                         <div className={styles.funnelFill} style={{ width: '100%' }}></div>
                                     </div>
                                     <span className={styles.funnelPercent}>100%</span>
-                                    <span className={styles.funnelCount}><h2>47</h2></span>
+                                    <span className={styles.funnelCount}><h3>47</h3></span>
                                 </div>
                                 <div className={styles.funnelItem}>
                                     <span className={styles.funnelStage}>Скрининг</span>
@@ -137,7 +136,7 @@ const Dashboard: React.FC = () => {
                                         <div className={styles.funnelFill} style={{ width: '81%' }}></div>
                                     </div>
                                     <span className={styles.funnelPercent}>81%</span>
-                                    <span className={styles.funnelCount}><h2>38</h2></span>
+                                    <span className={styles.funnelCount}><h3>38</h3></span>
                                 </div>
                                 <div className={styles.funnelItem}>
                                     <span className={styles.funnelStage}>Проверка документов</span>
@@ -145,7 +144,7 @@ const Dashboard: React.FC = () => {
                                         <div className={styles.funnelFill} style={{ width: '60%' }}></div>
                                     </div>
                                     <span className={styles.funnelPercent}>60%</span>
-                                    <span className={styles.funnelCount}><h2>28</h2></span>
+                                    <span className={styles.funnelCount}><h3>28</h3></span>
                                 </div>
                                 <div className={styles.funnelItem}>
                                     <span className={styles.funnelStage}>Решение HR</span>
@@ -153,7 +152,7 @@ const Dashboard: React.FC = () => {
                                         <div className={styles.funnelFill} style={{ width: '40%' }}></div>
                                     </div>
                                     <span className={styles.funnelPercent}>40%</span>
-                                    <span className={styles.funnelCount}><h2>19</h2></span>
+                                    <span className={styles.funnelCount}><h3>19</h3></span>
                                 </div>
                                 <div className={styles.funnelItem}>
                                     <span className={styles.funnelStage}>Оформление</span>
@@ -161,7 +160,7 @@ const Dashboard: React.FC = () => {
                                         <div className={styles.funnelFill} style={{ width: '26%' }}></div>
                                     </div>
                                     <span className={styles.funnelPercent}>26%</span>
-                                    <span className={styles.funnelCount}><h2>12</h2></span>
+                                    <span className={styles.funnelCount}><h3>12</h3></span>
                                 </div>
                             </div>
                         </div>
@@ -184,6 +183,15 @@ const Dashboard: React.FC = () => {
                                     <a href="#" className={styles.attentionLink}>Просмотреть →</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.rightContent}>
+
+                        {/*--активность-- */}
+                        <div className={styles.extraContainer}>
+                            <h2>Последняя активность</h2>
+        
                         </div>
                     </div>
 
