@@ -118,6 +118,76 @@ const Dashboard: React.FC = () => {
                             <span className={styles.metricSub}>Все проверки пройдены</span>
                         </div>
                     </div>
+                    {/*-----------воронка подбора---------------*/}
+                    <div className={styles.twoColumns}>
+                        <div className={styles.funnel}>
+                            <h2>Воронка подбора</h2>
+                            <div className={styles.funnelList}>
+                                <div className={styles.funnelItem}>
+                                    <span className={styles.funnelStage}>Новый</span>
+                                    <div className={styles.funnelBar}>
+                                        <div className={styles.funnelFill} style={{ width: '100%' }}></div>
+                                    </div>
+                                    <span className={styles.funnelPercent}>100%</span>
+                                    <span className={styles.funnelCount}><h2>47</h2></span>
+                                </div>
+                                <div className={styles.funnelItem}>
+                                    <span className={styles.funnelStage}>Скрининг</span>
+                                    <div className={styles.funnelBar}>
+                                        <div className={styles.funnelFill} style={{ width: '81%' }}></div>
+                                    </div>
+                                    <span className={styles.funnelPercent}>81%</span>
+                                    <span className={styles.funnelCount}><h2>38</h2></span>
+                                </div>
+                                <div className={styles.funnelItem}>
+                                    <span className={styles.funnelStage}>Проверка документов</span>
+                                    <div className={styles.funnelBar}>
+                                        <div className={styles.funnelFill} style={{ width: '60%' }}></div>
+                                    </div>
+                                    <span className={styles.funnelPercent}>60%</span>
+                                    <span className={styles.funnelCount}><h2>28</h2></span>
+                                </div>
+                                <div className={styles.funnelItem}>
+                                    <span className={styles.funnelStage}>Решение HR</span>
+                                    <div className={styles.funnelBar}>
+                                        <div className={styles.funnelFill} style={{ width: '40%' }}></div>
+                                    </div>
+                                    <span className={styles.funnelPercent}>40%</span>
+                                    <span className={styles.funnelCount}><h2>19</h2></span>
+                                </div>
+                                <div className={styles.funnelItem}>
+                                    <span className={styles.funnelStage}>Оформление</span>
+                                    <div className={styles.funnelBar}>
+                                        <div className={styles.funnelFill} style={{ width: '26%' }}></div>
+                                    </div>
+                                    <span className={styles.funnelPercent}>26%</span>
+                                    <span className={styles.funnelCount}><h2>12</h2></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.attention}>
+                            <h2>Требует внимания</h2>
+                            <div className={styles.attentionList}>
+                                <div className={styles.attentionItem}>
+                                    <div className={styles.attentionTitle}>Подозрительные документы</div>
+                                    <div className={styles.attentionDesc}>3 кандидата требуют ручной проверки</div>
+                                    <a href="#" className={styles.attentionLink}>Проверить →</a>
+                                </div>
+                                <div className={styles.attentionItem}>
+                                    <div className={styles.attentionTitle}>Высокий потенциал</div>
+                                    <div className={styles.attentionDesc}>5 кандидатов с оценкой 95%+</div>
+                                    <a href="#" className={styles.attentionLink}>Посмотреть →</a>
+                                </div>
+                                <div className={styles.attentionItem}>
+                                    <div className={styles.attentionTitle}>Истекающие сроки</div>
+                                    <div className={styles.attentionDesc}>2 кандидата ожидают более 3 дней</div>
+                                    <a href="#" className={styles.attentionLink}>Просмотреть →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
                 </div>
             </div>
         </div>
