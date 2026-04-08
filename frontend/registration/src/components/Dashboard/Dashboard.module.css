@@ -93,7 +93,8 @@
     gap: 1.2rem;
     font-size: 1.2rem;
     cursor: pointer;
-    margin-left: auto; /* прижимает иконки к правому краю */
+    margin-left: auto;
+    /* прижимает иконки к правому краю */
     color: white;
 }
 
@@ -113,9 +114,10 @@
     padding: 32px 20px 32px 24px;
     box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
-    height: calc(100vh - 80px); 
+    height: calc(100vh - 80px);
     position: sticky;
-    top: 80px; /* чтобы панель начиналась сразу под хедером */
+    top: 80px;
+    /* чтобы панель начиналась сразу под хедером */
 }
 
 .leftProTop {
@@ -249,7 +251,7 @@
 }
 
 .metricCard:hover {
-    box-shadow: 0 0 15px #8352d1; 
+    box-shadow: 0 0 15px #8352d1;
 }
 
 .metricValue {
@@ -282,14 +284,16 @@
     margin-bottom: 2rem;
 }
 
-.funnel, .attention {
+.funnel,
+.attention {
     flex: 1;
     background: #1A1D26;
     border-radius: 20px;
     padding: 1.5rem;
 }
 
-.funnel h2, .attention h2 {
+.funnel h2,
+.attention h2 {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -361,13 +365,13 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(160, 170, 191, 0.2);
     transition: background 0.2s, box-shadow 0.2s;
-    border-radius: 12px; 
-    padding: 0.5rem;    
+    border-radius: 12px;
+    padding: 0.5rem;
 }
 
 .attentionItem:hover {
-    background: rgba(136, 131, 228, 0.1); 
-    box-shadow: 0 0 8px rgba(235, 140, 137, 0.644); 
+    background: rgba(136, 131, 228, 0.1);
+    box-shadow: 0 0 8px rgba(235, 140, 137, 0.644);
 }
 
 .attentionItem:last-child {
@@ -386,6 +390,7 @@
     color: #A0AABF;
     margin-bottom: 0.5rem;
 }
+
 .attentionLink {
     color: #8352d1;
     text-decoration: none;
@@ -405,7 +410,7 @@
     background: #1A1D26;
     border-radius: 20px;
     padding: 1.5rem;
-    margin-top: 0;            
+    margin-top: 0;
     transition: box-shadow 0.2s;
 }
 
@@ -417,4 +422,125 @@
 }
 
 
+.activityList {
+    display: flex;
+    flex-direction: column;
+}
 
+.activityItem {
+    display: flex;
+    gap: 1rem;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.activityItem:first-child {
+    padding-top: 0;
+}
+
+.activityItem:last-child {
+    border-bottom: none;
+}
+
+.activityAvatar {
+    width: 48px;
+    height: 48px;
+    background: rgba(79, 70, 229, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #818CF8;
+    flex-shrink: 0;
+}
+
+.activityContent {
+    flex: 1;
+}
+
+.activityHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.nameWrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.userFullname {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #F3F4F6;
+}
+
+.activityProc {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #4ded09;
+    background: rgba(76, 232, 29, 0.1);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.activityTimeText {
+    font-size: 0.7rem;
+    color: #9CA3AF;
+    white-space: nowrap;
+}
+
+.activityText {
+    font-size: 0.8rem;
+    color: #9CA3AF;
+}
+
+
+.activityItem:hover {
+    background: rgba(255, 255, 255, 0.02);
+    margin: 0 -0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.activityGreen {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    margin-left: 6px;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    vertical-align: middle;
+}
+
+.activityBlue {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #10a2d3;
+    border-radius: 50%;
+    margin-left: 6px;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    vertical-align: middle;
+}
+
+.activityOrange {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #b88d0c;
+    border-radius: 50%;
+    margin-left: 6px;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    vertical-align: middle;
+}
