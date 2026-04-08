@@ -187,15 +187,77 @@ const Dashboard: React.FC = () => {
                     </div>
 
                     <div className={styles.rightContent}>
-
-                        {/*--активность-- */}
                         <div className={styles.extraContainer}>
                             <h2>Последняя активность</h2>
-        
+                            <div className={styles.activityList}>
+                                <div className={styles.activityItem}>
+                                    <div className={styles.activityAvatar}>ПС</div>
+                                    <div className={styles.activityContent}>
+                                        <div className={styles.activityHeader}>
+                                            <div className={styles.nameWrapper}>
+                                                <span className={styles.userFullname}>Петров Сергей Иванович</span>
+                                                <span className={styles.activityProc}>92%</span>
+                                            </div>
+                                            <div className={styles.activityTimeText}>5 минут назад  <span className={styles.activityGreen}></span></div>
+                                        </div>
+                                        <div className={styles.activityText}>завершил чат-скрининг</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className={styles.activityList}>
+                                <div className={styles.activityItem}>
+                                    <div className={styles.activityAvatar}>ИМ</div>
+                                    <div className={styles.activityContent}>
+                                        <div className={styles.activityHeader}>
+                                            <div className={styles.nameWrapper}>
+                                                <span className={styles.userFullname}>Иванова Мария Петровна</span>
+                                            </div>
+                                            <div className={styles.activityTimeText}>12 минут назад  <span className={styles.activityBlue}></span></div>
+                                        </div>
+                                        <div className={styles.activityText}>загрузила документы</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={styles.activityList}>
+                                <div className={styles.activityItem}>
+                                    <div className={styles.activityAvatar}>СА</div>
+                                    <div className={styles.activityContent}>
+                                        <div className={styles.activityHeader}>
+                                            <div className={styles.nameWrapper}>
+                                                <span className={styles.userFullname}>Сидоров Алексей Викторович</span>
+                                            </div>
+                                            <div className={styles.activityTimeText}>25 минут назад  <span className={styles.activityOrange}></span></div>
+                                        </div>
+                                        <div className={styles.activityText}>Требует проверки документов</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className={styles.activityList}>
+                                <div className={styles.activityItem}>
+                                    <div className={styles.activityAvatar}>КД</div>
+                                    <div className={styles.activityContent}>
+                                        <div className={styles.activityHeader}>
+                                            <div className={styles.nameWrapper}>
+                                                <span className={styles.userFullname}>Козлов Дмитрий Андреевич</span>
+                                                <span className={styles.activityProc}>88%</span>
+                                            </div>
+                                            <div className={styles.activityTimeText}>1 час назад  <span className={styles.activityGreen}></span></div>
+                                        </div>
+                                        <div className={styles.activityText}>готов к оформлению</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
