@@ -8,7 +8,6 @@ export class User {
   //   @Column({ unique: true })
   //   email: string;
   //   @Column()
-  //   @MinLength(6, { message: 'Ваш пароль должен содержать не менее 6 символов' })
   //   password: string;
   //   @Column({ default: true })
   //   isActive: boolean;

@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class DashboardService {
-  getDashboard(): string {
-    return 'Dashboard';
+  getDashboardData() {
+    return {
+      totalUsers: 100,
+      activeSessions: 23,
+      salesToday: 5400,
+    };
   }
 }
