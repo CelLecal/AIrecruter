@@ -368,6 +368,17 @@
 .attentionItem:hover {
     background: rgba(136, 131, 228, 0.1); 
     box-shadow: 0 0 8px rgba(235, 140, 137, 0.644); 
+    
+}
+
+/* высокий потенциал */
+.attentionItem.highPotential:hover {
+    box-shadow: 0 0 12px rgba(85, 204, 89, 0.699); 
+    border-color: #52c556; 
+}
+
+.attentionItem.highPotential:hover .attentionLink {
+    color: #4caf50;
 }
 
 .attentionItem:last-child {
