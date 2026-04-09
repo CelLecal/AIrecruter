@@ -93,8 +93,7 @@
     gap: 1.2rem;
     font-size: 1.2rem;
     cursor: pointer;
-    margin-left: auto;
-    /* прижимает иконки к правому краю */
+    margin-left: auto; /* прижимает иконки к правому краю */
     color: white;
 }
 
@@ -114,10 +113,9 @@
     padding: 32px 20px 32px 24px;
     box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 80px); 
     position: sticky;
-    top: 80px;
-    /* чтобы панель начиналась сразу под хедером */
+    top: 80px; /* чтобы панель начиналась сразу под хедером */
 }
 
 .leftProTop {
@@ -251,7 +249,7 @@
 }
 
 .metricCard:hover {
-    box-shadow: 0 0 15px #8352d1;
+    box-shadow: 0 0 15px #8352d1; 
 }
 
 .metricValue {
@@ -284,16 +282,14 @@
     margin-bottom: 2rem;
 }
 
-.funnel,
-.attention {
+.funnel, .attention {
     flex: 1;
     background: #1A1D26;
     border-radius: 20px;
     padding: 1.5rem;
 }
 
-.funnel h2,
-.attention h2 {
+.funnel h2, .attention h2 {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -365,13 +361,13 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(160, 170, 191, 0.2);
     transition: background 0.2s, box-shadow 0.2s;
-    border-radius: 12px;
-    padding: 0.5rem;
+    border-radius: 12px; 
+    padding: 0.5rem;    
 }
 
 .attentionItem:hover {
-    background: rgba(136, 131, 228, 0.1);
-    box-shadow: 0 0 8px rgba(235, 140, 137, 0.644);
+    background: rgba(136, 131, 228, 0.1); 
+    box-shadow: 0 0 8px rgba(235, 140, 137, 0.644); 
 }
 
 .attentionItem:last-child {
@@ -390,7 +386,6 @@
     color: #A0AABF;
     margin-bottom: 0.5rem;
 }
-
 .attentionLink {
     color: #8352d1;
     text-decoration: none;
@@ -406,11 +401,12 @@
 /*------------------последняя активность---------*/
 
 .extraContainer {
-    width: 100%;
+    width: calc(100% + 80px);    
+    margin-left: -40px;        
+    margin-right: -40px;        
     background: #1A1D26;
     border-radius: 20px;
     padding: 1.5rem;
-    margin-top: 0;
     transition: box-shadow 0.2s;
 }
 
@@ -427,19 +423,16 @@
     flex-direction: column;
 }
 
+/*-----элементы------*/
 .activityItem {
     display: flex;
     gap: 1rem;
-    padding: 30px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.activityItem:first-child {
-    padding-top: 0;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
 }
 
 .activityItem:last-child {
-    border-bottom: none;
+    border-bottom: none; 
 }
 
 .activityAvatar {
@@ -544,3 +537,4 @@
     box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
     vertical-align: middle;
 }
+
