@@ -172,7 +172,7 @@ const Dashboard: React.FC = () => {
                                     <div className={styles.attentionDesc}>3 кандидата требуют ручной проверки</div>
                                     <a href="#" className={styles.attentionLink}>Проверить →</a>
                                 </div>
-                                <div className={styles.attentionItem}>
+                                <div className={`${styles.attentionItem} ${styles.highPotential}`}>
                                     <div className={styles.attentionTitle}>Высокий потенциал</div>
                                     <div className={styles.attentionDesc}>5 кандидатов с оценкой 95%+</div>
                                     <a href="#" className={styles.attentionLink}>Посмотреть →</a>
