@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
@@ -7,8 +8,13 @@ const swaggerJsdoc = require('swagger-jsdoc');
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// Swagger setup
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
 const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
@@ -17,12 +23,10 @@ const swaggerOptions = {
       version: "1.0.0",
     },
   },
-  apis: ["./src/routes/*.js"]// путь к файлам с @swagger комментариями
+  apis: ["./src/routes/*.js"]
 };
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-// Пример маршрута
 app.get("/users", async (req, res) => {
   try {
     const users = await pool.query("SELECT * FROM users");
