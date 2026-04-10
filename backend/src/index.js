@@ -1,13 +1,16 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
-const pool = require('./db');
+const { Pool } = require('pg');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
 const pool = new Pool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -23,10 +26,13 @@ const swaggerOptions = {
       version: "1.0.0",
     },
   },
-  apis: ["./src/routes/*.js"]
+  apis: ["./index.js"],
 };
+
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.get("/users", async (req, res) => {
   try {
     const users = await pool.query("SELECT * FROM users");
@@ -38,4 +44,7 @@ app.get("/users", async (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => console.log('Server running on port ${PORT}'));
+
+app.listen(PORT, () => {
+  console.log(Server running on port ${PORT});
+});
