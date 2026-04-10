@@ -5,22 +5,23 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CandidatesModule } from './candidates/candidates.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as dotenv from 'dotenv';
 
 @Module({
   imports: [
     AuthModule,
     DashboardModule,
     CandidatesModule,
-    //   TypeOrmModule.forRoot({
-    //     type: 'postgres',
-    //     host: 'localhost',
-    //     port: 5432,
-    //     username: 'your_username',
-    //     password: 'your_password',
-    //     database: 'your_database',
-    //     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    //     synchronize: true,
-    //   }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      port: 5432,
+      entities: ['/user/entities/user.entity{.ts,.js}'],
+      synchronize: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
