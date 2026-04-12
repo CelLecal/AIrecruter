@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   db:
@@ -6,9 +5,9 @@ services:
     container_name: my_postgres
     restart: always
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: your_db
     ports:
       - "5432:5432"
     volumes:
@@ -22,9 +21,10 @@ services:
       - "3000:3000"
     environment:
       DB_HOST: db
-      DB_USER: myuser
-      DB_PASSWORD: mypassword
-      DB_NAME: mydb
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: your_password
+      DB_NAME: your_db
     depends_on:
       - db
 
