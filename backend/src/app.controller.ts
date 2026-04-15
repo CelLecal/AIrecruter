@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { CandidatesService } from './candidates/candidates.service';
 import { DashboardService } from './dashboard/dashboard.service';
 import { AuthService } from './auth/auth.service';
+import { UsersService } from 'user/user.service';
 
 @Controller()
 export class AppController {
@@ -11,6 +12,7 @@ export class AppController {
     private readonly candidatesService: CandidatesService,
     private readonly dashboardService: DashboardService,
     private readonly authService: AuthService,
+    private readonly usersService: UsersService,
   ) {}
 
   @Get()
@@ -25,8 +27,13 @@ export class AppController {
   getDashboard() {
     return this.dashboardService.getDashboardData();
   }
-  // @Get('auth')
-  // getAuth(): string {
-  //   return this.authService.getAuth();
-  // }
+  @Get('auth')
+  getAuth(): string {
+    return this.authService.getAuth();
+  }
+
+  @Get('user')
+  getUser(): string {
+    return this.usersService.getUser();
+  }
 }
