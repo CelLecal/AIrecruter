@@ -5,23 +5,20 @@ import { User } from 'user/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from 'user/user.service';
 
-
 @Injectable()
 export class AuthService {
-  constructor(
-      private readonly usersService: UsersService,
-    ) {}
-  
-    getAuth(): string {
-    return 'auth'
-    }
+  constructor(private readonly usersService: UsersService) {}
 
-  async signIn(username, pass) {
-    const user = await this.usersService.findOne(username):
-    if (user?.login !== pass) {
-      throw new UnauthorizedException();
-    }
+  getAuth(): string {
+    return 'auth';
   }
+
+  // async signIn(username, pass) {
+  //   const user = await this.usersService.findOne(username):
+  //   if (user?.login !== pass) {
+  //     throw new UnauthorizedException();
+  //   }
+  // }
   // constructor(
   //   @InjectRepository(User)
   //   private usersRepository: Repository<User>,
@@ -42,4 +39,3 @@ export class AuthService {
   //   return null;
   // }
 }
-
