@@ -52,6 +52,7 @@
     color: white;
 }
 
+
 /*-------------------строка поиска---------------- */
 .searchBar {
     display: flex;
@@ -141,6 +142,7 @@
     color: #A0AABF;
     transition: all 0.2s;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .leftProItem.active {

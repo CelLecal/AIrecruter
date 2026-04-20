@@ -7,6 +7,7 @@ const RegistrationForm: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        // Здесь можно добавить валидацию или отправку данных
         navigate('/dashboard');
     };
 

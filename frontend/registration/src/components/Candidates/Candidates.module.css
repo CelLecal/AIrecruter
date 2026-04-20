@@ -1,0 +1,40 @@
+.rightContent {
+    flex: 1;
+    padding: 32px 40px;
+    background: #0A0C10;
+    overflow-y: auto;
+    color: white;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.headerRow h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.headerRow p {
+    font-size: 1rem;
+    color: #A0AABF;
+}
+
+.addButton {
+    height: 45px;
+    background: #4F46E5;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    box-shadow: 0 0 10px hsl(256, 100%, 68%);
+}
