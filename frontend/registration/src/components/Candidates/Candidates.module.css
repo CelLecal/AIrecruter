@@ -27,7 +27,7 @@
     height: 45px;
     background: #4F46E5;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 10px 20px;
     color: white;
     font-weight: 600;
@@ -36,13 +36,13 @@
 }
 
 .addButton:hover {
-    box-shadow: 0 0 10px hsl(256, 100%, 68%);
+    box-shadow: 0 0 15px hsla(256, 100%, 68%, 0.39);
 }
 
 /*----------контейнер поиска и фильтров ---------- */
 .searchFilterRow {
     background: #1A1D26;
-    border-radius: 15px;
+    border-radius: 20px;
     padding: 1rem;
     margin-bottom: 2rem;
     display: flex;
@@ -64,9 +64,9 @@
     align-items: center;
     background: #2A2D3A;
     border-radius: 15px;
-    padding: 0.6rem 1rem;
+    padding: 1rem 1rem;
     gap: 10px;
-    height: 40px;
+
 }
 
 .searchBar i {
@@ -88,16 +88,16 @@
 }
 
 .searchBar:focus-within {
-    background: #3A3F4E;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3);
+    background: #0F1117;
+    box-shadow: 0 0 0 2px #8352d1;
 }
 
 .filterButton {
     background: transparent;
-    border: 1px solid #4F46E5;
-    border-radius: 30px;
+    border: 1px solid #8883e4;
+    border-radius: 15px;
     padding: 0.6rem 1.2rem;
-    color: #4F46E5;
+    color: #8883e4;
     font-weight: 600;
     font-size: 0.9rem;
     transition: all 0.2s;
@@ -118,22 +118,160 @@
 
 .filterChip {
     background: #2A2D3A;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 15px;
-    padding: 0.5rem 1.2rem;
-    color: white;
+    padding: 0.8rem 1rem;
+    color: #A0AABF;
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .filterChip:hover {
-    background: #4F46E5;
-    box-shadow: 0 0 8px rgba(79, 70, 229, 0.5);
+    background: #4e46e53b;
+    border-color: #8883e4; 
+    color:#b6c0d4;
 }
 
 .filterChip.active {
     background: #4F46E5;
     color: white;
+
+}
+
+/*-----------карточки кандидатов----------*/
+
+.cardsRow {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.candidateCard {
+    flex: 1;
+    background: #1A1D26;
+    border-radius: 20px;
+    padding: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    border: 1px solid transparent;
+}
+
+.candidateCard:hover {
+    box-shadow: 0 0 15px #8352d1;
+    border-color: #8883e4; 
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cardAvatar {
+    width: 50px;
+    height: 50px;
+    background: #4F46E5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.cardTitle {
+    flex: 1;
+}
+
+.cardName {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.2rem;
+}
+
+.cardCity {
+    font-size: 0.8rem;
+    color: #A0AABF;
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.2rem;
+}
+
+.detailItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.85rem;
+    color: #F3F4F6;
+}
+
+.detailLabel {
+    color: #A0AABF;
+    font-weight: 500;
+}
+
+.matchValue {
+    color: #4ded09;
+    font-weight: 700;
+}
+
+.cardStatusRow {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 0.2rem;
+}
+
+.statusBadge {
+    background: #2A2D3A;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: white;
+}
+
+.riskBadge {
+    background: rgba(39, 141, 30, 0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #4ded09;
+}
+.riskBadge1 {
+    background: rgba(141, 102, 30, 0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #ed9d09;
+}
+
+.openButton {
+    background:#4e46e53b;
+    border: 1px solid #8883e4;
+    border-radius: 15px;
+    padding: 0.5rem;
+    color: #8883e4;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+}
+
+.openButton:hover {
+    background: #4F46E5;
+    color: white;
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.5);
 }
