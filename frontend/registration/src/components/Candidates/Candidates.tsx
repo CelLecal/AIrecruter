@@ -45,7 +45,7 @@ const Candidates: React.FC = () => {
                     <div className={styles.cardDetails}>
                         <div className={styles.detailItem}>
                             <span className={styles.detailLabel}>Категория прав:</span>
-                            <span>C, E</span>
+                            <span>B</span>
                         </div>
                         <div className={styles.detailItem}>
                             <span className={styles.detailLabel}>Стаж:</span>
@@ -66,9 +66,9 @@ const Candidates: React.FC = () => {
 
                 <div className={styles.candidateCard}>
                     <div className={styles.cardHeader}>
-                        <div className={styles.cardAvatar}>СА</div>
+                        <div className={styles.cardAvatar}>КВ</div>
                         <div className={styles.cardTitle}>
-                            <div className={styles.cardName}>Смирнов Алексей Викторович</div>
+                            <div className={styles.cardName}>Кульков Владислав Павлович</div>
                             <div className={styles.cardCity}><i className="fa fa-map-pin" aria-hidden="true"></i> Санкт-Петербург</div>
                         </div>
                     </div>
@@ -121,10 +121,102 @@ const Candidates: React.FC = () => {
                     </div>
                     <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
                 </div>
-            
-
             </div>
-        </div>
+
+            <div className={styles.cardsRow}>
+
+                <div className={styles.candidateCard}>
+                    <div className={styles.cardHeader}>
+                        <div className={styles.cardAvatar}>ЛЗ</div>
+                        <div className={styles.cardTitle}>
+                            <div className={styles.cardName}>Леонова Зоя Борисовна</div>
+                            <div className={styles.cardCity}><i className="fa fa-map-pin" aria-hidden="true"></i> Химки</div>
+                        </div>
+                    </div>
+                    <div className={styles.cardDetails}>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Категория прав:</span>
+                            <span>B, C</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Стаж:</span>
+                            <span>7 лет</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Соответствие:</span>
+                            <span className={styles.matchValue}>97%</span>
+                        </div>
+                    </div>
+                    <div className={styles.cardStatusRow}>
+                        <span className={styles.statusBadge}>Новый</span>
+                        <span className={styles.riskBadge}>Низкий риск</span>
+                    </div>
+                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                </div>
+
+
+                <div className={styles.candidateCard}>
+                    <div className={styles.cardHeader}>
+                        <div className={styles.cardAvatar}>СЕ</div>
+                        <div className={styles.cardTitle}>
+                            <div className={styles.cardName}>Сидорова Елена Сергеевна</div>
+                            <div className={styles.cardCity}><i className="fa fa-map-pin" aria-hidden="true"></i> Ярославль</div>
+                        </div>
+                    </div>
+                    <div className={styles.cardDetails}>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Категория прав:</span>
+                            <span>А, В</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Стаж:</span>
+                            <span>2 года</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Соответствие:</span>
+                            <span className={styles.matchValue}>71%</span>
+                        </div>
+                    </div>
+                    <div className={styles.cardStatusRow}>
+                        <span className={styles.statusBadge}>Скрининг</span>
+                        <span className={styles.riskBadge2}>Высокий риск</span>
+                    </div>
+                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                </div>
+
+
+                <div className={styles.candidateCard}>
+                    <div className={styles.cardHeader}>
+                        <div className={styles.cardAvatar}>ТГ</div>
+                        <div className={styles.cardTitle}>
+                            <div className={styles.cardName}>Трусов Глеб Андревич</div>
+                            <div className={styles.cardCity}><i className="fa fa-map-pin" aria-hidden="true"></i> Москва</div>
+                        </div>
+                    </div>
+                    <div className={styles.cardDetails}>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Категория прав:</span>
+                            <span>B, C</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Стаж:</span>
+                            <span>5 лет</span>
+                        </div>
+                        <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Соответствие:</span>
+                            <span className={styles.matchValue}>89%</span>
+                        </div>
+                    </div>
+                    <div className={styles.cardStatusRow}>
+                        <span className={styles.statusBadge}>Скрининг</span>
+                        <span className={styles.riskBadge}>Низкий риск</span>
+                    </div>
+                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                </div>
+            
+            </div>
+            </div>
+        
     );
 };
 
