@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CandidatesService } from './candidates/candidates.service';
+import { CandidatesService } from './candidates/candidate.service';
 import { DashboardService } from './dashboard/dashboard.service';
 import { AuthService } from './auth/auth.service';
 

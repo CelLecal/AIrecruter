@@ -3,9 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { CandidatesModule } from './candidates/candidates.module';
+import { CandidatesModule } from './candidates/candidate.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
+import { CandidatesController } from 'candidates/candidate.controller';
+import { CandidatesService } from './candidates/candidate.service';
+import { Candidate } from './candidates/entities/candidate.entity';
 
 @Module({
   imports: [
@@ -21,8 +24,10 @@ import * as dotenv from 'dotenv';
       port: 5432,
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([Candidate]),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CandidatesService],
+  exports: [CandidatesService],
 })
 export class AppModule {}

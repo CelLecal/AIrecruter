@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: f5e0c311-6368-4863-8b67-e9fc4cf9aa12
+
+localResources:
+  specs:
+    - ..\backend\swagger.yml
