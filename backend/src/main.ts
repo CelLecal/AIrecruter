@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const swaggerFile = fs.readFileSync(
-    join(process.cwd(), 'swagger.yml'),
+    join(process.cwd(), 'backend/swagger.yml'),
     'utf8',
   );
   const swaggerDocument = yaml.parse(swaggerFile);

@@ -3,19 +3,23 @@ info:
   title: Ai-Recruter
   version: 1.0.12
 servers:
-  - url: https://localhost:3000
+  - url: https://localhost:3000/api/docs
 tags:
-  - name: auth
-    description: все пользователи
+  - name: users
+    description: пользователи
   - name: dashboard
     description: дашбоард
+  - name: candidates
+    description: кандидаты
+  - name: auth
+    description: аутентификация
 
 paths:
   /users:
     get:
       operationId: getUsersList
       tags:
-        - auth
+        - users
       parameters:
         - name: q
           in: query
@@ -27,7 +31,7 @@ paths:
     post:
       operationId: createUser
       tags:
-        - auth
+        - users
       requestBody:
         content:
           application/json:
@@ -41,7 +45,7 @@ paths:
     patch:
       operationId: updateUser
       tags:
-        - auth
+        - users
       parameters:
         - $ref: '#/components/parameters/UserId'
       requestBody:
@@ -51,16 +55,55 @@ paths:
               $ref: '#/components/schemas/UsersPatch'
       responses:
         200:
-          $ref: '#/components/responses/UsersListRespones'
+          $ref: '#/components/responses/CandidatesListRespones'
     delete:
       operationId: deleteUser
       tags:
-        - auth
+        - users
       parameters:
         - $ref: '#/components/parameters/UserId'
       responses:
         204:
-          description: пользователь удалён
+          $ref: '#/components/responses/UsersListRespones'
+  #кандидаты
+  /candidates:
+    get:
+      operationId: getCandidatesList
+      tags:
+        - candidates
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/CandidatesListRespones'
+
+  /candidates/{candidateId}:
+    patch:
+      operationId: updateCandidate
+      tags:
+        - candidates
+      parameters:
+        - $ref: '#/components/parameters/CandidateId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsersPatch'
+      responses:
+        200:
+          $ref: '#/components/responses/CandidatesListRespones'
+    delete:
+      operationId: deleteCandidate
+      tags:
+        - candidates
+      parameters:
+        - $ref: '#/components/parameters/CandidateId'
+      responses:
+        204:
+          $ref: '#/components/responses/CandidatesListRespones'
 
 components:
   schemas:
@@ -96,6 +139,33 @@ components:
         createdAt:
           type: string
           format: date-time
+    Candidates:
+      type: object
+      required:
+        - id
+        - fullName
+        - email
+        - phone
+        - birthData
+        - currentStatus
+        - createdAt
+      properties:
+        id:
+          type: number
+        fullName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: number
+        birthData:
+          type: string
+          format: date
+        currentStatus:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
 
   responses:
     UsersListRespones:
@@ -114,10 +184,24 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Users'
+    CandidatesListRespones:
+      description: Список кандидатов
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Candidates'
   parameters:
     UserId:
       in: path
       name: userId
+      required: true
+      schema:
+        type: string
+    CandidateId:
+      in: path
+      name: CandidateId
       required: true
       schema:
         type: string
