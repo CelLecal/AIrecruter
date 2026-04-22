@@ -1,14 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from 'user/entities/user.entity';
-import * as bcrypt from 'bcrypt';
-import { UsersService } from 'user/user.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usersService: UsersService) {}
-
   getAuth(): string {
     return 'auth';
   }

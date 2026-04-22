@@ -1,7 +1,5 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from 'user/dto/create-user.dto';
-import { UsersService } from 'user/user.service';
 
 @Controller('auth')
 export class AuthController {
@@ -16,6 +14,4 @@ export class AuthController {
   // }
 }
 @Controller()
-export class AppController {
-  constructor(private readonly userService: UsersService) {}
-}
+export class AppController {}
