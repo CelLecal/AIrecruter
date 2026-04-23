@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './Candidates.module.css';
+import { Link } from 'react-router-dom'
 
 const Candidates: React.FC = () => {
-    
+
     return (
         <div className={styles.rightContent}>
             <div className={styles.headerRow}>
@@ -33,7 +34,7 @@ const Candidates: React.FC = () => {
 
             {/* карточки*/}
             <div className={styles.cardsRow}>
-                
+
                 <div className={styles.candidateCard}>
                     <div className={styles.cardHeader}>
                         <div className={styles.cardAvatar}>ПС</div>
@@ -60,8 +61,10 @@ const Candidates: React.FC = () => {
                         <span className={styles.statusBadge}>Скрининг</span>
                         <span className={styles.riskBadge}>Низкий риск</span>
                     </div>
-                    
-                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+
+                    <Link to="./CondidatesProfile.tsx" style={{ textDecoration: 'none' }}>
+                        <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    </Link>
                 </div>
 
                 <div className={styles.candidateCard}>
@@ -90,7 +93,9 @@ const Candidates: React.FC = () => {
                         <span className={styles.statusBadge}>Проверка документов</span>
                         <span className={styles.riskBadge1}>Средний риск</span>
                     </div>
-                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    <Link to="./CondidatesProfile.tsx" style={{ textDecoration: 'none' }}>
+                        <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    </Link>
                 </div>
 
                 <div className={styles.candidateCard}>
@@ -119,7 +124,9 @@ const Candidates: React.FC = () => {
                         <span className={styles.statusBadge}>Скрининг</span>
                         <span className={styles.riskBadge}>Низкий риск</span>
                     </div>
-                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    <Link to="./CondidatesProfile.tsx" style={{ textDecoration: 'none' }}>
+                        <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    </Link>
                 </div>
             </div>
 
@@ -151,7 +158,9 @@ const Candidates: React.FC = () => {
                         <span className={styles.statusBadge}>Новый</span>
                         <span className={styles.riskBadge}>Низкий риск</span>
                     </div>
-                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    <Link to="./CondidatesProfile.tsx" style={{ textDecoration: 'none' }}>
+                        <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    </Link>
                 </div>
 
 
@@ -181,7 +190,9 @@ const Candidates: React.FC = () => {
                         <span className={styles.statusBadge}>Скрининг</span>
                         <span className={styles.riskBadge2}>Высокий риск</span>
                     </div>
-                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    <Link to="./CondidatesProfile.tsx" style={{ textDecoration: 'none' }}>
+                        <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    </Link>
                 </div>
 
 
@@ -211,12 +222,14 @@ const Candidates: React.FC = () => {
                         <span className={styles.statusBadge}>Скрининг</span>
                         <span className={styles.riskBadge}>Низкий риск</span>
                     </div>
-                    <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    <Link to="./CondidatesProfile.tsx" style={{ textDecoration: 'none' }}>
+                        <button className={styles.openButton}><i className="fa fa-eye" aria-hidden="true"> </i> Открыть</button>
+                    </Link>
                 </div>
-            
+
             </div>
-            </div>
-        
+        </div>
+
     );
 };
 

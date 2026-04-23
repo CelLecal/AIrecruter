@@ -266,16 +266,22 @@
 }
 
 .openButton {
-    background:#4e46e53b;
+    background: #4e46e53b;
     border: 1px solid #8883e4;
     border-radius: 15px;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;  
     color: #8883e4;
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 0.5rem;
+    width: 100%;  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    gap: 8px;  
+    
 }
 
 .openButton:hover {
