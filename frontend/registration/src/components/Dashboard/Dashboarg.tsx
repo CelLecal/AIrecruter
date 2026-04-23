@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
+    const [notificationsOpen, setNotificationsOpen] = useState(false);
 
     const handleLogout = () => {
         navigate('/');
@@ -21,9 +22,18 @@ const Dashboard: React.FC = () => {
                         <i className="fas fa-search"></i>
                         <input type="text" placeholder="Поиск..." />
                     </div>
+
                     <div className={styles.userMenu}>
-                        <i className="fas fa-bell"></i>
+                        <div className={styles.notificationWrapper}>
+                            <i 
+                                className="fas fa-bell" 
+                                onClick={() => setNotificationsOpen(!notificationsOpen)}
+                                style={{ cursor: 'pointer' }}
+                            ></i>
+                            <span className={styles.notificationDot}></span>
+                        </div>
                     </div>
+                    
                 </div>
             </header>
 
@@ -36,22 +46,26 @@ const Dashboard: React.FC = () => {
                                 className={({ isActive }) =>
                                     `${styles.leftProItem} ${isActive ? styles.active : ''}`
                                 }
-                                end>
+                                end
+                            >
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-home"></i>
                                 </div>
                                 <span>Главная</span>
                             </NavLink>
+
                             <NavLink
                                 to="/dashboard/candidates"
                                 className={({ isActive }) =>
                                     `${styles.leftProItem} ${isActive ? styles.active : ''}`
-                                }>
+                                }
+                            >
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-chalkboard-user"></i>
                                 </div>
                                 <span>Кандидаты</span>
                             </NavLink>
+
                             <div className={styles.leftProItem}>
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-robot"></i>
@@ -98,9 +112,32 @@ const Dashboard: React.FC = () => {
                     </div>
                 </div>
 
-                {/* вложенные маршруты */}
                 <Outlet />
             </div>
+
+            {/* панель уведомлений */}
+            {notificationsOpen && (
+                <div className={styles.notificationsPanel}>
+                    <div className={styles.panelHeader}>
+                        <span>Уведомления</span>
+                        <button onClick={() => setNotificationsOpen(false)} className={styles.closePanelBtn}>✕</button>
+                    </div>
+                    <div className={styles.notificationsList}>
+                        <div className={styles.notificationItem}>
+                            <p>Кандидат Петров С.И. прошёл скрининг</p>
+                            <span className={styles.notificationTime}>5 минут назад</span>
+                        </div>
+                        <div className={styles.notificationItem}>
+                            <p>Загружены документы кандидата Смирновой А.В.</p>
+                            <span className={styles.notificationTime}>12 минут назад</span>
+                        </div>
+                        <div className={styles.notificationItem}>
+                            <p>Требуется проверка документов (3 кандидата)</p>
+                            <span className={styles.notificationTime}>25 минут назад</span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
