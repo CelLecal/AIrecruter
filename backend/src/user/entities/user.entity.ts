@@ -1,0 +1,31 @@
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  BaseEntity,
+} from 'typeorm';
+
+@Entity('users')
+export class UserEntity extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id!: string;
+
+  @Column()
+  full_name!: string;
+
+  @Column()
+  email!: string;
+
+  @Column()
+  password_hash!: string;
+
+  @Column()
+  role_id!: number;
+
+  @Column()
+  status!: string;
+
+  @CreateDateColumn()
+  created_at!: Date;
+}

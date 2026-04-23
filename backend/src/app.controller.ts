@@ -17,15 +17,15 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-  @Get('candidatesPage')
+  @Get('api/candidates')
   getCandidate(): string {
     return this.candidatesService.getCandidate();
   }
-  @Get('dashboard')
+  @Get('api/dashboard')
   getDashboard() {
     return this.dashboardService.getDashboardData();
   }
-  @Get('auth')
+  @Get('api/auth')
   getAuth(): string {
     return this.authService.getAuth();
   }
