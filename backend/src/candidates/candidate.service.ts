@@ -1,12 +1,20 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCandidateDto } from './dto/create-candidate.dto';
 import { CandidateDto } from './dto/candidate.dto';
 import { ReturningResultsEntityUpdator } from 'typeorm/query-builder/ReturningResultsEntityUpdator.js';
+import { CandidateEntity } from './entities/candidate.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class CandidatesService {
-  create(data: CreateCandidateDto) {
-    const candidate = new CandidateDto();
+  constructor(
+    @InjectRepository(CandidateEntity)
+    private candidateRepository: Repository<CandidateEntity>,
+  ) {}
+
+  async create(data: CreateCandidateDto) {
+    const candidate = new CandidateEntity();
     candidate.id = data.id;
     candidate.full_name = data.full_name;
     candidate.phone = data.phone;
@@ -16,8 +24,14 @@ export class CandidatesService {
     candidate.current_status = data.current_status;
     candidate.created_at = data.created_at;
 
-    return candidate;
+    const res = await candidate.save();
+    return new CandidateDto(res);
   }
+  async getList() {
+    const candidates = await this.candidateRepository.find();
+    return candidates.map((item) => new CandidateDto(item));
+  }
+
   getCandidate() {
     return 'candidate';
   }

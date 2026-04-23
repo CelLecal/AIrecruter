@@ -1,5 +1,5 @@
 export class CreateCandidateDto {
-  id!: number;
+  id!: string;
   full_name!: string;
   phone!: string;
   email!: string;

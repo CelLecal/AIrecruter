@@ -3,12 +3,13 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  BaseEntity,
 } from 'typeorm';
 
-@Entity()
-export class Candidate {
+@Entity('candidates')
+export class CandidateEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id!: string;
 
   @Column()
   full_name!: string;

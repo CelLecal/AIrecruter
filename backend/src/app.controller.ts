@@ -17,7 +17,7 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-  @Get('candidates')
+  @Get('candidatesPage')
   getCandidate(): string {
     return this.candidatesService.getCandidate();
   }

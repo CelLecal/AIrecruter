@@ -1,8 +1,10 @@
 {
   "scripts": {
-  "start": "ts-node backend/src/main.ts",
-  "typeorm": "npm run builds && npx typeorm -d dist/db/datasource.js"
-},
+    "start": "ts-node backend/src/main.ts",
+    "build": "nest build",
+    "typeorm": "npm run build && npx typeorm -d dist/src/app.module.ts",
+    "migration:generate": "npm run typeorm -- migration:generate"
+  },
   "dependencies": {
     "@nestjs/common": "^11.1.18",
     "@nestjs/core": "^11.1.18",
