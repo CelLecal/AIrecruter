@@ -3,21 +3,21 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { UserService } from 'user/user.service';
+import { UserService } from '../user/user.service';
 import * as argon2 from 'argon2';
 @Injectable()
 export class AuthService {
   constructor(private readonly userService: UserService) {}
 
-  async validateUser(email: string, password_hash: string) {
+  async validateUser(email: string, password: string) {
     const user = await this.userService.findOne(email);
-    const passwordIsMatch = await argon2.verify(
-      user!.password_hash,
-      password_hash,
-    );
+    const passwordIsMatch = await argon2.verify(user!.password_hash, password);
     if (user && passwordIsMatch) {
       return user;
     }
     throw new BadRequestException('Пароль или email не совпадает.');
+  }
+  getAuth() {
+    return 'auth';
   }
 }

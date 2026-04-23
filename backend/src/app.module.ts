@@ -9,16 +9,19 @@ import * as dotenv from 'dotenv';
 import { CandidatesService } from './candidates/candidate.service';
 import { CandidateEntity } from './candidates/entities/candidate.entity';
 import { createConnection } from '../db/data-source';
+import { AuthController } from './auth/auth.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     AuthModule,
     DashboardModule,
     CandidatesModule,
+    UserModule,
     TypeOrmModule.forRoot(createConnection),
     TypeOrmModule.forFeature([CandidateEntity]),
   ],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [AppService, CandidatesService],
   exports: [CandidatesService],
 })
