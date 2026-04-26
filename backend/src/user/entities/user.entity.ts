@@ -5,27 +5,28 @@ import {
   CreateDateColumn,
   BaseEntity,
 } from 'typeorm';
+import * as argon2 from 'argon2';
 
 @Entity('users')
 export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: string;
 
-  @Column()
+  @Column({ default: 'name' })
   full_name!: string;
 
-  @Column()
+  @Column({ default: 'email' })
   email!: string;
 
-  @Column()
+  @Column({ default: 'password' })
   password_hash!: string;
 
-  @Column()
+  @Column({ default: 'role' })
   role_id!: string;
 
-  @Column()
+  @Column({ default: 'status' })
   status!: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: '11-11-1111' })
   created_at!: Date;
 }
