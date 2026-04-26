@@ -1,0 +1,26 @@
+$kind: http-request
+name: http://localhost:3000/candidates
+url: http://localhost:3000/candidates
+method: POST
+body:
+  type: json
+  content: "  {\r
+
+    \    \"id\": 5,\r
+
+    \    \"full_name\": \"string\",\r
+
+    \    \"phone\": \"string\",\r
+
+    \    \"email\": \"string\",\r
+
+    \    \"birth_date\": \"string\",\r
+
+    \    \"city\": \"string\",\r
+
+    \    \"current_status\": \"string\",\r
+
+    \    \"created_at\": \"10-12-2008\"\r
+
+    \  }"
+order: 739256194850557

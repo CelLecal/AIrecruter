@@ -21,7 +21,7 @@ export class UserEntity extends BaseEntity {
   password_hash!: string;
 
   @Column()
-  role_id!: number;
+  role_id!: string;
 
   @Column()
   status!: string;

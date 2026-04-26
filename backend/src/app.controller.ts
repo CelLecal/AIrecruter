@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { CandidatesService } from './candidates/candidate.service';
 import { DashboardService } from './dashboard/dashboard.service';
 import { AuthService } from './auth/auth.service';
+import { UserService } from './user/user.service';
 
 @Controller()
 export class AppController {
@@ -11,6 +12,7 @@ export class AppController {
     private readonly candidatesService: CandidatesService,
     private readonly dashboardService: DashboardService,
     private readonly authService: AuthService,
+    private readonly userService: UserService,
   ) {}
 
   @Get()
@@ -28,5 +30,9 @@ export class AppController {
   @Get('api/auth')
   getAuth(): string {
     return this.authService.getAuth();
+  }
+  @Get('api/users')
+  getUsers(): string {
+    return this.userService.getUsers();
   }
 }
