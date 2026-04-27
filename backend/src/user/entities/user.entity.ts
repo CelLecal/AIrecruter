@@ -11,19 +11,19 @@ export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column({ default: 'name' })
   full_name!: string;
 
-  @Column()
+  @Column({ default: 'email' })
   email!: string;
 
-  @Column()
+  @Column({ default: 'password' })
   password_hash!: string;
 
-  @Column()
+  @Column({ default: 'role' })
   role_id!: string;
 
-  @Column()
+  @Column({ default: 'status' })
   status!: string;
 
   @CreateDateColumn()
