@@ -8,8 +8,10 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const user = await this.userService.findOne(email);
-    const password_hash = await argon2.hash(user!.password_hash);
-    const passwordIsMatch = await argon2.verify(password_hash, password);
+    if (!user) {
+      throw new BadRequestException('Пароль или email не совпадает.');
+    }
+    const passwordIsMatch = await argon2.verify(user.password_hash, password);
     if (user && passwordIsMatch) {
       return user;
     }
