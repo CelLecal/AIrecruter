@@ -19,19 +19,19 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-  @Get('api/candidates')
+  @Get('candidates')
   getCandidate(): string {
     return this.candidatesService.getCandidate();
   }
-  @Get('api/dashboard')
+  @Get('dashboard')
   getDashboard() {
     return this.dashboardService.getDashboardData();
   }
-  @Get('api/auth')
+  @Get('auth')
   getAuth(): string {
     return this.authService.getAuth();
   }
-  @Get('api/users')
+  @Get('users')
   getUsers(): string {
     return this.userService.getUsers();
   }

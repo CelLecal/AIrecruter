@@ -3,7 +3,7 @@ info:
   title: Ai-Recruter
   version: 1.0.12
 servers:
-  - url: http://localhost:3000/api
+  - url: http://localhost:3000
 tags:
   - name: users
     description: пользователи
@@ -16,17 +16,6 @@ tags:
 
 paths:
   /users:
-    get:
-      operationId: getUsersList
-      tags:
-        - users
-      parameters:
-        - $ref: '#/components/parameters/UserId'
-          schema:
-            type: string
-      responses:
-        200:
-          $ref: '#/components/responses/UsersListRespones'
     post:
       operationId: createUser
       tags:
@@ -38,9 +27,20 @@ paths:
               $ref: '#/components/schemas/Users'
       responses:
         201:
-          $ref: '#/components/responses/UserRespones'
+          $ref: '#/components/responses/UserResponses'
 
   /users/{userId}:
+    get:
+      operationId: getUsersList
+      tags:
+        - users
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: '#/components/responses/UsersListResponses'
     patch:
       operationId: updateUser
       tags:
@@ -54,7 +54,7 @@ paths:
               $ref: '#/components/schemas/UsersPatch'
       responses:
         200:
-          $ref: '#/components/responses/CandidatesListRespones'
+          $ref: '#/components/responses/CandidatesListResponses'
     delete:
       operationId: deleteUser
       tags:
@@ -63,9 +63,9 @@ paths:
         - $ref: '#/components/parameters/UserId'
       responses:
         204:
-          $ref: '#/components/responses/UsersListRespones'
+          $ref: '#/components/responses/UsersListResponses'
   #кандидаты
-  /candidates:
+  /candidates/candidates:
     get:
       operationId: getCandidatesList
       tags:
@@ -77,7 +77,7 @@ paths:
             type: string
       responses:
         200:
-          $ref: '#/components/responses/CandidatesListRespones'
+          $ref: '#/components/responses/CandidatesListResponses'
 
   /candidates/{candidateId}:
     patch:
@@ -93,7 +93,7 @@ paths:
               $ref: '#/components/schemas/UsersPatch'
       responses:
         200:
-          $ref: '#/components/responses/CandidatesListRespones'
+          $ref: '#/components/responses/CandidatesListResponses'
     delete:
       operationId: deleteCandidate
       tags:
@@ -102,8 +102,34 @@ paths:
         - $ref: '#/components/parameters/CandidateId'
       responses:
         204:
-          $ref: '#/components/responses/CandidatesListRespones'
-
+          $ref: '#/components/responses/CandidatesListResponses'
+  /auth/login:
+    post:
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLogin'
+      responses:
+        200:
+          description: Успешный вход
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: { type: string }
+  /dashboard/stats:
+    get:
+      tags:
+        - dashboard
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          $ref: '#/components/responses/DashboardResponses'
 components:
   schemas:
     UsersPatch:
@@ -165,9 +191,31 @@ components:
         createdAt:
           type: string
           format: date-time
+    DashboardStats:
+      type: object
+      properties:
+        totalUsers:
+          type: integer
+        activeSessions:
+          type: integer
+        revenue:
+          type: number
+        growthRate:
+          type: number
+          format: float
+    AuthLogin:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string }
+        password: { type: string }
+    AuthLoginToken:
+      type: object
+      properties:
+        token: { type: string }
 
   responses:
-    UsersListRespones:
+    UsersListResponses:
       description: Список пользователей
       content:
         application/json:
@@ -175,7 +223,7 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Users'
-    UserRespones:
+    UserResponses:
       description: Пользователь
       content:
         application/json:
@@ -183,7 +231,7 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Users'
-    CandidatesListRespones:
+    CandidatesListResponses:
       description: Список кандидатов
       content:
         application/json:
@@ -191,6 +239,20 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Candidates'
+    DashboardResponses:
+      description: Дашбоард
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/DashboardStats'
+    AuthLoginResponses:
+      description: Успешный вход
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuthLoginToken'
   parameters:
     UserId:
       in: path
@@ -200,7 +262,12 @@ components:
         type: string
     CandidateId:
       in: path
-      name: CandidateId
+      name: candidateId
       required: true
       schema:
         type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JW

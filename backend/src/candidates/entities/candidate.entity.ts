@@ -11,22 +11,22 @@ export class CandidateEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: string;
 
-  @Column()
+  @Column({ default: 'name' })
   full_name!: string;
 
-  @Column()
+  @Column({ default: 'phone' })
   phone!: string;
 
-  @Column()
+  @Column({ default: 'email' })
   email!: string;
 
-  @Column()
+  @Column({ default: 'date' })
   birth_date!: string;
 
-  @Column()
+  @Column({ default: 'city' })
   city!: string;
 
-  @Column()
+  @Column({ default: 'status' })
   current_status!: string;
 
   @CreateDateColumn()
