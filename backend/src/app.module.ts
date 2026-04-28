@@ -11,6 +11,7 @@ import { CandidateEntity } from './candidates/entities/candidate.entity';
 import { createConnection } from '../db/data-source';
 import { AuthController } from './auth/auth.controller';
 import { UserModule } from './user/user.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     UserModule,
     TypeOrmModule.forRoot(createConnection),
     TypeOrmModule.forFeature([CandidateEntity]),
+    ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, CandidatesService],
