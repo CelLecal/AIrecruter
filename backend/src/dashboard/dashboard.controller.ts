@@ -1,13 +1,13 @@
-import { Controller, Get, Query } from '@nestjs/common';
-import { CandidatesService } from '../candidates/candidate.service';
+import { Controller, Get } from "@nestjs/common";
+import { DashboardService } from "./dashboard.service";
 
-@Controller('dashboard')
+@Controller("dashboard")
 export class DashboardController {
-  constructor(private readonly candidatesService: CandidatesService) {}
+  constructor(private readonly dashboardService: DashboardService) {}
 
-  @Get('recentCandidates')
-  async getRecentCandidates(@Query('days') days: string) {
-    const daysNum = parseInt(days, 7);
-    return this.candidatesService.findRecentCandidates(daysNum);
+  @Get()
+  async DashboardStats() {
+    const data = await this.dashboardService.getCombinedData(7);
+    return data;
   }
 }

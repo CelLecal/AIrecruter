@@ -1,6 +1,6 @@
 {
 "scripts": {
-  "start": "ts-node src/main.ts",
+  "dev": "ts-node src/main.ts",
   "build": "nest build",
   "typeorm": "npm run build && npx typeorm -d db/data-source.ts"
   },

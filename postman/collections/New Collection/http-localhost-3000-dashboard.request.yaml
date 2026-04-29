@@ -1,0 +1,5 @@
+$kind: http-request
+name: http://localhost:3000/dashboard
+url: http://localhost:3000/dashboard
+method: GET
+order: 4300544053155289

@@ -1,15 +1,15 @@
-import { config } from 'dotenv';
-import { DataSourceOptions, DataSource } from 'typeorm';
+import { config } from "dotenv";
+import { DataSourceOptions, DataSource } from "typeorm";
 config();
 
 export const createConnection: DataSourceOptions = {
-  type: 'postgres',
+  type: "postgres",
   host: process.env.DB_HOST,
-  username: 'postgres',
+  username: "postgres",
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: Number(process.env.DB_PORT),
-  entities: ['backend/src/entities/**/*.entity.ts'],
+  entities: ["src/entities/**/*.entity.ts"],
   synchronize: true,
 };
 

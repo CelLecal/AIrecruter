@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "start": "ts-node backend/src/main.ts",
-    "build": "nest build"
+    "build": "nest build",
+    "start": "nest start",
+    "start:dev": "nest start --watch"
     
   },
   "dependencies": {
