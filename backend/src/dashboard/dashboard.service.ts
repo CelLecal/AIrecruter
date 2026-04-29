@@ -12,49 +12,93 @@ export class DashboardService {
   async newCandidates(days: number) {
     const dateThreshold = new Date();
     dateThreshold.setDate(dateThreshold.getDate() - days);
-    return this.candidateRepository.find({
+    return this.candidateRepository.count({
       where: {
         created_at: MoreThanOrEqual(dateThreshold),
       },
     });
   }
   async primarySelection() {
-    return this.candidateRepository.findAndCount({
+    return this.candidateRepository.count({
       where: {
-        current_status: "screening",
+        current_status: "Завершил чат-скриннинг",
       },
     });
   }
   async docVerif() {
-    return this.candidateRepository.findAndCount({
+    return this.candidateRepository.count({
       where: {
-        current_status: "docVerify",
+        current_status: "Требует проверки документов",
       },
     });
   }
   async readyForRegis() {
-    return this.candidateRepository.findAndCount({
+    return this.candidateRepository.count({
       where: {
-        current_status: "ready",
+        current_status: "Готов к оформлению",
       },
     });
   }
-  //тут будет ещё последние кандидаты и их статус, я потом разберусь
+  async latestCandidates(days: number) {
+    const dateThreshold = new Date();
+    dateThreshold.setDate(dateThreshold.getDate() - days);
+    return this.candidateRepository.find({
+      select: ["current_status", "full_name"],
+      where: {
+        created_at: MoreThanOrEqual(dateThreshold),
+      },
+    });
+  }
+
+  async hiringFunnel() {
+    const total = await this.candidateRepository.count();
+    const newCandidate = await this.candidateRepository.count({
+      where: { current_status: "Новый" },
+    });
+    const scrinning = await this.candidateRepository.count({
+      where: { current_status: "Скриннинг" },
+    });
+    const docsCheck = await this.candidateRepository.count({
+      where: { current_status: "Проверка документов" },
+    });
+    const hrProcess = await this.candidateRepository.count({
+      where: { current_status: "Решение HR" },
+    });
+    const regis = await this.candidateRepository.count({
+      where: { current_status: "Оформлен" },
+    });
+    const percentages = [newCandidate, scrinning, docsCheck, hrProcess, regis];
+    const allPercentages = percentages.map(
+      (percent) => (percent / 100) * total,
+    );
+    return allPercentages;
+  }
+
   async getCombinedData(days: number = 7) {
-    const [newCandidates] = await this.newCandidates(days);
-    const [primaryTotal] = await this.primarySelection();
-    const [verifTotal] = await this.docVerif();
-    const [readyTotal] = await this.readyForRegis();
+    const newCount = await this.newCandidates(days);
+    const primaryCount = await this.primarySelection();
+    const verifCount = await this.docVerif();
+    const readyCount = await this.readyForRegis();
+    const [latestTotal] = await this.latestCandidates(days);
+    const funnelArray = await this.hiringFunnel();
     return {
-      newCandidates,
+      newCandidates: {
+        count: newCount,
+      },
       primarySelection: {
-        total: primaryTotal,
+        count: primaryCount,
       },
       documentVerification: {
-        total: verifTotal,
+        count: verifCount,
       },
       readyForRegistration: {
-        total: readyTotal,
+        count: readyCount,
+      },
+      latestCandidates: {
+        total: latestTotal,
+      },
+      hiringFunnel: {
+        total: funnelArray,
       },
     };
   }

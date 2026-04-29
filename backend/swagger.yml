@@ -5,8 +5,6 @@ info:
 servers:
   - url: http://localhost:3000
 tags:
-  - name: users
-    description: пользователи
   - name: dashboard
     description: дашбоард
   - name: candidates
@@ -17,42 +15,6 @@ tags:
     description: вакансии
 
 paths:
-  /users/{userId}:
-    get:
-      operationId: getUsersList
-      tags:
-        - users
-      parameters:
-        - $ref: '#/components/parameters/UserId'
-          schema:
-            type: string
-      responses:
-        200:
-          $ref: '#/components/responses/UsersListResponses'
-    patch:
-      operationId: updateUser
-      tags:
-        - users
-      parameters:
-        - $ref: '#/components/parameters/UserId'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UsersPatch'
-      responses:
-        200:
-          $ref: '#/components/responses/CandidatesListResponses'
-    delete:
-      operationId: deleteUser
-      tags:
-        - users
-      parameters:
-        - $ref: '#/components/parameters/UserId'
-      responses:
-        204:
-          $ref: '#/components/responses/UsersListResponses'
-  #кандидаты
   /candidates:
     get:
       operationId: getCandidatesList
@@ -65,7 +27,7 @@ paths:
             type: string
       responses:
         200:
-          $ref: '#/components/responses/CandidatesListResponses'
+          $ref: "#/components/responses/CandidatesListResponses"
   /candidates/{candidateId}:
     get:
       operationId: getCandidateById
@@ -79,7 +41,7 @@ paths:
             type: string
       responses:
         200:
-          $ref: '#/components/responses/CandidatesListResponses'
+          $ref: "#/components/responses/CandidatesListResponses"
   /auth/login:
     post:
       tags:
@@ -88,7 +50,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthLogin'
+              $ref: "#/components/schemas/AuthLogin"
       responses:
         200:
           description: Успешный вход
@@ -98,7 +60,7 @@ paths:
                 type: object
                 properties:
                   token: { type: string }
-  /dashboard/stats:
+  /dashboard:
     get:
       tags:
         - dashboard
@@ -106,7 +68,7 @@ paths:
         - bearerAuth: []
       responses:
         200:
-          $ref: '#/components/responses/DashboardResponses'
+          $ref: "#/components/responses/DashboardResponses"
   /vacancies:
     get:
       operationId: getVacanciesList
@@ -119,7 +81,7 @@ paths:
             type: string
       responses:
         200:
-          $ref: '#/components/responses/VacanciesListResponses'
+          $ref: "#/components/responses/VacanciesListResponses"
 components:
   schemas:
     UsersPatch:
@@ -219,12 +181,10 @@ components:
           type: string
         status:
           type: string
-
     AuthLoginToken:
       type: object
       properties:
         token: { type: string }
-
   responses:
     UsersListResponses:
       description: Список пользователей
@@ -233,7 +193,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Users'
+              $ref: "#/components/schemas/Users"
     UserResponses:
       description: Пользователь
       content:
@@ -241,7 +201,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Users'
+              $ref: "#/components/schemas/Users"
     CandidatesListResponses:
       description: Список кандидатов
       content:
@@ -249,7 +209,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Candidates'
+              $ref: "#/components/schemas/Candidates"
     VacanciesListResponses:
       description: Список вакансий
       content:
@@ -257,7 +217,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/Vacancies'
+              $ref: "#/components/schemas/Vacancies"
     DashboardResponses:
       description: Дашбоард
       content:
@@ -265,13 +225,13 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/DashboardStats'
+              $ref: "#/components/schemas/DashboardStats"
     AuthLoginResponses:
       description: Успешный вход
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AuthLoginToken'
+            $ref: "#/components/schemas/AuthLoginToken"
   parameters:
     UserId:
       in: path
