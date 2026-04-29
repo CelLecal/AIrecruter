@@ -1,0 +1,182 @@
+.rightContent {
+    flex: 1;
+    padding: 32px 40px;
+    background: #0A0C10;
+    overflow-y: auto;
+    color: white;
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.headerRow h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.headerRow p {
+    font-size: 1rem;
+    color: #A0AABF;
+}
+
+.addButton {
+    height: 45px;
+    background: #4F46E5;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    box-shadow: 0 0 15px hsla(256, 100%, 68%, 0.39);
+}
+
+.searchBar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #2A2D3A;
+    border-radius: 15px;
+    padding: 1rem 1rem;
+    gap: 10px;
+
+}
+
+.searchBar i {
+    color: #A0AABF;
+    font-size: 1rem;
+}
+
+.searchBar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.searchBar input::placeholder {
+    color: #A0AABF;
+}
+
+.searchBar:focus-within {
+    background: #0F1117;
+    box-shadow: 0 0 0 2px #8352d1;
+}
+
+/* -----------------карточки----------- */
+.cardsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.vacancyCard {
+    flex: 1 1 300px;
+    background: #1A1D26;
+    border-radius: 20px;
+    padding: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    border: 1px solid transparent;
+}
+
+.vacancyCard:hover {
+    box-shadow: 0 0 15px #8352d1a9;
+    border-color: #8883e4; 
+}
+
+/* Шапка карточки (название + статус) */
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.vacancyTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+/* статус*/
+.statusBadge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 30px;
+    background: #2A2D3A;
+    color: #A0AABF;
+}
+
+.statusOpen {
+    background: rgba(39, 141, 30, 0.2);
+    color: #4ded09;
+}
+
+.statusClosed {
+    background: rgba(244, 67, 54, 0.2);
+    color: #ff3232fb;
+}
+
+/* детали */
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.cardRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #F3F4F6;
+}
+
+.cardLabel {
+    color: #A0AABF;
+    font-weight: 500;
+}
+
+.cardActions {
+    margin-top: 0.4rem;
+}
+
+.detailsButton {
+    background: #4e46e53b;
+    border: 1px solid #8883e4;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;  
+    color: #8883e4;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+    width: 100%;  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    gap: 8px;  
+    
+}
+
+.detailsButton:hover {
+    background: #4F46E5;
+    color: white;
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.5);
+}

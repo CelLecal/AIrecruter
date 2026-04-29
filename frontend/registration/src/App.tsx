@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard/Dashboarg';
 import DashboardMain from './components/Dashboard/DashboardMain';
 import Candidates from './components/Candidates/Candidates'; 
 import CandidatesProfile from './components/Candidates/CandidatesProfile';
-
+import Vakancies from './components/Vakancies/Vakancies';
 
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
                     <Route index element={<DashboardMain />} />
                     <Route path="candidates" element={<Candidates />} />
                     <Route path="candidates/:id" element={<CandidatesProfile />} />
+                    <Route path="vacancies" element={<Vakancies />} />   
                 </Route>
             </Routes>
         </BrowserRouter>
@@ -23,3 +24,4 @@ function App() {
 }
 
 export default App;
+
