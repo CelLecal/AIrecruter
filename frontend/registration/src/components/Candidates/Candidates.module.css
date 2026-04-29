@@ -162,7 +162,7 @@
 }
 
 .candidateCard:hover {
-    box-shadow: 0 0 15px #8352d1;
+    box-shadow: 0 0 15px #8352d1a9;
     border-color: #8883e4; 
 }
 

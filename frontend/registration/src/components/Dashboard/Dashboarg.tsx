@@ -66,6 +66,18 @@ const Dashboard: React.FC = () => {
                                 <span>Кандидаты</span>
                             </NavLink>
 
+                              <NavLink
+                                to="/dashboard/vacancies"
+                                className={({ isActive }) =>
+                                    `${styles.leftProItem} ${isActive ? styles.active : ''}`
+                                }
+                            >
+                                <div className={styles.leftProIcon}>
+                                    <i className="fas fa-briefcase"></i>
+                                </div>
+                                <span>Вакансии</span>
+                            </NavLink>
+
                             <div className={styles.leftProItem}>
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-robot"></i>
