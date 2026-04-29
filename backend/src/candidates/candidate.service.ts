@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCandidateDto } from './dto/create-candidate.dto';
 import { CandidateDto } from './dto/candidate.dto';
-import { CandidateEntity } from './entities/candidate.entity';
+import { CandidateEntity } from '../entities/candidate.entity';
 import { Repository, MoreThanOrEqual } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 

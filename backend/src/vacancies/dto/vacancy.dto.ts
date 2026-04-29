@@ -1,4 +1,4 @@
-import { VacancyEntity } from '../entities/vacancies.entity';
+import { VacancyEntity } from '../../entities/vacancies.entity';
 
 export class VacancyDto {
   id!: number;

@@ -1,4 +1,4 @@
-import { CandidateEntity } from 'candidates/entities/candidate.entity';
+import { CandidateEntity } from 'entities/candidate.entity';
 
 export class CandidateDto {
   id!: number;

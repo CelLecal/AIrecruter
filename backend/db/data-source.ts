@@ -1,10 +1,5 @@
 import { config } from 'dotenv';
 import { DataSourceOptions, DataSource } from 'typeorm';
-import { CandidateEntity } from '../src/candidates/entities/candidate.entity';
-import { UserEntity } from '../src/user/entities/user.entity';
-import { VacancyEntity } from '../src/vacancies/entities/vacancies.entity';
-import { CandidateProfEntity } from '../src/candidates/entities/candidate-profile.entity';
-import { CandidateDocsEntity } from '../src/candidates/entities/candidate-documents.entity';
 config();
 
 export const createConnection: DataSourceOptions = {
@@ -13,15 +8,8 @@ export const createConnection: DataSourceOptions = {
   username: 'postgres',
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: 5432,
-  entities: [
-    CandidateEntity,
-    UserEntity,
-    VacancyEntity,
-    CandidateDocsEntity,
-    CandidateProfEntity,
-  ],
-  migrations: ['dist/db/migrations/*.ts'],
+  port: Number(process.env.DB_PORT),
+  entities: ['backend/src/entities/**/*.entity.ts'],
   synchronize: true,
 };
 

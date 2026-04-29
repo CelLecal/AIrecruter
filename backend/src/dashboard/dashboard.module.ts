@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 import { DashboardController } from './dashboard.controller';
 import { CandidatesService } from '../candidates/candidate.service';
-import { CandidateEntity } from '../candidates/entities/candidate.entity';
+import { CandidateEntity } from '../entities/candidate.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
