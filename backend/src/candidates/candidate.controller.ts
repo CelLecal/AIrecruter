@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { CandidatesService } from './candidate.service';
 import { CreateCandidateDto } from './dto/create-candidate.dto';
-import { CandidateDto } from './dto/candidate.dto';
 
 @Controller('candidates')
 export class CandidatesController {
@@ -19,8 +18,18 @@ export class CandidatesController {
   create(@Body() data: CreateCandidateDto) {
     return this.candidatesService.create(data);
   }
-  @Get('candidates')
+  @Get()
   getList() {
     return this.candidatesService.getList();
+  }
+  @Get(':id')
+  async getUser(@Param('id') id: string) {
+    const candidateId = parseInt(id, 10);
+    const candidate =
+      await this.candidatesService.findCandidateById(candidateId);
+    if (!candidate) {
+      return { message: 'Пользователь не найден' };
+    }
+    return candidate;
   }
 }

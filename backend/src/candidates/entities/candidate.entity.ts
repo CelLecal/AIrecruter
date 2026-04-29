@@ -9,7 +9,7 @@ import {
 @Entity('candidates')
 export class CandidateEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: string;
+  id!: number;
 
   @Column({ default: 'name' })
   full_name!: string;

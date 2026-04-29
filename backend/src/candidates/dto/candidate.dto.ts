@@ -1,7 +1,7 @@
 import { CandidateEntity } from 'candidates/entities/candidate.entity';
 
 export class CandidateDto {
-  id!: string;
+  id!: number;
   full_name!: string;
   phone!: string;
   email!: string;

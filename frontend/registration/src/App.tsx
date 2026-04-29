@@ -5,6 +5,8 @@ import DashboardMain from './components/Dashboard/DashboardMain';
 import Candidates from './components/Candidates/Candidates'; 
 import CandidatesProfile from './components/Candidates/CandidatesProfile';
 
+
+
 function App() {
     return (
         <BrowserRouter>

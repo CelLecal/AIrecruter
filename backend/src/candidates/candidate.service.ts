@@ -1,9 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCandidateDto } from './dto/create-candidate.dto';
 import { CandidateDto } from './dto/candidate.dto';
-import { ReturningResultsEntityUpdator } from 'typeorm/query-builder/ReturningResultsEntityUpdator.js';
 import { CandidateEntity } from './entities/candidate.entity';
-import { Repository } from 'typeorm';
+import { Repository, MoreThanOrEqual } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -31,8 +30,18 @@ export class CandidatesService {
     const candidates = await this.candidateRepository.find();
     return candidates.map((item) => new CandidateDto(item));
   }
+  async findCandidateById(candidateId: number) {
+    return this.candidateRepository.findOne({ where: { id: candidateId } });
+  }
 
-  getCandidate() {
-    return 'candidate';
+  async findRecentCandidates(days: number): Promise<CandidateEntity[]> {
+    const dateThreshold = new Date();
+    dateThreshold.setDate(dateThreshold.getDate() - days);
+
+    return this.candidateRepository.find({
+      where: {
+        created_at: MoreThanOrEqual(dateThreshold),
+      },
+    });
   }
 }

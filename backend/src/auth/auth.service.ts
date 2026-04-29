@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
-import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { IUser } from 'types/types';
 import * as argon2 from 'argon2';
