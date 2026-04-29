@@ -11,4 +11,3 @@ import { CandidateEntity } from './entities/candidate.entity';
   exports: [CandidatesService],
 })
 export class CandidatesModule {}
-export class AppModule {}

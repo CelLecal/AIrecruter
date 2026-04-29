@@ -8,9 +8,9 @@ body:
 
     \r
 
-    \  \"email\": \"test1@gmail.com\",\r
+    \  \"email\": \"test1@test.com\",\r
 
-    \  \"password_hash\": \"password\"\r
+    \  \"password\": \"123456\"\r
 
     \r
 

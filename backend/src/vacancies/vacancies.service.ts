@@ -12,7 +12,7 @@ export class VacanciesService {
   ) {}
 
   async getList() {
-    const candidates = await this.vacanciesRepository.find();
-    return candidates.map((item) => new VacancyDto(item));
+    const vacancies = await this.vacanciesRepository.find();
+    return vacancies.map((item) => new VacancyDto(item));
   }
 }

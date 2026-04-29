@@ -24,7 +24,7 @@ export class CandidatesController {
   }
   @Get(':id')
   async getCandidateById(@Param('id') id: string) {
-    const candidateId = parseInt(id, 10);
+    const candidateId = parseInt(id);
     const candidate =
       await this.candidatesService.findCandidateById(candidateId);
     if (!candidate) {

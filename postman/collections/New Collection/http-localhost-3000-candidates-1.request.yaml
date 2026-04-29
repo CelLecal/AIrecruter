@@ -1,0 +1,7 @@
+$kind: http-request
+name: http://localhost:3000/candidates/:1
+url: http://localhost:3000/candidates/?1=
+method: GET
+queryParams:
+  "1": ""
+order: 3927450820656190

@@ -1,0 +1,5 @@
+$kind: http-request
+name: http://localhost:3000/vacancies
+url: http://localhost:3000/vacancies
+method: GET
+order: 4050302941971401

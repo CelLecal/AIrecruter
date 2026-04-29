@@ -7,10 +7,14 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: your_password
       POSTGRES_DB: your_db
+      JWT_SECRET: UusjRonV658VdE838pbAKuREfdCcJiospgrcIjQJEFF
+
+
     ports:
       - '5432:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
+      
 
   api:
     build: .
@@ -24,6 +28,8 @@ services:
       DB_USER: postgres
       DB_PASSWORD: your_password
       DB_NAME: your_db
+      JWT_SECRET: UusjRonV658VdE838pbAKuREfdCcJiospgrcIjQJEFF
+
     depends_on:
       - db
 
