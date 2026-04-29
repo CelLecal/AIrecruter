@@ -9,7 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './strategies/jwt.strategy';
 @Module({
   providers: [AuthService, localStrategy, JwtStrategy],
-  exports: [AuthService, AuthController],
+  exports: [AuthService],
   controllers: [AuthController],
   imports: [
     UserModule,

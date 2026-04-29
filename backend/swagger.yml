@@ -15,20 +15,6 @@ tags:
     description: аутентификация
 
 paths:
-  /users:
-    post:
-      operationId: createUser
-      tags:
-        - users
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Users'
-      responses:
-        201:
-          $ref: '#/components/responses/UserResponses'
-
   /users/{userId}:
     get:
       operationId: getUsersList
@@ -65,7 +51,7 @@ paths:
         204:
           $ref: '#/components/responses/UsersListResponses'
   #кандидаты
-  /candidates/candidates:
+  /candidates:
     get:
       operationId: getCandidatesList
       tags:
@@ -78,30 +64,17 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/CandidatesListResponses'
-
-  /candidates/{candidateId}:
-    patch:
-      operationId: updateCandidate
+  /candidates{candidateId}:
+    get:
+      operationId: getCandidateById
       tags:
         - candidates
       parameters:
         - $ref: '#/components/parameters/CandidateId'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UsersPatch'
+          schema:
+            type: string
       responses:
         200:
-          $ref: '#/components/responses/CandidatesListResponses'
-    delete:
-      operationId: deleteCandidate
-      tags:
-        - candidates
-      parameters:
-        - $ref: '#/components/parameters/CandidateId'
-      responses:
-        204:
           $ref: '#/components/responses/CandidatesListResponses'
   /auth/login:
     post:
@@ -194,15 +167,20 @@ components:
     DashboardStats:
       type: object
       properties:
-        totalUsers:
+        totalCandidates:
           type: integer
-        activeSessions:
+        newCandidates:
           type: integer
-        revenue:
-          type: number
-        growthRate:
-          type: number
-          format: float
+        primarySelection:
+          type: integer
+        docVerif:
+          type: integer
+        readyForRegis:
+          type: integer
+        latestCandidates:
+          type: integer
+        hiringFunnel:
+          type: integer
     AuthLogin:
       type: object
       required: [email, password]

@@ -5,7 +5,6 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CandidatesModule } from './candidates/candidate.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import * as dotenv from 'dotenv';
 import { CandidateEntity } from './candidates/entities/candidate.entity';
 import { createConnection } from '../db/data-source';
 import { UserModule } from './user/user.module';
