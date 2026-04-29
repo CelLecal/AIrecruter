@@ -1,6 +1,5 @@
 import { config } from 'dotenv';
-import { DataSourceOptions } from 'typeorm';
-import { DataSource } from 'typeorm';
+import { DataSourceOptions, DataSource } from 'typeorm';
 import { CandidateEntity } from '../src/candidates/entities/candidate.entity';
 import { UserEntity } from '../src/user/entities/user.entity';
 config();

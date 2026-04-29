@@ -23,7 +23,7 @@ export class CandidatesController {
     return this.candidatesService.getList();
   }
   @Get(':id')
-  async getUser(@Param('id') id: string) {
+  async getCandidateById(@Param('id') id: string) {
     const candidateId = parseInt(id, 10);
     const candidate =
       await this.candidatesService.findCandidateById(candidateId);
