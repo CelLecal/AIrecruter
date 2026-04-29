@@ -72,7 +72,9 @@ paths:
       tags:
         - candidates
       parameters:
-        - $ref: '#/components/parameters/CandidateId'
+        - name: candidateId
+          in: path
+          required: true
           schema:
             type: string
       responses:
@@ -274,12 +276,6 @@ components:
     UserId:
       in: path
       name: userId
-      required: true
-      schema:
-        type: string
-    CandidateId:
-      in: path
-      name: candidateId
       required: true
       schema:
         type: string
