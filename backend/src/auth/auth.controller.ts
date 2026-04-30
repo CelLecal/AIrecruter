@@ -1,21 +1,33 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from 'user/dto/create-user.dto';
-import { UsersService } from 'user/user.service';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiBody,
+  ApiProperty,
+  ApiResponse,
+} from '@nestjs/swagger';
 
+class LoginDto {
+  @ApiProperty({ example: 'example@mail.com' })
+  email: string;
+
+  @ApiProperty({ example: 'example_password' })
+  password: string;
+}
+
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-  // constructor(private authService: AuthService) {}
-  // @Post('register')
-  // async register(@Body() createUserDto: CreateUserDto) {
-  //   const user = await this.authService.register(
-  //     createUserDto.email,
-  //     createUserDto.password,
-  //   );
-  //   return { message: 'Registration successful', userId: user.id };
-  // }
-}
-@Controller()
-export class AppController {
-  constructor(private readonly userService: UsersService) {}
+  constructor(private readonly authService: AuthService) {}
+
+  @ApiOperation({ summary: 'Авторизация пользователя' })
+  @ApiBody({ type: LoginDto })
+  @ApiResponse({ status: 200, description: 'Успешный вход' })
+  @ApiResponse({ status: 401, description: 'Неверный email или пароль' })
+  @Post('login')
+  @HttpCode(HttpStatus.OK) 
+  async login(@Body() dto: LoginDto) {
+    return this.authService.login(dto.email, dto.password);
+  }
 }

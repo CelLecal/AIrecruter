@@ -1,27 +1,35 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CandidatesModule } from './candidates/candidates.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import * as dotenv from 'dotenv';
-
+import { VacanciesModule } from './vacancies/vacancies.module';
 @Module({
   imports: [
-    AuthModule,
-    DashboardModule,
-    CandidatesModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
+      port: 5432,
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      port: 5432,
-      entities: ['/user/entities/user.entity{.ts,.js}'],
-      synchronize: true,
+      autoLoadEntities: true, 
+      synchronize: false,
     }),
+
+    AuthModule,
+    DashboardModule,
+    CandidatesModule,
+    VacanciesModule
   ],
   controllers: [AppController],
   providers: [AppService],

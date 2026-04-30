@@ -8,18 +8,19 @@ services:
       POSTGRES_PASSWORD: your_password
       POSTGRES_DB: your_db
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
   api:
     build: .
-    container_name: my_node_api
+    container_name: my_api
     restart: always
+    command: npm run start:dev
     ports:
-      - '3000:3000'
+      - "3000:3000"
     environment:
-      DB_HOST: localhost
+      DB_HOST: db
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: your_password
