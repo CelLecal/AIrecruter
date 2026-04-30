@@ -1,7 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Dashboard.module.css';
+import { fetchNewCandidates, fetchPrimarySelection, fetchDocVerif, fetchReadyForRegis } from '../../api/api';
 
 const DashboardMain: React.FC = () => {
+    const [NewCandidates, setNewCandidate] = useState(null); 
+    const [primarySelections, setPrimarySelections] = useState(null);
+    const [docVerif, setDocVerif] = useState(null);
+    const [readyForRegis, setReadyForRegis] = useState(null);
+
+ useEffect(() => {
+  fetchNewCandidates()
+    .then(setNewCandidate)
+    .catch(console.error); 
+      fetchPrimarySelection()
+    .then(setPrimarySelections)
+    .catch(console.error); 
+      fetchDocVerif()
+    .then(setDocVerif)
+    .catch(console.error); 
+      fetchReadyForRegis()
+    .then(setReadyForRegis)
+    .catch(console.error); 
+
+}, []);
     return (
         <div className={styles.rightContent}>
             <div className={styles.Header}>
@@ -10,22 +31,22 @@ const DashboardMain: React.FC = () => {
             </div>
             <div className={styles.metricsGrid}>
                 <div className={styles.metricCard}>
-                    <span className={styles.metricValue}>47</span>
+                    <span className={styles.metricValue}>{NewCandidates}</span>
                     <span className={styles.metricLabel}>Новые кандидаты</span>
                     <span className={styles.metricSub}>За последние 7 дней</span>
                 </div>
                 <div className={styles.metricCard}>
-                    <span className={styles.metricValue}>32</span>
+                    <span className={styles.metricValue}>{primarySelections}</span>
                     <span className={styles.metricLabel}>Прошли скрининг</span>
                     <span className={styles.metricSub}>Соответствуют критериям</span>
                 </div>
                 <div className={styles.metricCard}>
-                    <span className={styles.metricValue}>18</span>
+                    <span className={styles.metricValue}>{docVerif}</span>
                     <span className={styles.metricLabel}>Требуют проверки</span>
                     <span className={styles.metricSub}>Документы на верификации</span>
                 </div>
                 <div className={styles.metricCard}>
-                    <span className={styles.metricValue}>12</span>
+                    <span className={styles.metricValue}>{readyForRegis}</span>
                     <span className={styles.metricLabel}>Готовы к оформлению</span>
                     <span className={styles.metricSub}>Все проверки пройдены</span>
                 </div>

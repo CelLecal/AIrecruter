@@ -35,7 +35,7 @@ export class DashboardService {
   async readyForRegis() {
     return this.candidateRepository.count({
       where: {
-        current_status: "Готов к оформлению",
+        current_status: "Оформление",
       },
     });
   }
@@ -65,13 +65,11 @@ export class DashboardService {
       where: { current_status: "Решение HR" },
     });
     const regis = await this.candidateRepository.count({
-      where: { current_status: "Оформлен" },
+      where: { current_status: "Оформление" },
     });
-    const percentages = [newCandidate, scrinning, docsCheck, hrProcess, regis];
-    const allPercentages = percentages.map(
-      (percent) => (percent / 100) * total,
-    );
-    return allPercentages;
+    const count = [newCandidate, scrinning, docsCheck, hrProcess, regis];
+    const percentages = count.map((percent) => (percent / 100) * total);
+    return [percentages, count];
   }
 
   async getCombinedData(days: number = 7) {
@@ -80,7 +78,7 @@ export class DashboardService {
     const verifCount = await this.docVerif();
     const readyCount = await this.readyForRegis();
     const [latestTotal] = await this.latestCandidates(days);
-    const funnelArray = await this.hiringFunnel();
+    const [funnelPercentages, funnelCount] = await this.hiringFunnel();
     return {
       newCandidates: {
         count: newCount,
@@ -98,7 +96,8 @@ export class DashboardService {
         total: latestTotal,
       },
       hiringFunnel: {
-        total: funnelArray,
+        percentages: funnelPercentages,
+        count: funnelCount,
       },
     };
   }
