@@ -5,12 +5,6 @@ import { DashboardService } from "./dashboard.service";
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
 
-  @Get()
-  async DashboardStats() {
-    const data = await this.dashboardService.getCombinedData(7);
-    return data;
-  }
-
   @Get("newCandidates")
   async newCandidates() {
     const data = await this.dashboardService.newCandidates(7);

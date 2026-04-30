@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Dashboard.module.css';
-import { fetchNewCandidates, fetchPrimarySelection, fetchDocVerif, fetchReadyForRegis } from '../../api/api';
+import { fetchNewCandidates, fetchPrimarySelection, fetchDocVerif, fetchReadyForRegis, fetchHiringFunnel } from '../../api/api';
 
 const DashboardMain: React.FC = () => {
     const [NewCandidates, setNewCandidate] = useState(null); 
     const [primarySelections, setPrimarySelections] = useState(null);
     const [docVerif, setDocVerif] = useState(null);
     const [readyForRegis, setReadyForRegis] = useState(null);
+    const [hiringFunnel, sethiringFunnel] = useState({ percentages: [], counts: [] });
 
  useEffect(() => {
   fetchNewCandidates()
@@ -21,6 +22,10 @@ const DashboardMain: React.FC = () => {
       fetchReadyForRegis()
     .then(setReadyForRegis)
     .catch(console.error); 
+      fetchHiringFunnel()
+    .then(sethiringFunnel)
+    .catch(console.error); 
+    
 
 }, []);
     return (
@@ -62,8 +67,8 @@ const DashboardMain: React.FC = () => {
                             <div className={styles.funnelBar}>
                                 <div className={styles.funnelFill} style={{ width: '100%' }}></div>
                             </div>
-                            <span className={styles.funnelPercent}>100%</span>
-                            <span className={styles.funnelCount}><h3>47</h3></span>
+                            <span className={styles.funnelPercent}>{hiringFunnel.percentages[0]}</span>
+                            <span className={styles.funnelCount}><h3>40</h3></span>
                         </div>
                         <div className={styles.funnelItem}>
                             <span className={styles.funnelStage}>Скрининг</span>

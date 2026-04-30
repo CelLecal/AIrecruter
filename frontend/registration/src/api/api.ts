@@ -23,3 +23,9 @@ export const fetchReadyForRegis = async () => {
   if (!response.ok) throw new Error("Network response was not ok");
   return response.json();
 };
+
+export const fetchHiringFunnel = async () => {
+  const response = await fetch(`${BASE_URL}/dashboard/hiringFunnel`);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
+};
