@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Vakancies.module.css';
+import { Link } from 'react-router-dom'
 
 const VacanciesPage: React.FC = () => {
     return (
@@ -43,7 +44,9 @@ const VacanciesPage: React.FC = () => {
                         </div>
                     </div>
                     <div className={styles.cardActions}>
-                        <button className={styles.detailsButton}>Подробнее</button>
+                        <Link to="/dashboard/description/${vacancy.id}">
+                            <button className={styles.detailsButton}>Подробнее</button>
+                        </Link>
                     </div>
                 </div>
 
@@ -72,7 +75,9 @@ const VacanciesPage: React.FC = () => {
                         </div>
                     </div>
                     <div className={styles.cardActions}>
-                        <button className={styles.detailsButton}>Подробнее</button>
+                        <Link to="/dashboard/description/${vacancy.id}">
+                            <button className={styles.detailsButton}>Подробнее</button>
+                        </Link>
                     </div>
                 </div>
 
@@ -101,7 +106,9 @@ const VacanciesPage: React.FC = () => {
                         </div>
                     </div>
                     <div className={styles.cardActions}>
-                        <button className={styles.detailsButton}>Подробнее</button>
+                        <Link to="/dashboard/description/${vacancy.id}">
+                            <button className={styles.detailsButton}>Подробнее</button>
+                        </Link>
                     </div>
                 </div>
             </div>
