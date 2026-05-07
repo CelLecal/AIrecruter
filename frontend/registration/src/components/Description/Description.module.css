@@ -1,0 +1,198 @@
+.vacancyContainer {
+  width: 100%;
+  color: #ffffff;
+  flex: 1;
+  padding: 32px 40px;
+
+}
+
+
+.vacancyHeader {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(160, 170, 191, 0.2);
+}
+
+.vacancyHeader h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.headerMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  font-size: 0.9rem;
+  color: #b0bbd4;
+}
+
+.headerMeta i {
+  margin-right: 0.5rem;
+  color: #8883e4;
+}
+
+.twoColumns {
+  display: flex;
+  gap: 2rem;
+}
+
+.leftColumn {
+  flex: 1.5;
+}
+
+.rightColumn {
+  flex: 1;
+}
+
+.card {
+  background: #11141c;
+  border-radius: 24px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #232736;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: #4b46b0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-left: 3px solid #8883e4;
+  padding-left: 0.75rem;
+}
+
+.card h3 i {
+  color: #8883e4;
+}
+
+/* Текст описания */
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #cbd5e6;
+}
+
+/* Списки требований и условий */
+.requirementsList, .conditionsList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.requirementsList li, .conditionsList li {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: #cbd5e6;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.requirementsList li i, .conditionsList li i {
+  color: #4ade80;
+  width: 1.2rem;
+}
+
+.licenses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.licenseBadge {
+  background: rgba(79, 70, 229, 0.2);
+  border: 1px solid rgba(136, 131, 228, 0.5);
+  border-radius: 40px;
+  padding: 0.3rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a78bfa;
+}
+
+/* Бонусы */
+.bonusList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: #cbd5e6;
+}
+
+/* Контакты */
+.contactInfo {
+  background: #0a0c10;
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.contactInfo p {
+  margin: 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.contactInfo i {
+  color: #8883e4;
+  width: 1.2rem;
+}
+
+/* Кнопки */
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.actionPrimary {
+  background: linear-gradient(135deg, #4e46e5, #6d28d9);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 14px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.actionPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.4);
+}
+
+.actionSecondary {
+  background: transparent;
+  border: 1px solid #4b5568;
+  padding: 0.7rem 1.2rem;
+  border-radius: 14px;
+  color: #cbd5e6;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.actionSecondary:hover {
+  background: #1f2937;
+  border-color: #6b7280;
+}
