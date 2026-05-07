@@ -1,22 +1,22 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
 
-@Entity('vacancies')
+@Entity("vacancies")
 export class VacancyEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ default: 'title' })
+  @Column()
   title!: string;
 
-  @Column({ default: 'departament' })
-  departament!: string;
+  @Column()
+  department!: string;
 
-  @Column({ default: 'location' })
+  @Column()
   location!: string;
 
-  @Column({ default: 'license' })
+  @Column()
   required_license_category!: string;
 
-  @Column({ default: 'status' })
+  @Column()
   status!: string;
 }

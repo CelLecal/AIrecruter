@@ -1,9 +1,0 @@
-$kind: http-request
-name: http://localhost:3000/auth/profile
-url: http://localhost:3000/auth/profile
-method: POST
-auth:
-  type: bearer
-  credentials:
-    token: ""
-order: 3110371371693859

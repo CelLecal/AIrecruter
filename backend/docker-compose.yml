@@ -16,15 +16,14 @@ services:
       - pgdata:/var/lib/postgresql/data
       
 
-  api:
+  app:
     build: .
     container_name: my_node_api
     restart: always
     ports:
       - '3000:3000'
     environment:
-      DB_HOST: 100.121.117.66
-      DB_PORT: 5432
+      DB_HOST: db
       DB_USER: postgres
       DB_PASSWORD: your_password
       DB_NAME: your_db
@@ -32,6 +31,3 @@ services:
 
     depends_on:
       - db
-
-volumes:
-  pgdata:

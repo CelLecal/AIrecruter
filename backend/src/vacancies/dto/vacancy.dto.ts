@@ -1,9 +1,9 @@
-import { VacancyEntity } from '../../entities/vacancies.entity';
+import { VacancyEntity } from "../../entities/vacancies.entity";
 
 export class VacancyDto {
   id!: number;
   title!: string;
-  departament!: string;
+  department!: string;
   location!: string;
   required_license_category!: string;
   status!: string;
@@ -11,7 +11,7 @@ export class VacancyDto {
   constructor(ent: VacancyEntity) {
     this.id = ent.id;
     this.title = ent.title;
-    this.departament = ent.departament;
+    this.department = ent.department;
     this.location = ent.location;
     this.required_license_category = ent.required_license_category;
     this.status = ent.status;

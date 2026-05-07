@@ -5,10 +5,10 @@ import { AuthModule } from "./auth/auth.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { CandidatesModule } from "./candidates/candidate.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { createConnection } from "../dist/db/data-source";
 import { UserModule } from "./user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { VacanciesModule } from "./vacancies/vacancies.module";
+require("dotenv").config();
 
 @Module({
   imports: [
@@ -17,7 +17,16 @@ import { VacanciesModule } from "./vacancies/vacancies.module";
     CandidatesModule,
     UserModule,
     VacanciesModule,
-    TypeOrmModule.forRoot(createConnection),
+    TypeOrmModule.forRoot({
+      type: "postgres",
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: ["src/entities/**/*.entity.ts"],
+      synchronize: true,
+    }),
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],

@@ -4,28 +4,28 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   BaseEntity,
-} from 'typeorm';
+} from "typeorm";
 
-@Entity('users')
+@Entity("users")
 export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id: number;
 
-  @Column({ default: 'name' })
-  full_name!: string;
+  @Column()
+  full_name: string;
 
-  @Column({ default: 'email' })
-  email!: string;
+  @Column()
+  email: string;
 
-  @Column({ default: 'password' })
-  password_hash!: string;
+  @Column()
+  password_hash: string;
 
-  @Column({ default: 'role' })
-  role_id!: string;
+  @Column()
+  role_id: number;
 
-  @Column({ default: 'status' })
-  status!: string;
+  @Column()
+  status: string;
 
   @CreateDateColumn()
-  created_at!: Date;
+  created_at: Date;
 }

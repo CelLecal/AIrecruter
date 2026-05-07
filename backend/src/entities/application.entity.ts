@@ -4,26 +4,26 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   BaseEntity,
-} from 'typeorm';
+} from "typeorm";
 
-@Entity('applications')
+@Entity("applications")
 export class ApplicationEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ default: '1' })
+  @Column()
   candidate_id!: number;
 
-  @Column({ default: '1' })
-  cvacancy_id!: string;
+  @Column()
+  vacancy_id!: string;
 
-  @Column({ default: 'website' })
+  @Column()
   application_source!: string;
 
-  @Column({ default: 'not passed' })
+  @Column()
   screening_status!: string;
 
-  @Column({ default: '0' })
+  @Column()
   fit_score!: string;
 
   @CreateDateColumn()

@@ -4,29 +4,29 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   BaseEntity,
-} from 'typeorm';
+} from "typeorm";
 
-@Entity('candidates')
+@Entity("candidates")
 export class CandidateEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ default: 'name' })
+  @Column()
   full_name!: string;
 
-  @Column({ default: 'phone' })
+  @Column()
   phone!: string;
 
-  @Column({ default: 'email' })
+  @Column()
   email!: string;
 
-  @Column({ default: 'date' })
+  @Column()
   birth_date!: string;
 
-  @Column({ default: 'city' })
+  @Column()
   city!: string;
 
-  @Column({ default: 'status' })
+  @Column()
   current_status!: string;
 
   @CreateDateColumn()

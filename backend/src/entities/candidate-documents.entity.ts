@@ -4,26 +4,26 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   BaseEntity,
-} from 'typeorm';
+} from "typeorm";
 
-@Entity('candidate_documents')
+@Entity("candidate_documents")
 export class CandidateDocsEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ default: 1 })
+  @Column()
   candidate_id!: number;
 
-  @Column({ default: 'type' })
+  @Column()
   document_type!: string;
 
-  @Column({ default: 'name' })
+  @Column()
   file_name!: string;
 
-  @Column({ default: 'path' })
+  @Column()
   file_path!: string;
 
-  @Column({ default: 'status' })
+  @Column()
   upload_status!: string;
 
   @CreateDateColumn()
