@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegistrationPage from './components/Registration/RegistrationPage';
-import Dashboard from './components/Dashboard/Dashboarg';
+import Dashboard from './components/Dashboard/Dashboard';
 import DashboardMain from './components/Dashboard/DashboardMain';
 import Candidates from './components/Candidates/Candidates'; 
 import CandidatesProfile from './components/Candidates/CandidatesProfile';
-import Vakancies from './components/Vakancies/Vakancies';
+import Vakancies from './components/Vacancies/Vacancies';
 import DescriptionPage from './components/Description/Description';
 
 
