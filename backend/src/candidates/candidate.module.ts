@@ -11,3 +11,16 @@ import { CandidateEntity } from "../entities/candidate.entity";
   exports: [CandidatesService],
 })
 export class CandidatesModule {}
+
+
+/*----------------------это было временно-----------------------*/
+
+/*import { Module } from "@nestjs/common";
+import { CandidatesController } from "./candidate.controller";
+import { CandidatesService } from "./candidate.service";
+
+@Module({
+  controllers: [CandidatesController],
+  providers: [CandidatesService],
+})
+export class CandidatesModule {}*/

@@ -25,7 +25,7 @@ require("dotenv").config();
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ["src/entities/**/*.entity.ts"],
-      synchronize: true,
+      synchronize: false,
     }),
     ConfigModule.forRoot({ isGlobal: true }),
   ],
@@ -33,3 +33,23 @@ require("dotenv").config();
   providers: [AppService],
 })
 export class AppModule {}
+
+
+/*------------------это было временно---------------------*/
+
+/*import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { CandidatesModule } from "./candidates/candidate.module";
+import { ConfigModule } from "@nestjs/config";
+require("dotenv").config();
+
+@Module({
+  imports: [
+    CandidatesModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}*/

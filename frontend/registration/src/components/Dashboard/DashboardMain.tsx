@@ -67,7 +67,7 @@ const DashboardMain: React.FC = () => {
                             <div className={styles.funnelBar}>
                                 <div className={styles.funnelFill} style={{ width: '100%' }}></div>
                             </div>
-                            <span className={styles.funnelPercent}>{hiringFunnel.percentages[0]}</span>
+                            <span className={styles.funnelPercent}>{hiringFunnel?.percentages?.[0] ?? '0%'}</span>
                             <span className={styles.funnelCount}><h3>40</h3></span>
                         </div>
                         <div className={styles.funnelItem}>
