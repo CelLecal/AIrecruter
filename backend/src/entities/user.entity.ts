@@ -9,23 +9,23 @@ import {
 @Entity("users")
 export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  full_name: string;
+  full_name!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @Column()
-  password_hash: string;
+  password_hash!: string;
 
   @Column()
-  role_id: number;
+  role_id!: number;
 
   @Column()
-  status: string;
+  status!: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at!: Date;
 }

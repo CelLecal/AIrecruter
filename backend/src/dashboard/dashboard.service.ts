@@ -49,17 +49,8 @@ export class DashboardService {
       },
     });
   }
-  fetchAndStoreHiringFunnel = async (setHiringFunnel) => {
-    try {
-      const [percentages, counts] = await this.hiringFunnel();
-      setHiringFunnel({ percentages, counts });
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
-  async hiringFunnel() {
-    const total = await this.candidateRepository.count();
+  async countsArray() {
     const statuses = [
       { key: "Новый", name: "newCandidate" },
       { key: "Скриннинг", name: "scrinning" },
@@ -67,14 +58,18 @@ export class DashboardService {
       { key: "Решение HR", name: "hrProcess" },
       { key: "Оформление", name: "regis" },
     ];
-    const countsPromises = statuses.map((status) =>
-      this.candidateRepository.count({ where: { current_status: status.key } }),
-    );
 
-    const countsArray = await Promise.all(countsPromises);
-    const percentages = countsArray.map((value) =>
-      Math.trunc((value / total) * 100),
-    );
-    return [percentages, countsArray];
+    const results: number[] = [];
+
+    for (const status of statuses) {
+      const count = await this.candidateRepository.count({
+        where: { current_status: status.key },
+      });
+      // Убрали this, так как results — локальная переменная
+      results.push(count);
+    }
+
+    // Возвращаем результат (и при желании сохраняем в свойство класса)
+    return results;
   }
 }

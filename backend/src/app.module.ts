@@ -24,7 +24,7 @@ require("dotenv").config();
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: ["src/entities/**/*.entity.ts"],
+      entities: ["dist/src/entities/**/*.entity.ts"],
       synchronize: true,
     }),
     ConfigModule.forRoot({ isGlobal: true }),

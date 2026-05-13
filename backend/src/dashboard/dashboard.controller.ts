@@ -32,7 +32,7 @@ export class DashboardController {
   }
   @Get("hiringFunnel")
   async hiringFunnel() {
-    const data = await this.dashboardService.hiringFunnel();
+    const data = await this.dashboardService.countsArray();
     return data;
   }
 }
