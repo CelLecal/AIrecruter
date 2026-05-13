@@ -8,6 +8,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { VacanciesModule } from "./vacancies/vacancies.module";
+import { AiModule } from "./ai/ai.module";
 require("dotenv").config();
 
 @Module({
@@ -17,6 +18,7 @@ require("dotenv").config();
     CandidatesModule,
     UserModule,
     VacanciesModule,
+    AiModule,
     TypeOrmModule.forRoot({
       type: "postgres",
       host: process.env.DB_HOST,
