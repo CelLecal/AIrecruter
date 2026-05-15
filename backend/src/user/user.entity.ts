@@ -9,7 +9,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({nullable: true})
+  @Column({default:''})
   full_name!: string;
 
   @Column({ unique: true })

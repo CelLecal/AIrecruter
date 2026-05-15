@@ -16,16 +16,14 @@ async function bootstrap() {
     .addTag('auth')
     .build();
 
-  const document = SwaggerModule.createDocument(app, config, {
-    include: [AuthModule], 
-  });
+  const document = SwaggerModule.createDocument(app, config);
 
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3001);
 
-  console.log('🚀 App started on http://localhost:3000/api');
-  console.log('📄 Swagger: http://localhost:3000/api/docs');
+  console.log('🚀 App started on http://localhost:3001/api');
+  console.log('📄 Swagger: http://localhost:3001/api/docs');
 }
 
 bootstrap().catch((error) => console.error(error));

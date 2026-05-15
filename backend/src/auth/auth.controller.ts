@@ -10,10 +10,10 @@ import {
 
 class LoginDto {
   @ApiProperty({ example: 'example@mail.com' })
-  email: string;
+  email!: string;
 
   @ApiProperty({ example: 'example_password' })
-  password: string;
+  password!: string;
 }
 
 @ApiTags('auth')
