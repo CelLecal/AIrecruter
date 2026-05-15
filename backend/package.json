@@ -15,7 +15,7 @@
     "pg": "^8.11.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.3"
-=======
+
   "name": "my-api",
   "version": "1.0.0",
   "description": "",
@@ -107,4 +107,5 @@
     "testEnvironment": "node"
 >>>>>>> 9602bb070b3535dcbcd13fb3b7c21fd317d68678
   }
+}
 }
