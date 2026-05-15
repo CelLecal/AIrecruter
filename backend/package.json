@@ -1,21 +1,4 @@
 {
-<<<<<<< HEAD
-"scripts": {
-    "build": "nest build",
-    "start": "nest start",
-    "start:dev": "nest start --watch"
-  },
-  "name": "my-api",
-  "version": "1.0.0",
-  "main": "src/main.ts",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.18.2",
-    "pg": "^8.11.0",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.3"
-
   "name": "my-api",
   "version": "1.0.0",
   "description": "",
@@ -105,7 +88,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
->>>>>>> 9602bb070b3535dcbcd13fb3b7c21fd317d68678
   }
-}
 }
