@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { SettingsService } from "./settings.service";
 import { SettingsController } from "./settings.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { SettingsEntity } from "entities/settings.entity";
+import { SettingsEntity } from "entities/ai-settings.entity";
 
 @Module({
   providers: [SettingsService],

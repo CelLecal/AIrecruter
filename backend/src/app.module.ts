@@ -9,6 +9,7 @@ import { UserModule } from "./user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { VacanciesModule } from "./vacancies/vacancies.module";
 import { AiModule } from "./ai/ai.module";
+import { SettingsModule } from "settings/settings.module";
 require("dotenv").config();
 
 @Module({
@@ -19,6 +20,7 @@ require("dotenv").config();
     UserModule,
     VacanciesModule,
     AiModule,
+    SettingsModule,
     TypeOrmModule.forRoot({
       type: "postgres",
       host: process.env.DB_HOST,
@@ -26,7 +28,7 @@ require("dotenv").config();
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: ["dist/src/entities/**/*.entity.ts"],
+      entities: ["dist/src/entities/*.entity.js"],
       synchronize: true,
     }),
     ConfigModule.forRoot({ isGlobal: true }),

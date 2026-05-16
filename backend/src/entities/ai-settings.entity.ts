@@ -1,8 +1,14 @@
-import { Entity, Column, CreateDateColumn, BaseEntity } from "typeorm";
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  BaseEntity,
+  PrimaryColumn,
+} from "typeorm";
 
-@Entity("settings")
+@Entity("ai_settings")
 export class SettingsEntity extends BaseEntity {
-  @Column()
+  @PrimaryColumn()
   provider_code!: string;
 
   @Column()

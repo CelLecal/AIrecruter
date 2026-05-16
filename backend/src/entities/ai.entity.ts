@@ -1,8 +1,14 @@
-import { Entity, Column, CreateDateColumn, BaseEntity } from "typeorm";
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  BaseEntity,
+  PrimaryColumn,
+} from "typeorm";
 
 @Entity("ai")
 export class AiEntity extends BaseEntity {
-  @Column()
+  @PrimaryColumn()
   candidate_id!: number;
   @Column()
   summary_text!: string;
