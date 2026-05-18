@@ -6,7 +6,7 @@ import {
   PrimaryColumn,
 } from "typeorm";
 
-@Entity("ai_settings")
+@Entity("ai_provider_settings")
 export class SettingsEntity extends BaseEntity {
   @PrimaryColumn()
   provider_code!: string;

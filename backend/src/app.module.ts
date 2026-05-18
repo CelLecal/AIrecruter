@@ -29,7 +29,7 @@ require("dotenv").config();
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ["dist/src/entities/*.entity.js"],
-      synchronize: true,
+      synchronize: false,
     }),
     ConfigModule.forRoot({ isGlobal: true }),
   ],

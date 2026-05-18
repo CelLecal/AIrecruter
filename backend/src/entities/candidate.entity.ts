@@ -32,25 +32,24 @@ export class CandidateEntity extends BaseEntity {
   @CreateDateColumn()
   created_at!: Date;
 
-  @Column({ nullable: true })
+  @Column()
   license_category!: string;
 
-  @Column({ nullable: true })
+  @Column()
   experience_years!: number;
 
-  @Column({ nullable: true })
+  @Column()
   fit_score!: number;
 
-  @Column({ nullable: true })
+  @Column()
   risk_level!: string;
 
-
-  @Column({ nullable: true })
+  @Column()
   passport!: string;
 
-  @Column({ nullable: true })
+  @Column()
   birth_place!: string;
 
-  @Column({ nullable: true })
-  issue_date!: string;  
+  @Column()
+  issue_date!: string;
 }
