@@ -44,6 +44,20 @@ paths:
       responses:
         200:
           $ref: "#/components/responses/CandidatesListResponses"
+  /candidates/{candidateId}/ai-result:
+    get:
+      operationId: getAiResult
+      tags:
+        - candidates
+      parameters:
+        - name: candidateId
+          in: path
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          $ref: "#/components/responses/AiResultList"
   /auth/login:
     post:
       tags:
@@ -107,6 +121,14 @@ paths:
             application/json:
               schema:
                 type: object
+  /settings/ai/providers:
+    get:
+      operationId: getAllowedProvs
+      tags:
+        - settings
+      responses:
+        200:
+          $ref: "#/components/responses/getAllowedProvs"
 components:
   schemas:
     UsersPatch:
@@ -225,6 +247,7 @@ components:
           type: string
         updated_at:
           type: string
+          format: date-time
     PostProvSettings:
       type: object
       required: [provider_code, model_name, api_key]
@@ -232,6 +255,28 @@ components:
         provider_code: { type: string }
         model_name: { type: string }
         api_key: { type: string }
+    AiResults:
+      type: object
+      properties:
+        id:
+          type: number
+        candidate_id:
+          type: number
+        summary_text:
+          type: string
+        fit_assessment:
+          type: string
+        risk_assessment:
+          type: string
+        recommendation_text:
+          type: string
+        provider_code:
+          type: string
+        model_name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
 
   responses:
     UsersListResponses:
@@ -288,6 +333,22 @@ components:
             type: array
             items:
               $ref: "#/components/schemas/Settings"
+    getAllowedProvs:
+      description: Доступные провайдеры
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Settings"
+    AiResultList:
+      description: Последний AI-результат
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/AiResults"
   parameters:
     UserId:
       in: path
