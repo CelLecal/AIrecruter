@@ -1,19 +1,19 @@
 import { Injectable } from "@nestjs/common";
 import { CreateCandidateDto } from "./dto/create-candidate.dto";
-import { CandidateDto } from "./dto/candidate.dto";
-import { CandidateEntity } from "../entities/candidate.entity";
+import { CandidateDto } from "./dto/candidates.dto";
+import { CandidatesEntity } from "../entities/candidates.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
 export class CandidatesService {
   constructor(
-    @InjectRepository(CandidateEntity)
-    private candidateRepository: Repository<CandidateEntity>,
+    @InjectRepository(CandidatesEntity)
+    private candidateRepository: Repository<CandidatesEntity>,
   ) {}
 
   async create(data: CreateCandidateDto) {
-    const candidate = new CandidateEntity();
+    const candidate = new CandidatesEntity();
     candidate.id = data.id;
     candidate.full_name = data.full_name;
     candidate.phone = data.phone;
@@ -26,11 +26,11 @@ export class CandidatesService {
     const res = await candidate.save();
     return new CandidateDto(res);
   }
-                                                               
-  async getList() {                                             
-    const candidates = await this.candidateRepository.find();   
-    return candidates.map((item) => new CandidateDto(item));  
-  }                                                           
+
+  async getList() {
+    const candidates = await this.candidateRepository.find();
+    return candidates.map((item) => new CandidateDto(item));
+  }
 
   async findCandidateById(candidateId: number) {
     return this.candidateRepository.findOne({ where: { id: candidateId } });

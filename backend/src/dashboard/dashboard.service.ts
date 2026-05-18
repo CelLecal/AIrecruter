@@ -1,13 +1,13 @@
 import { Injectable, ParseIntPipe } from "@nestjs/common";
-import { CandidateEntity } from "../entities/candidate.entity";
+import { CandidatesEntity } from "../entities/candidates.entity";
 import { Repository, MoreThanOrEqual } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
 export class DashboardService {
   constructor(
-    @InjectRepository(CandidateEntity)
-    private readonly candidateRepository: Repository<CandidateEntity>,
+    @InjectRepository(CandidatesEntity)
+    private readonly candidateRepository: Repository<CandidatesEntity>,
   ) {}
   async newCandidates(days: number) {
     const dateThreshold = new Date();

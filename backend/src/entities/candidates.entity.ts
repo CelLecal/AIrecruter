@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity("candidates")
-export class CandidateEntity extends BaseEntity {
+export class CandidatesEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -31,25 +31,4 @@ export class CandidateEntity extends BaseEntity {
 
   @CreateDateColumn()
   created_at!: Date;
-
-  @Column()
-  license_category!: string;
-
-  @Column()
-  experience_years!: number;
-
-  @Column()
-  fit_score!: number;
-
-  @Column()
-  risk_level!: string;
-
-  @Column()
-  passport!: string;
-
-  @Column()
-  birth_place!: string;
-
-  @Column()
-  issue_date!: string;
 }
