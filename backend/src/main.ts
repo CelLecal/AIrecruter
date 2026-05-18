@@ -7,18 +7,16 @@ import { join } from "path";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
-
   const swaggerFile = fs.readFileSync(
     join(process.cwd(), "./swagger.yml"),
     "utf8",
   );
   const swaggerDocument = yaml.parse(swaggerFile);
   app.enableCors({
-    origin: ["http://localhost:5173/"],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentails: false,
+    credentials: false,
   });
   SwaggerModule.setup("api", app, swaggerDocument);
 

@@ -1,17 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './RegistrationPage.module.css';
 
 const RegistrationForm: React.FC = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Здесь можно добавить валидацию или отправку данных
-        navigate('/dashboard');
-    };
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
 
-    return (
+    const response = await fetch('http://localhost:3000/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+      alert('Вы успешно авторизированы!.');
+      navigate('/dashboard');
+    } else {
+      const errorData = await response.json().catch(() => null);
+      alert(errorData?.message || 'Ошибка авторизации');
+    }
+  };
+
+return (
         <div className={styles.formWrapper}>
             <div className={styles.rowContainer}>
                 <div className={styles.rowContainer}>
@@ -27,11 +43,11 @@ const RegistrationForm: React.FC = () => {
             <form onSubmit={handleSubmit}>
                 <div className={styles.fieldGroup}>
                     <label htmlFor="email">Электронная почта</label>
-                    <input type="email" id="email" />
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)}  />
                 </div>
                 <div className={styles.fieldGroup}>
                     <label htmlFor="password">Пароль</label>
-                    <input type="password" id="password" />
+                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className={styles.checkboxWrapper}>
                     <input type="checkbox" id="remember" />
@@ -43,7 +59,6 @@ const RegistrationForm: React.FC = () => {
                 </div>
             </form>
         </div>
-    );
+        );
 };
-
 export default RegistrationForm;

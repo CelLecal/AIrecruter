@@ -1,8 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { UserService } from '../user/user.service';
-import { JwtService } from '@nestjs/jwt';
-import { IUser } from 'types/types';
-import * as argon2 from 'argon2';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { UserService } from "../user/user.service";
+import { JwtService } from "@nestjs/jwt";
+import { IUser } from "types/types";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class AuthService {
@@ -13,13 +13,15 @@ export class AuthService {
   async validateUser(email: string, password: string) {
     const user = await this.userService.findOne(email);
     if (!user) {
-      throw 'Пароль или email не совпадает.';
+      throw new BadRequestException("Пароль или email не совпадает.");
     }
-    const passwordIsMatch = await argon2.verify(user.password_hash, password);
+    const passwordIsMatch = await bcrypt.compare(
+      String(password),
+      String(user.password_hash),
+    );
     if (user && passwordIsMatch) {
       return user;
     }
-    throw new BadRequestException('Пароль или email не совпадает.');
   }
 
   async login(user: IUser) {
@@ -31,6 +33,6 @@ export class AuthService {
     };
   }
   getAuth() {
-    return 'auth';
+    return "auth";
   }
 }
