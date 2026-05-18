@@ -15,7 +15,13 @@ export class VacancyEntity extends BaseEntity {
   location!: string;
 
   @Column()
+  shift_type!: string;
+
+  @Column()
   required_license_category!: string;
+
+  @Column()
+  min_experience_years!: number;
 
   @Column()
   status!: string;

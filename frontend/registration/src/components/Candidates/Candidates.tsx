@@ -7,10 +7,10 @@ interface Candidate {
   full_name: string;
   city: string;
   current_status: string;
-  fit_score?: number;
-  license_category?: string;
-  experience_years?: number;
-  risk_level?: string;
+  fit_score: number;
+  license_category: string;
+  experience_years: number;
+  risk_level: string;
 }
 
 const Candidates: React.FC = () => {
