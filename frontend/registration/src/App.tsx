@@ -6,7 +6,7 @@ import Candidates from './components/Candidates/Candidates';
 import CandidatesProfile from './components/Candidates/CandidatesProfile';
 import Vacancies from './components/Vacancies/Vacancies';
 import DescriptionPage from './components/Description/Description';
-
+import AiProfile from './components/AiProfile/AiProfile'
 
 function App() {
     return (
@@ -19,6 +19,7 @@ function App() {
                     <Route path="candidates/:id" element={<CandidatesProfile />} />
                     <Route path="vacancies" element={<Vacancies />} />   
                     <Route path="description/:id" element={<DescriptionPage />} />   
+                    <Route path='aiprofile/:id' element = {<AiProfile/>} />
 
                 </Route>
             </Routes>
