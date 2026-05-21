@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AiProfile.module.css';
 
 const DecisionPage: React.FC = () => {
+  const navigate = useNavigate();
   const [comment, setComment] = useState('');
   const maxLength = 500;
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value.slice(0, maxLength));
+  };
+
+  const goBack = () => {
+    navigate(-1); // возврат на предыдущую страницу
   };
 
   return (
@@ -81,7 +87,7 @@ const DecisionPage: React.FC = () => {
             </div>
           </div>
 
-          {/* комментарий и обоснование */}
+          {/* Комментарий и обоснование */}
           <div className={styles.commentSection}>
             <h3>Комментарий и обоснование</h3>
             <textarea
@@ -109,7 +115,8 @@ const DecisionPage: React.FC = () => {
             </div>
             <div className={styles.recommendationCard}>
               <p>
-                Кандидат показал отличные результаты на всех этапах отбора. Все документы подтверждены, есть дополнительные сертификаты.
+                Кандидат показал отличные результаты на всех этапах отбора. Все документы подтверждены, есть
+                дополнительные сертификаты.
               </p>
               <ul>
                 <li><i className="fas fa-check"></i> Высокое соответствие (92%)</li>
@@ -123,36 +130,28 @@ const DecisionPage: React.FC = () => {
             <h3>Путь кандидата</h3>
             <div className={styles.timelineList}>
               <div className={styles.timelineItem}>
-                <div className={styles.timelineIcon}>
-                  <i className="fas fa-check"></i>
-                </div>
+                <div className={styles.timelineIcon}><i className="fas fa-check"></i></div>
                 <div className={styles.timelineContent}>
                   <span>Документы проверены</span>
                   <span className={styles.date}>26.03.2026 16:20</span>
                 </div>
               </div>
               <div className={styles.timelineItem}>
-                <div className={styles.timelineIcon}>
-                  <i className="fas fa-check"></i>
-                </div>
+                <div className={styles.timelineIcon}><i className="fas fa-check"></i></div>
                 <div className={styles.timelineContent}>
                   <span>Скрининг завершен</span>
                   <span className={styles.date}>26.03.2026 14:37</span>
                 </div>
               </div>
               <div className={styles.timelineItem}>
-                <div className={styles.timelineIcon}>
-                  <i className="fas fa-check"></i>
-                </div>
+                <div className={styles.timelineIcon}><i className="fas fa-check"></i></div>
                 <div className={styles.timelineContent}>
                   <span>Первичная анкета</span>
                   <span className={styles.date}>26.03.2026 14:15</span>
                 </div>
               </div>
               <div className={styles.timelineItem}>
-                <div className={styles.timelineIcon}>
-                  <i className="fas fa-check"></i>
-                </div>
+                <div className={styles.timelineIcon}><i className="fas fa-check"></i></div>
                 <div className={styles.timelineContent}>
                   <span>Кандидат добавлен</span>
                   <span className={styles.date}>26.03.2026 14:00</span>
@@ -175,14 +174,20 @@ const DecisionPage: React.FC = () => {
               <span className={styles.auditLabel}>Время на обработку</span>
               <span>6 часов 20 минут</span>
             </div>
-            <div className={styles.auditFooter}>Все действия записываются в журнал аудита в соответствии с требованиями безопасности</div>
+            <div className={styles.auditFooter}>
+              Все действия записываются в журнал аудита в соответствии с требованиями безопасности
+            </div>
           </div>
 
           <div className={styles.quickActions}>
             <h3>Быстрые действия</h3>
             <div className={styles.actionButtons}>
-              <button className={styles.actionButton}>Просмотреть профиль</button>
-              <button className={styles.actionButton}>История скрининга</button>
+              <button className={styles.actionButton} onClick={goBack}>
+                Просмотреть профиль
+              </button>
+              <button className={styles.actionButton}>
+                История скрининга
+              </button>
               <button className={styles.actionButton}>Проверка документов</button>
             </div>
           </div>
