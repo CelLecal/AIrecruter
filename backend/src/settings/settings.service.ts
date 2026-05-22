@@ -13,7 +13,7 @@ export class SettingsService {
   async currentSettings() {
     return this.settingsRepository.find({
       where: {
-        is_active: "true",
+        is_active: true,
       },
     });
   }

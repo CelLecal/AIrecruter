@@ -6,7 +6,7 @@ import {
   PrimaryColumn,
 } from "typeorm";
 
-@Entity("ai")
+@Entity("candidate_ai_results")
 export class AiEntity extends BaseEntity {
   @PrimaryColumn()
   candidate_id!: number;

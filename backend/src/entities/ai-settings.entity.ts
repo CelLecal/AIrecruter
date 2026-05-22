@@ -21,7 +21,7 @@ export class SettingsEntity extends BaseEntity {
   base_url!: string;
 
   @Column()
-  is_active!: string;
+  is_active!: boolean;
 
   @CreateDateColumn()
   updated_at!: Date;
