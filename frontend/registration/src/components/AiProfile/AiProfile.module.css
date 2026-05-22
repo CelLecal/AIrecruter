@@ -17,7 +17,6 @@
 .twoColumns {
   display: flex;
   gap: 2rem;
-  flex-wrap: wrap;
 }
 
 .leftColumn {
@@ -79,7 +78,13 @@
   background: #0F1117;
   padding: 0.5rem;
   border-radius: 12px;
+  color: #22c55e;
 }
+
+.metric span {
+  color: #A0AABF;
+}
+
 .check,
 .warning {
   font-size: 1.2rem;
@@ -98,6 +103,7 @@
 }
 
 .decisionButton {
+  height: 100px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -111,14 +117,17 @@
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .decisionButton:hover {
   background: rgba(79, 70, 229, 0.1);
 }
+
 .buttonTextWrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .buttonTextWrapper span:first-child {
   color: white;
 }
@@ -181,27 +190,35 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #A0AABF;;
 }
 .recommendationCard li i {
   width: 20px;
   color: #22c55e;
 }
 
-/* Путь кандидата */
+.recommendationCard p {
+  margin-bottom: 1.5rem;
+}
+
+/* ---------------------путь кандидата ---------------------*/
 .timeline {
   background: #1A1D26;
   border-radius: 20px;
   padding: 1.5rem;
 }
+
 .timeline h3 {
   margin-top: 0;
   margin-bottom: 1.5rem;
 }
+
 .timelineList {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
+
 .timelineItem {
   display: flex;
   align-items: flex-start;
@@ -238,7 +255,7 @@
   font-size: 0.8rem;
 }
 
-/* Пунктирная линия между элементами */
+/* пунктирная линия между элементами */
 .timelineItem:not(:last-child) .timelineIcon::after {
   content: '';
   position: absolute;
@@ -268,4 +285,120 @@
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/*--------------аудит---------------*/
+
+.auditInfo {
+  background: #1A1D26;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.auditInfo h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.auditRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+}
+
+.auditLabel {
+  color: #A0AABF;
+  font-weight: 500;
+}
+
+.auditFooter {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+/*--------------быстрые действия---------*/
+
+.quickActions {
+  background: #1A1D26;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.quickActions h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.actionButton {
+  background: transparent;
+  border: 1px solid #4F46E5;
+  color: #ffffff;
+  padding: 0.6rem;
+  font-weight: 500;                
+  font-size: 0.9rem;               
+  font-family: inherit;
+  border-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.actionButton:hover {
+  background: #4F46E5;
+  color: white;
+}
+
+/*комментарий*/
+.commentSection {
+  background: #1A1D26;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.commentSection h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.commentTextarea {
+  width: 100%;
+  background: #0F1117;
+  border: 1px solid #2A2D3A;
+  border-radius: 12px;
+  padding: 0.75rem;
+  color: white;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.commentTextarea:focus {
+  outline: none;
+  border-color: #4F46E5;
+}
+
+.charCounter {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin-top: 0.5rem;
 }

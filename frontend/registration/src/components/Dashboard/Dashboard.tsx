@@ -66,7 +66,7 @@ const Dashboard: React.FC = () => {
                                 <span>Кандидаты</span>
                             </NavLink>
 
-                              <NavLink
+                            <NavLink
                                 to="/dashboard/vacancies"
                                 className={({ isActive }) =>
                                     `${styles.leftProItem} ${isActive ? styles.active : ''}`
@@ -78,36 +78,47 @@ const Dashboard: React.FC = () => {
                                 <span>Вакансии</span>
                             </NavLink>
 
-                            <div className={styles.leftProItem}>
+                            <NavLink
+                                to="/dashboard/ai-screening"
+                                className={({ isActive }) => `${styles.leftProItem} ${isActive ? styles.active : ''}`}
+                            >
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-robot"></i>
                                 </div>
                                 <span>AI-скрининг</span>
-                            </div>
-                            <div className={styles.leftProItem}>
+                            </NavLink>
+
+
+                            <NavLink
+                                to="/dashboard/documents"
+                                className={({ isActive }) => `${styles.leftProItem} ${isActive ? styles.active : ''}`}
+                            >
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-file-alt"></i>
                                 </div>
                                 <span>Проверка документов</span>
-                            </div>
-                            <div className={styles.leftProItem}>
-                                <div className={styles.leftProIcon}>
-                                    <i className="fas fa-user-check"></i>
-                                </div>
-                                <span>Оформление</span>
-                            </div>
-                            <div className={styles.leftProItem}>
+                            </NavLink>
+
+                            <NavLink
+                                to="/dashboard/analytics"
+                                className={({ isActive }) => `${styles.leftProItem} ${isActive ? styles.active : ''}`}
+                            >
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-chart-line"></i>
                                 </div>
                                 <span>Аналитика</span>
-                            </div>
-                            <div className={styles.leftProItem}>
+                            </NavLink>
+
+                            <NavLink
+                                to="/dashboard/settings"
+                                className={({ isActive }) => `${styles.leftProItem} ${isActive ? styles.active : ''}`}
+                            >
                                 <div className={styles.leftProIcon}>
                                     <i className="fas fa-sliders-h"></i>
                                 </div>
                                 <span>Настройки</span>
-                            </div>
+                            </NavLink>
+
                         </div>
                     </div>
                     <div className={styles.leftUser}>
