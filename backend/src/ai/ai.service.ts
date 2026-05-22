@@ -1,15 +1,14 @@
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { AiEntity } from "entities/ai.entity";
-import { CreateAnalyzeDto } from "./dto/create-ai-analyze.dto";
 import { AnalyzeDto } from "./dto/ai-analyze.dto";
 import { CandidatesEntity } from "entities/candidates.entity";
 import { SettingsEntity } from "entities/ai-settings.entity";
 import { error } from "console";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
-import { CandidateDocsEntity } from "entities/candidate-documents.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
+import { CandidateProfDto } from "candidates/dto/candidate-prof.dto";
 
 @Injectable()
 export class AiService {
@@ -17,8 +16,6 @@ export class AiService {
 
   constructor(
     private configService: ConfigService,
-    @InjectRepository(CandidateDocsEntity)
-    private readonly candidateDocsRepository: Repository<CandidateDocsEntity>,
     @InjectRepository(CandidateProfEntity)
     private readonly candidateProfRepository: Repository<CandidateProfEntity>,
     @InjectRepository(CandidatesEntity)
@@ -65,26 +62,19 @@ export class AiService {
     if (!candidatesInfo) {
       throw error;
     }
-    const docsInfo = await this.candidateDocsRepository.findOneBy({
-      candidate_id: candidatesInfo.id,
-    });
     const profInfo = await this.candidateProfRepository.findOneBy({
-      candidate_id: candidatesInfo.id,
+      candidate_id: can_id,
     });
-    const analyze = new AiEntity();
-    const settings = await SettingsEntity.findOne({
-      where: {
-        is_active: true,
-      },
+
+    const settings = await SettingsEntity.findOneBy({
+      is_active: true,
     });
     if (!settings) {
       throw error;
     }
 
-    const candidates = await CandidatesEntity.findOne({
-      where: {
-        id: can_id,
-      },
+    const candidates = await CandidatesEntity.findOneBy({
+      id: can_id,
     });
     if (!candidates) {
       throw error;
@@ -93,7 +83,7 @@ export class AiService {
     const [summaryText, fitAssessment, riskAssessment, recommendationText] =
       await Promise.all([
         this.askAboutCandidate(
-          "Напиши короткую сводку по кандидату. Его данные: Имя:" +
+          "Напиши короткую сводку по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
             candidatesInfo.full_name +
             "Дата рождения:" +
             candidatesInfo.birth_date +
@@ -103,11 +93,11 @@ export class AiService {
             profInfo?.experience_years +
             "Категория прав:" +
             profInfo?.license_category +
-            "Выбранная вакансия:" +
+            "Выбранная формат работы:" +
             profInfo?.work_schedule_preference,
         ),
         this.askAboutCandidate(
-          "Оцени соответствие кандидата вакансии. Его данные: Имя:" +
+          "Оцени соответствие кандидата вакансии. Без лишних слов и очень коротко. Его данные: Имя:" +
             candidatesInfo.full_name +
             "Дата рождения:" +
             candidatesInfo.birth_date +
@@ -117,11 +107,11 @@ export class AiService {
             profInfo?.experience_years +
             "Категория прав:" +
             profInfo?.license_category +
-            "Выбранная вакансия:" +
+            "Выбранная формат работы:" +
             profInfo?.work_schedule_preference,
         ),
         this.askAboutCandidate(
-          "Кратко опиши риски при найме этого кандидата на эту вакансию. Его данные: Имя:" +
+          "Кратко опиши риски при найме этого кандидата на эту вакансию. Без лишних слов и очень коротко. Его данные: Имя:" +
             candidatesInfo.full_name +
             "Дата рождения:" +
             candidatesInfo.birth_date +
@@ -131,11 +121,11 @@ export class AiService {
             profInfo?.experience_years +
             "Категория прав:" +
             profInfo?.license_category +
-            "Выбранная вакансия:" +
+            "Выбранная формат работы:" +
             profInfo?.work_schedule_preference,
         ),
         this.askAboutCandidate(
-          "Напиши рекомендации для HR по кандидату. Его данные: Имя:" +
+          "Напиши рекомендации для HR по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
             candidatesInfo.full_name +
             "Дата рождения:" +
             candidatesInfo.birth_date +
@@ -145,20 +135,36 @@ export class AiService {
             profInfo?.experience_years +
             "Категория прав:" +
             profInfo?.license_category +
-            "Выбранная вакансия:" +
+            "Выбранная формат работы:" +
             profInfo?.work_schedule_preference,
         ),
       ]);
+    await AiEntity.update(
+      { candidate_id: candidates.id },
+      {
+        summary_text: summaryText,
+        fit_assessment: fitAssessment,
+        risk_assessment: riskAssessment,
+        recommendation_text: recommendationText,
+        provider_code: settings.provider_code,
+        model_name: settings.model_name,
+      },
+    );
 
-    analyze.candidate_id = candidates.id;
-    analyze.summary_text = summaryText;
-    analyze.fit_assessment = fitAssessment;
-    analyze.risk_assessment = riskAssessment;
-    analyze.recommendation_text = recommendationText;
-    analyze.provider_code = settings.provider_code;
-    analyze.model_name = settings.model_name;
+    await CandidateProfEntity.update(
+      { candidate_id: candidates.id },
+      { ai_summary: summaryText, hr_recommendation: recommendationText },
+    );
 
-    const res = await analyze.save();
-    return new AnalyzeDto(res);
+    const resAnalyze = await AiEntity.findOne({
+      where: { candidate_id: candidates.id },
+    });
+    const resProfile = await CandidateProfEntity.findOne({
+      where: { candidate_id: candidates.id },
+    });
+    return {
+      analyze: new AnalyzeDto(resAnalyze!),
+      profile: new CandidateProfDto(resProfile!),
+    };
   }
 }
