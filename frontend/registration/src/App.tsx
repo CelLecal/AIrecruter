@@ -7,6 +7,10 @@ import CandidatesProfile from './components/Candidates/CandidatesProfile';
 import Vacancies from './components/Vacancies/Vacancies';
 import DescriptionPage from './components/Description/Description';
 import AiProfile from './components/AiProfile/AiProfile'
+import AiScreening from './components/AiScreening/AiScreening';
+import Documents from './components/DocumentsCheck/Documents';
+import Analytics from './components/Analytics/Analytics';
+import Settings from './components/Settings/Settings';
 
 function App() {
     return (
@@ -20,6 +24,10 @@ function App() {
                     <Route path="vacancies" element={<Vacancies />} />   
                     <Route path="description/:id" element={<DescriptionPage />} />   
                     <Route path='aiprofile/:id' element = {<AiProfile/>} />
+                    <Route path="ai-screening" element={<AiScreening />} />
+                    <Route path="documents" element={<Documents/>} />
+                    <Route path="analytics" element={<Analytics/>} />
+                    <Route path="settings" element={<Settings />} />
 
                 </Route>
             </Routes>
