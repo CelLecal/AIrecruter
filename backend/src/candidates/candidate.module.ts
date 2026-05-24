@@ -1,6 +1,9 @@
 import { Module } from "@nestjs/common";
 import { CandidatesService } from "./candidate.service";
-import { CandidatesController } from "./candidate.controller";
+import {
+  CandidateDocumentsController,
+  CandidatesController,
+} from "./candidate.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CandidatesEntity } from "../entities/candidates.entity";
 import { AiResultEntity } from "../entities/candidate_ai_result.entity";
@@ -19,7 +22,7 @@ import { CandidateDocsEntity } from "entities/candidate-documents.entity";
       CandidateDocsEntity,
     ]),
   ],
-  controllers: [CandidatesController],
+  controllers: [CandidatesController, CandidateDocumentsController],
   providers: [CandidatesService, AiService],
   exports: [CandidatesService],
 })
