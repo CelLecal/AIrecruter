@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { VacancyEntity } from '../entities/vacancies.entity';
-import { VacancyDto } from './dto/vacancy.dto';
+import { Injectable } from "@nestjs/common";
+import { Repository } from "typeorm";
+import { InjectRepository } from "@nestjs/typeorm";
+import { VacancyEntity } from "../entities/vacancies.entity";
+import { VacancyDto } from "../dto/vacancy.dto";
 
 @Injectable()
 export class VacanciesService {

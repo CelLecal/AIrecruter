@@ -8,7 +8,7 @@ import { error } from "console";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CandidateProfDto } from "candidates/dto/candidate-prof.dto";
+import { CandidateProfDto } from "dto/candidate-prof.dto";
 
 @Injectable()
 export class AiService {
@@ -56,29 +56,21 @@ export class AiService {
     return data.choices[0].message.content;
   }
   async AnalyzeCandidate(can_id: number) {
-    const candidatesInfo = await this.candidatesRepository.findOneBy({
+    const candidatesInfo: any = await this.candidatesRepository.findOneBy({
       id: can_id,
     });
-    if (!candidatesInfo) {
-      throw error;
-    }
+
     const profInfo = await this.candidateProfRepository.findOneBy({
       candidate_id: can_id,
     });
 
-    const settings = await SettingsEntity.findOneBy({
+    const settings: any = await SettingsEntity.findOneBy({
       is_active: true,
     });
-    if (!settings) {
-      throw error;
-    }
 
-    const candidates = await CandidatesEntity.findOneBy({
+    const candidates: any = await CandidatesEntity.findOneBy({
       id: can_id,
     });
-    if (!candidates) {
-      throw error;
-    }
 
     const [summaryText, fitAssessment, riskAssessment, recommendationText] =
       await Promise.all([
@@ -156,11 +148,11 @@ export class AiService {
       { ai_summary: summaryText, hr_recommendation: recommendationText },
     );
 
-    const resAnalyze = await AiEntity.findOne({
-      where: { candidate_id: candidates.id },
+    const resAnalyze = await AiEntity.findOneBy({
+      candidate_id: candidates.id,
     });
-    const resProfile = await CandidateProfEntity.findOne({
-      where: { candidate_id: candidates.id },
+    const resProfile = await CandidateProfEntity.findOneBy({
+      candidate_id: candidates.id,
     });
     return {
       analyze: new AnalyzeDto(resAnalyze!),

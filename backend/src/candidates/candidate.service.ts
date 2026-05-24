@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { CreateCandidateDto } from "./dto/create-candidate.dto";
-import { CandidateDto } from "./dto/candidates.dto";
+import { CreateCandidateDto } from "../dto/create-candidate.dto";
+import { CandidateDto } from "../dto/candidates.dto";
 import { CandidatesEntity } from "../entities/candidates.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";

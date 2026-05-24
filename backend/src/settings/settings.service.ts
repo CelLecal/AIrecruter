@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { SettingsEntity } from "entities/ai-settings.entity";
 import { Repository } from "typeorm";
-import { SettingsDto } from "./dto/settings.dto";
+import { SettingsDto } from "../dto/settings.dto";
 
 @Injectable()
 export class SettingsService {

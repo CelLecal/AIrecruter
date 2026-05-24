@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from "@nestjs/common";
 import { SettingsService } from "./settings.service";
-import { PostSettingsDto } from "./dto/post-settings.dto";
+import { PostSettingsDto } from "../dto/post-settings.dto";
 
 @Controller("settings")
 export class SettingsController {

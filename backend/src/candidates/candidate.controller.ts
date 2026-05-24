@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param } from "@nestjs/common";
 import { CandidatesService } from "./candidate.service";
-import { CreateCandidateDto } from "./dto/create-candidate.dto";
+import { CreateCandidateDto } from "../dto/create-candidate.dto";
 import { AiService } from "ai/ai.service";
 
 @Controller("candidates")

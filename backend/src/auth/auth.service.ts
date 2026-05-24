@@ -11,10 +11,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
   async validateUser(email: string, password: string) {
-    const user = await this.userService.findOne(email);
-    if (!user) {
-      throw new BadRequestException("Пароль или email не совпадает.");
-    }
+    const user: any = await this.userService.findOne(email);
     const passwordIsMatch = await bcrypt.compare(
       String(password),
       String(user.password_hash),
