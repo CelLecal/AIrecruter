@@ -5,6 +5,8 @@ import { CandidatesEntity } from "../entities/candidates.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AiResultEntity } from "entities/candidate_ai_result.entity";
+import { CandidateDocsEntity } from "entities/candidate-documents.entity";
+import { CandidateDocsDto } from "dto/candidate-docs.dto";
 
 @Injectable()
 export class CandidatesService {
@@ -13,6 +15,8 @@ export class CandidatesService {
     private candidateRepository: Repository<CandidatesEntity>,
     @InjectRepository(AiResultEntity)
     private aiResultRepository: Repository<AiResultEntity>,
+    @InjectRepository(CandidateDocsEntity)
+    private candidateDocsRepository: Repository<CandidateDocsEntity>,
   ) {}
 
   async create(data: CreateCandidateDto) {
@@ -46,6 +50,12 @@ export class CandidatesService {
       },
       take: 1,
     });
-    return result[0]; // так как find возвращает массив
+    return result[0];
+  }
+  async CandidateDocs(candidateId: number) {
+    const candidateDocs = await this.candidateDocsRepository.findBy({
+      candidate_id: candidateId,
+    });
+    return candidateDocs.map((item) => new CandidateDocsDto(item));
   }
 }

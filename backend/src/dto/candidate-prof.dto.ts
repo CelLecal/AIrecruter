@@ -7,7 +7,7 @@ export class CandidateProfDto {
 
   constructor(ent: CandidateProfEntity) {
     this.candidate_id = ent.candidate_id;
-    this.ai_summary! = ent.ai_summary;
+    this.ai_summary = ent.ai_summary;
     this.hr_recommendation = ent.hr_recommendation;
   }
 }

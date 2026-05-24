@@ -39,3 +39,11 @@ export class CandidatesController {
     return { response };
   }
 }
+@Controller("candidate-documents")
+export class CandidateDocumentsController {
+  constructor(private readonly candidateService: CandidatesService) {}
+  @Get(":candidateId")
+  CandidateDocs(@Param("candidateId") candidateId: number) {
+    return this.candidateService.CandidateDocs(candidateId);
+  }
+}
