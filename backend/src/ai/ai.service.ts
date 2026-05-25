@@ -4,11 +4,14 @@ import { AiEntity } from "entities/ai.entity";
 import { AnalyzeDto } from "./dto/ai-analyze.dto";
 import { CandidatesEntity } from "entities/candidates.entity";
 import { SettingsEntity } from "entities/ai-settings.entity";
-import { error } from "console";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CandidateProfDto } from "dto/candidate-prof.dto";
+import { CandidateDocsEntity } from "entities/candidate-documents.entity";
+//import { CandidateDocsDto } from "dto/candidate-docs.dto";
+import { VacancyEntity } from "entities/vacancies.entity";
+import { ApplicationEntity } from "entities/application.entity";
 
 @Injectable()
 export class AiService {
@@ -20,6 +23,12 @@ export class AiService {
     private readonly candidateProfRepository: Repository<CandidateProfEntity>,
     @InjectRepository(CandidatesEntity)
     private readonly candidatesRepository: Repository<CandidatesEntity>,
+    //@InjectRepository(CandidateDocsEntity)
+    //private readonly candidatesDocsRepository: Repository<CandidateDocsEntity>,
+    @InjectRepository(VacancyEntity)
+    private readonly vacancyRepository: Repository<VacancyEntity>,
+    @InjectRepository(ApplicationEntity)
+    private readonly applicationRepository: Repository<ApplicationEntity>,
   ) {
     this.apiKey = this.configService.get<string>("DEEPSEEK_API_KEY");
   }
@@ -59,8 +68,9 @@ export class AiService {
     const candidatesInfo: any = await this.candidatesRepository.findOneBy({
       id: can_id,
     });
+    //const docsInfo = await this.candidatesDocsRepository.findBy({ candidate_id: can_id });
 
-    const profInfo = await this.candidateProfRepository.findOneBy({
+    const profInfo: any = await this.candidateProfRepository.findOneBy({
       candidate_id: can_id,
     });
 
@@ -72,6 +82,12 @@ export class AiService {
       id: can_id,
     });
 
+    const application: any = await this.applicationRepository.findOneBy({
+      candidate_id: can_id,
+    });
+    const vacancy: any = await this.vacancyRepository.findOneBy({
+      id: application.vacancy_id,
+    });
     const [summaryText, fitAssessment, riskAssessment, recommendationText] =
       await Promise.all([
         this.askAboutCandidate(
@@ -82,11 +98,22 @@ export class AiService {
             "Город:" +
             candidatesInfo.city +
             "Стаж работы:" +
-            profInfo?.experience_years +
+            profInfo.experience_years +
             "Категория прав:" +
-            profInfo?.license_category +
-            "Выбранная формат работы:" +
-            profInfo?.work_schedule_preference,
+            profInfo.license_category +
+            "Выбранный график работы:" +
+            profInfo.work_schedule_preference +
+            "Выбранная вакансия:" +
+            vacancy.title +
+            "Место работы:" +
+            vacancy.location +
+            "График:" +
+            vacancy.shift_type +
+            "Необходимая категория прав:" +
+            vacancy.required_license_category +
+            "Минималный опыт:" +
+            vacancy.min_experience_years,
+          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
         ),
         this.askAboutCandidate(
           "Оцени соответствие кандидата вакансии. Без лишних слов и очень коротко. Его данные: Имя:" +
@@ -96,11 +123,22 @@ export class AiService {
             "Город:" +
             candidatesInfo.city +
             "Стаж работы:" +
-            profInfo?.experience_years +
+            profInfo.experience_years +
             "Категория прав:" +
-            profInfo?.license_category +
-            "Выбранная формат работы:" +
-            profInfo?.work_schedule_preference,
+            profInfo.license_category +
+            "Выбранный график работы:" +
+            profInfo.work_schedule_preference +
+            "Выбранная вакансия:" +
+            vacancy.title +
+            "Место работы:" +
+            vacancy.location +
+            "График:" +
+            vacancy.shift_type +
+            "Необходимая категория прав:" +
+            vacancy.required_license_category +
+            "Минималный опыт:" +
+            vacancy.min_experience_years,
+          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
         ),
         this.askAboutCandidate(
           "Кратко опиши риски при найме этого кандидата на эту вакансию. Без лишних слов и очень коротко. Его данные: Имя:" +
@@ -110,11 +148,22 @@ export class AiService {
             "Город:" +
             candidatesInfo.city +
             "Стаж работы:" +
-            profInfo?.experience_years +
+            profInfo.experience_years +
             "Категория прав:" +
-            profInfo?.license_category +
-            "Выбранная формат работы:" +
-            profInfo?.work_schedule_preference,
+            profInfo.license_category +
+            "Выбранный график работы:" +
+            profInfo.work_schedule_preference +
+            "Выбранная вакансия:" +
+            vacancy.title +
+            "Место работы:" +
+            vacancy.location +
+            "График:" +
+            vacancy.shift_type +
+            "Необходимая категория прав:" +
+            vacancy.required_license_category +
+            "Минималный опыт:" +
+            vacancy.min_experience_years,
+          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
         ),
         this.askAboutCandidate(
           "Напиши рекомендации для HR по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
@@ -124,11 +173,22 @@ export class AiService {
             "Город:" +
             candidatesInfo.city +
             "Стаж работы:" +
-            profInfo?.experience_years +
+            profInfo.experience_years +
             "Категория прав:" +
-            profInfo?.license_category +
-            "Выбранная формат работы:" +
-            profInfo?.work_schedule_preference,
+            profInfo.license_category +
+            "Выбранный график работы:" +
+            profInfo.work_schedule_preference +
+            "Выбранная вакансия:" +
+            vacancy.title +
+            "Место работы:" +
+            vacancy.location +
+            "График:" +
+            vacancy.shift_type +
+            "Необходимая категория прав:" +
+            vacancy.required_license_category +
+            "Минималный опыт:" +
+            vacancy.min_experience_years,
+          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
         ),
       ]);
     await AiEntity.update(

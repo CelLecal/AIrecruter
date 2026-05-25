@@ -11,6 +11,8 @@ import { AiEntity } from "entities/ai.entity";
 import { AiService } from "ai/ai.service";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
 import { CandidateDocsEntity } from "entities/candidate-documents.entity";
+import { VacancyEntity } from "entities/vacancies.entity";
+import { ApplicationEntity } from "entities/application.entity";
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { CandidateDocsEntity } from "entities/candidate-documents.entity";
       AiEntity,
       CandidateProfEntity,
       CandidateDocsEntity,
+      VacancyEntity,
+      ApplicationEntity,
     ]),
   ],
   controllers: [CandidatesController, CandidateDocumentsController],

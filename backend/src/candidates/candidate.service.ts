@@ -40,7 +40,7 @@ export class CandidatesService {
   }
 
   async findCandidateById(candidateId: number) {
-    return this.candidateRepository.findOne({ where: { id: candidateId } });
+    return this.candidateRepository.findOneBy({ id: candidateId });
   }
 
   async lastResult() {

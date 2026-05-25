@@ -6,6 +6,8 @@ import { CandidateDocsEntity } from "entities/candidate-documents.entity";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CandidatesEntity } from "entities/candidates.entity";
+import { ApplicationEntity } from "entities/application.entity";
+import { VacancyEntity } from "entities/vacancies.entity";
 
 @Module({
   providers: [AiService],
@@ -16,6 +18,8 @@ import { CandidatesEntity } from "entities/candidates.entity";
       CandidatesEntity,
       CandidateDocsEntity,
       CandidateProfEntity,
+      VacancyEntity,
+      ApplicationEntity,
     ]),
   ],
 })

@@ -27,5 +27,5 @@ export class ApplicationEntity extends BaseEntity {
   fit_score!: string;
 
   @CreateDateColumn()
-  aplied_at!: Date;
+  applied_at!: Date;
 }
