@@ -60,6 +60,7 @@ const AiScreening: React.FC = () => {
         <p>Автоматический сбор и анализ информации о кандидате</p>
       </div>
       <div className={styles.container}>
+        
         {/* Левая колонка */}
         <div className={styles.chatSection}>
           <div className={styles.chatHeader}>
@@ -90,7 +91,7 @@ const AiScreening: React.FC = () => {
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
-            <button onClick={handleSendMessage}>Отправить</button>
+            <button onClick={handleSendMessage}><i className="fa fa-paper-plane" aria-hidden="true"></i></button>
           </div>
         </div>
 
