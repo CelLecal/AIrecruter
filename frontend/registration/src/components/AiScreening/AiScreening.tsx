@@ -60,7 +60,6 @@ const AiScreening: React.FC = () => {
         <p>Автоматический сбор и анализ информации о кандидате</p>
       </div>
       <div className={styles.container}>
-        
         {/* Левая колонка */}
         <div className={styles.chatSection}>
           <div className={styles.chatHeader}>
@@ -91,37 +90,54 @@ const AiScreening: React.FC = () => {
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
-            <button onClick={handleSendMessage}><i className="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <button onClick={handleSendMessage}>Отправить</button>
           </div>
         </div>
 
         {/* Правая колонка */}
-        <div className={styles.resultSection}>
-          <h3>Результат скрининга</h3>
-          <div className={styles.scoreCircle}>
-            <svg width="120" height="120" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r={radius} fill="none" stroke="#2A2D3A" strokeWidth="8" />
-              <circle cx="60" cy="60" r={radius} fill="none" stroke="#4ffa8e" strokeWidth="8" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={dashOffset} transform="rotate(-90 60 60)" />
-              <text x="60" y="60" textAnchor="middle" dy="8" fill="white" fontSize="28" fontWeight="bold">{screeningResult.score}%</text>
-            </svg>
-            
+        <div className={styles.rightWrapper}>
+          <div className={styles.resultSection}>
+            <h3>Результат скрининга</h3>
+            <div className={styles.scoreCircle}>
+              <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r={radius} fill="none" stroke="#2A2D3A" strokeWidth="8" />
+                <circle cx="60" cy="60" r={radius} fill="none" stroke="#4ffa8e" strokeWidth="8" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={dashOffset} transform="rotate(-90 60 60)" />
+                <text x="60" y="60" textAnchor="middle" dy="8" fill="white" fontSize="28" fontWeight="bold">{screeningResult.score}%</text>
+              </svg>
+            </div>
+            <div className={styles.matchContainer}>
+              <div className={styles.matchTitle}>Подходит</div>
+              <div className={styles.matchText}>Кандидат соответствует требованиям вакансии</div>
+            </div>
+            <ul className={styles.detailList}>
+              {screeningResult.matchDetails.map((detail, idx) => (
+                <li key={idx} className={styles.detailItem}>
+                  <strong>{detail.label}</strong>
+                  <span className={styles.success}>{detail.value}</span>
+                </li>
+              ))}
+            </ul>
+            <div className={styles.actionButtons}>
+              <button className={`${styles.actionButton} ${styles.requestDocsBtn}`}>Запросить документы →</button>
+              <button className={`${styles.actionButton} ${styles.continueBtn}`}>Продолжить диалог</button>
+              <button className={`${styles.actionButton} ${styles.rejectBtn}`}>Отклонить</button>
+            </div>
           </div>
-          <div className={styles.matchContainer}>
-            <div className={styles.matchTitle}>Подходит</div>
-            <div className={styles.matchText}>Кандидат соответствует требованиям вакансии</div>
-          </div>
-          <ul className={styles.detailList}>
-            {screeningResult.matchDetails.map((detail, idx) => (
-              <li key={idx} className={styles.detailItem}>
-                <strong>{detail.label}</strong>
-                <span className={styles.success}>{detail.value}</span>
-              </li>
-            ))}
-          </ul>
-          <div className={styles.actionButtons}>
-            <button className={`${styles.actionButton} ${styles.requestDocsBtn}`}>Запросить документы →</button>
-            <button className={`${styles.actionButton} ${styles.continueBtn}`}>Продолжить диалог</button>
-            <button className={`${styles.actionButton} ${styles.rejectBtn}`}>Отклонить</button>
+
+          <div className={styles.aiAnalysis}>
+            <h3>AI-анализ</h3>
+            <div className={styles.strengths}>
+              <h4>Сильные стороны</h4>
+              <ul>
+                <li>Большой опыт работы</li>
+                <li>Наличие ADR сертификата</li>
+                <li>Гибкость в графике</li>
+              </ul>
+            </div>
+            <div className={styles.recommendations}>
+              <h4>Рекомендации</h4>
+              <p>Кандидат имеет отличные показатели. Рекомендуется запросить документы для дальнейшей проверки.</p>
+            </div>
           </div>
         </div>
       </div>

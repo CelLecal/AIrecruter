@@ -1,12 +1,14 @@
 * {
   box-sizing: border-box;
 }
+
 .pageContainer {
-    flex: 1;
-    padding: 32px 40px;
-    background: #0A0C10;
-    overflow-y: auto;
-    color: white;
+  flex: 1;
+  padding: 32px 40px;
+  background: #0A0C10;
+  overflow-y: auto;
+  color: white;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 .pageHeader {
@@ -31,7 +33,7 @@
   overflow: hidden;
 }
 
-/* ----------------Левая часть------------- */
+/* ----------- Левая часть ---------- */
 .chatSection {
   flex: 2;
   display: flex;
@@ -49,14 +51,12 @@
   align-items: flex-start;
   gap: 0.25rem;
 }
-
 .chatHeader h2 {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
   color: white;
 }
-
 .candidateStatus {
   display: inline-block;
   font-size: 0.8rem;
@@ -85,7 +85,6 @@
 .aiMessage {
   justify-content: flex-start;
 }
-
 .messageBubble {
   max-width: 70%;
   background: #0F1117;
@@ -94,18 +93,15 @@
   color: white;
   position: relative;
 }
-
 .userMessage .messageBubble {
   background: #4e46e549;
   border-bottom-right-radius: 4px;
   border: 1px solid #4F46E5;
 }
-
 .aiMessage .messageBubble {
   background: #2A2D3A;
   border-bottom-left-radius: 4px;
 }
-
 .timestamp {
   font-size: 0.7rem;
   color: #9CA3AF;
@@ -144,9 +140,16 @@
   background: #6366f1;
 }
 
-/* ------------------------Правая часть ---------------------*/
-.resultSection {
+/* -------------правая часть ----------- */
+.rightWrapper {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.resultSection {
   background: #1A1D26;
   border-radius: 20px;
   padding: 1.5rem;
@@ -155,9 +158,7 @@
   gap: 1.5rem;
   overflow-y: auto;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 700px;
 }
-
 .resultSection h3 {
   margin: 0;
   font-size: 1.2rem;
@@ -179,7 +180,6 @@
   margin-top: 0.5rem;
 }
 
-/* Зелёный контейнер */
 .matchContainer {
   background: rgba(34, 197, 94, 0.1);
   border: 1px solid rgba(79, 250, 142, 0.8);
@@ -215,7 +215,7 @@
   color: white;
 }
 .success {
-  color: #A0AABF; 
+  color: #A0AABF;
 }
 
 .actionButtons {
@@ -225,7 +225,7 @@
   margin-top: 1rem;
 }
 
-/*-----кнопки-----*/
+/* ---------- кнопки---------- */
 .actionButton {
   background: transparent;
   height: 50px;
@@ -237,14 +237,13 @@
   transition: all 0.2s;
   text-align: center;
   font-size: 1rem;
-  
 }
-
 .actionButton:hover {
   background: currentColor;
+  color: white;
+  box-shadow: 0 0 12px currentColor;
 }
 
-/*запросить документы*/
 .requestDocsBtn {
   border-color: #4ffa8e;
   background: #4ffa8e;
@@ -255,8 +254,6 @@
   box-shadow: 0 0 20px #40d677;
 }
 
-
-/*продолжить разговор*/
 .continueBtn {
   border-color: #3b82f6;
   color: #3b82f6;
@@ -268,10 +265,85 @@
 
 .rejectBtn {
   border-color: #ef4444;
-  background: #aa2a2a49 ;
+  background: rgba(170, 42, 42, 0.286);
   color: #ef4444;
 }
 .rejectBtn:hover {
   background: #ef4444;
   color: white;
+}
+
+/* ------------ аи-анализ------------- */
+.aiAnalysis {
+  background: #1A1D26;
+  border-radius: 20px;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aiAnalysis h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.strengths {
+  background: rgba(34, 197, 94, 0.041);
+  border: 1px solid rgba(79, 250, 142, 0.8);
+  border-radius: 16px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+}
+.recommendations {
+  background: rgba(34, 124, 197, 0.041);
+  border: 1px solid rgba(79, 159, 250, 0.8);
+  border-radius: 16px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.strengths:last-child, .recommendations:last-child {
+  margin-bottom: 0;
+}
+
+.strengths h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #4ffa8e;
+}
+
+.recommendations h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #4fa7fa;
+}
+
+.strengths ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.strengths li {
+  font-size: 0.85rem;
+  color: #A0AABF;
+  margin-bottom: 0.3rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.strengths li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #4ffa8e;
+}
+
+.recommendations p {
+  font-size: 0.85rem;
+  color: #A0AABF;
+  margin: 0;
+  line-height: 1.4;
 }
