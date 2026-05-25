@@ -90,7 +90,7 @@ const AiScreening: React.FC = () => {
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
-            <button onClick={handleSendMessage}>Отправить</button>
+            <button onClick={handleSendMessage}><i className="fa fa-paper-plane" aria-hidden="true"></i></button>
           </div>
         </div>
 
