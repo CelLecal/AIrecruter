@@ -38,8 +38,8 @@ function Analytics() {
                 </div>
             </div>
 
+            {/* воронка и динамика */}
             <div className={styles.chartsRow}>
-                {/*воронки подбора */}
                 <div className={styles.funnelBlock}>
                     <h3 className={styles.blockTitle}>Воронка подбора</h3>
                     <div className={styles.funnelBars}>
@@ -89,7 +89,6 @@ function Analytics() {
                     <div className={styles.funnelLegend}>Количество кандидатов</div>
                 </div>
 
-                {/* динамики*/}
                 <div className={styles.timelineBlock}>
                     <h3 className={styles.blockTitle}>Динамика времени найма</h3>
                     <div className={styles.chart}>
@@ -113,9 +112,8 @@ function Analytics() {
                 </div>
             </div>
 
-
+            {/* Причины отказов и проблемы с документами */}
             <div className={styles.issuesRow}>
-                {/*  причины отказов */}
                 <div className={styles.pieChartBlock}>
                     <h3 className={styles.blockTitle}>Причины отказов</h3>
                     <div className={styles.pieChartContainer}>
@@ -164,7 +162,6 @@ function Analytics() {
                     </div>
                 </div>
 
-                {/* Блок проблем с документами */}
                 <div className={styles.docIssuesBlock}>
                     <h3 className={styles.blockTitle}>Проблемы с документами</h3>
                     <div className={styles.docIssuesBars}>
@@ -199,13 +196,119 @@ function Analytics() {
                     </div>
                     <div className={styles.funnelLegend}>Количество случаев</div>
 
-                    {/* рекомендация  */}
                     <div className={styles.recommendationBlock}>
-                        <div className={styles.recommendationIcon}><i className="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                        <div className={styles.recommendationIcon}>
+                            <i className="fa fa-thumb-tack" aria-hidden="true"></i>
+                        </div>
                         <div className={styles.recommendationText}>
                             <strong>Рекомендация</strong><br />
                             Добавьте инструкции по загрузке документов для снижения количества ошибок
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* распределение по категориям прав */}
+            <div className={styles.categoriesChartRow}>
+                <div className={styles.categoriesChartBlock}>
+                    <h3 className={styles.blockTitle}>Распределение кандидатов по категориям прав</h3>
+                    <div className={styles.categoriesBarsContainer}>
+                        {[
+                            { category: 'C', value: 63, color: '#ef4444' },
+                            { category: 'E', value: 31, color: '#f97316' },
+                            { category: 'D', value: 27, color: '#eab308' },
+                            { category: 'B', value: 60, color: '#22c55e' },
+                            { category: 'C+E', value: 20, color: '#6c63ff' }
+                        ].map((item) => {
+                            const maxValue = 120;
+                            const heightPx = (item.value / maxValue) * 180;
+                            return (
+                                <div key={item.category} className={styles.categoriesBarItem}>
+                                    <div
+                                        className={styles.categoriesBarColumn}
+                                        style={{
+                                            height: `${heightPx}px`,
+                                            background: item.color
+                                        }}>
+                                        <span className={styles.categoriesBarValue}>{item.value}</span>
+                                    </div>
+                                    <span className={styles.categoriesBarLabel}>{item.category}</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className={styles.funnelLegend}>Количество кандидатов</div>
+                </div>
+            </div>
+
+            {/* источники, активность, метрики */}
+            <div className={styles.insightsRow}>
+                <div className={styles.sourcesBlock}>
+                    <h3 className={styles.blockTitle}>Эффективность источников</h3>
+                    <div className={styles.sourcesListSimple}>
+                        <div className={styles.sourceItemSimple}>
+                            <span className={styles.sourceNameSimple}>hh.ru</span>
+                            <span className={styles.sourceStatsSimple}>42 кандидата • 12 нанято</span>
+                        </div>
+                        <div className={styles.sourceItemSimple}>
+                            <span className={styles.sourceNameSimple}>Авито</span>
+                            <span className={styles.sourceStatsSimple}>28 кандидатов • 8 нанято</span>
+                        </div>
+                        <div className={styles.sourceItemSimple}>
+                            <span className={styles.sourceNameSimple}>Рекомендации</span>
+                            <span className={styles.sourceStatsSimple}>18 кандидатов • 7 нанято</span>
+                        </div>
+                        <div className={styles.sourceItemSimple}>
+                            <span className={styles.sourceNameSimple}>Соц. сети</span>
+                            <span className={styles.sourceStatsSimple}>15 кандидатов • 3 нанято</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.activityBlock}>
+                    <h3 className={styles.blockTitle}>Активность по дням недели</h3>
+                    <div className={styles.activityBarsList}>
+                        {[
+                            { day: 'Понедельник', value: 85 },
+                            { day: 'Вторник', value: 92 },
+                            { day: 'Среда', value: 78 },
+                            { day: 'Четверг', value: 88 },
+                            { day: 'Пятница', value: 95 },
+                            { day: 'Суббота', value: 45 },
+                            { day: 'Воскресенье', value: 32 }
+                        ].map((item) => {
+                            const maxValue = 95;
+                            const widthPercent = (item.value / maxValue) * 100;
+                            return (
+                                <div key={item.day} className={styles.activityItemVertical}>
+                                    <span className={styles.activityDayLabelVertical}>{item.day}</span>
+                                    <div className={styles.barWrapper}>
+                                        <div className={styles.bar} style={{ width: `${widthPercent}%` }}></div>
+                                        <span className={styles.activityDayValueVertical}>{item.value}</span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className={styles.funnelLegend}>Количество заявок </div>
+                </div>
+
+                <div className={styles.metricsBlock}>
+                    <h3 className={styles.blockTitle}>Ключевые метрики</h3>
+                    <div className={styles.metricItem}>
+                        <div className={styles.metricTitle}>Качество кандидатов</div>
+                        <div className={styles.metricBigValue}>8.4/10</div>
+                        <div className={styles.metricSubtext}>средняя оценка HR</div>
+                    </div>
+                    <div className={styles.metricItem}>
+                        <div className={styles.metricTitle}>Экономия времени</div>
+                        <div className={styles.metricBigValue}>70%</div>
+                        <div className={styles.metricSubtext}>с внедрением AI</div>
+                    </div>
+                    <div className={styles.metricItem}>
+                        <div className={styles.metricTitle}>Удовлетворенность</div>
+                        <div className={styles.metricBigValue}>92%</div>
+                        <div className={styles.metricSubtext}>HR-менеджеров</div>
                     </div>
                 </div>
             </div>

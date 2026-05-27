@@ -78,7 +78,7 @@
     color: #A0AABF;
 }
 
-/* воронки и динамики */
+/*-------------------------- воронки и динамики ---------------------*/
 .chartsRow {
     display: flex;
     gap: 2rem;
@@ -213,7 +213,7 @@
     font-weight: 500;
 }
 
-/* Блоки причин отказов и проблем  */
+/* -----------------Блоки причин отказов и проблем ----------------- */
 .issuesRow {
     display: flex;
     gap: 2rem;
@@ -364,4 +364,193 @@
 .recommendationText strong {
     color: #ffffff;
     font-size: 0.85rem;
+}
+
+/* ---------------распределение по категориям ---------------*/
+.categoriesChartRow {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.categoriesChartBlock {
+    background: #1A1D26;
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+.categoriesBarsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 220px;
+    gap: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.categoriesBarItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 60px;
+    gap: 0.5rem;
+}
+
+.categoriesBarColumn {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 8px 8px 4px 4px;
+    transition: height 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 4px;
+    min-height: 4px;  
+}
+
+.categoriesBarValue {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0 4px;
+    border-radius: 10px;
+}
+
+.categoriesBarLabel {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+    background: rgba(136, 131, 228, 0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+}
+
+
+/* ------------------ряд для 3 контейнеров----------------- */
+.insightsRow {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: nowrap;
+}
+
+.sourcesBlock,
+.activityBlock,
+.metricsBlock {
+    flex: 1;
+    background: #1A1D26;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* эффективность */
+.sourcesListSimple {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.sourceItemSimple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sourceNameSimple {
+    font-weight: 600;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.sourceStatsSimple {
+    font-size: 0.8rem;
+    color: #A0AABF;
+}
+
+/* Активность по дням  */
+.activityBarsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;           
+    margin: 1rem 0;
+}
+
+.activityItemVertical {
+    display: flex;
+    flex-direction: column;   
+    gap: 0.4rem;
+}
+
+.activityDayLabelVertical {
+    font-size: 0.85rem;
+    color: #A0AABF;
+}
+
+.activityDayValueVertical {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    min-width: 35px;
+    text-align: right;
+}
+
+.barWrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 100px;
+}
+
+.bar {
+    height: 10px;
+    background: linear-gradient(90deg, #8883e4, #6c63ff);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* ключевые метрики  */
+.metricItem {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 1rem;
+    text-align: left;
+    transition: background 0.2s;
+    margin-bottom: 0.75rem;  
+}
+
+.metricItem:last-child {
+    margin-bottom: 0;        
+}
+
+.metricItem:hover {
+    background: rgba(136, 131, 228, 0.1);
+}
+
+.metricTitle {
+    font-size: 0.75rem;
+    color: #A0AABF;
+    margin-bottom: 0.5rem;
+}
+
+.metricBigValue {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: rgb(71, 211, 181);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.metricSubtext {
+    font-size: 0.7rem;
+    color: #A0AABF;
 }
