@@ -10,12 +10,12 @@ interface Candidate {
   email: string;
   birth_date: string;
   current_status: string;
-  risk_level?: string;
+  risk_level: string;
   license_category: string;
-  experience_years?: number;
-  fit_score?: number;
-  ai_summary?: string;
-  hr_recommendation?: string;
+  experience_years: number;
+  hiring_score: number;
+  ai_summary: string;
+  hr_recommendation: string;
   created_at: string;
   passport?: string;
   birth_place?: string;
@@ -30,11 +30,6 @@ const CandidatesProfile: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!id) {
-      setError('ID кандидата не указан');
-      setLoading(false);
-      return;
-    }
 
     fetch(`http://localhost:3000/candidates/${id}`)
       .then((res) => {
@@ -236,7 +231,7 @@ const CandidatesProfile: React.FC = () => {
             <h3><i className="fa fa-chart-line"></i> Оценка рисков</h3>
             <div className={styles.riskRow}>
               <span>Соответствие требованиям</span>
-              <span className={styles.riskValueHigh}>{candidate.fit_score ?? 0}%</span>
+              <span className={styles.riskValueHigh}>{candidate.hiring_score ?? 0}%</span>
             </div>
             <div className={styles.riskRow}>
               <span>Общий риск</span>

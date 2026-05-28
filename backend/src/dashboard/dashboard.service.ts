@@ -1,75 +1,16 @@
-import { Injectable, ParseIntPipe } from "@nestjs/common";
-import { CandidatesEntity } from "../entities/candidates.entity";
-import { Repository, MoreThanOrEqual } from "typeorm";
+import { Injectable } from "@nestjs/common";
+import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
+import { DashboardEntity } from "entities/dashboard.entity";
 
 @Injectable()
 export class DashboardService {
   constructor(
-    @InjectRepository(CandidatesEntity)
-    private readonly candidateRepository: Repository<CandidatesEntity>,
+    @InjectRepository(DashboardEntity)
+    private readonly dashboardRepository: Repository<DashboardEntity>,
   ) {}
-  async newCandidates(days: number) {
-    const dateThreshold = new Date();
-    dateThreshold.setDate(dateThreshold.getDate() - days);
-    return this.candidateRepository.count({
-      where: {
-        created_at: MoreThanOrEqual(dateThreshold),
-      },
-    });
-  }
-  async primarySelection() {
-    return this.candidateRepository.count({
-      where: {
-        current_status: "Завершил чат-скриннинг",
-      },
-    });
-  }
-  async docVerif() {
-    return this.candidateRepository.count({
-      where: {
-        current_status: "Требует проверки документов",
-      },
-    });
-  }
-  async readyForRegis() {
-    return this.candidateRepository.count({
-      where: {
-        current_status: "Оформление",
-      },
-    });
-  }
-  async latestCandidates(days: number) {
-    const dateThreshold = new Date();
-    dateThreshold.setDate(dateThreshold.getDate() - days);
-    return this.candidateRepository.find({
-      select: ["current_status", "full_name"],
-      where: {
-        created_at: MoreThanOrEqual(dateThreshold),
-      },
-    });
-  }
-
-  async countsArray() {
-    const statuses = [
-      { key: "Новый", name: "newCandidate" },
-      { key: "Скриннинг", name: "scrinning" },
-      { key: "Проверка документов", name: "docsCheck" },
-      { key: "Решение HR", name: "hrProcess" },
-      { key: "Оформление", name: "regis" },
-    ];
-
-    const results: number[] = [];
-
-    for (const status of statuses) {
-      const count = await this.candidateRepository.count({
-        where: { current_status: status.key },
-      });
-      // Убрали this, так как results — локальная переменная
-      results.push(count);
-    }
-
-    // Возвращаем результат (и при желании сохраняем в свойство класса)
-    return results;
+  async showDashboard() {
+    const result = await this.dashboardRepository.find();
+    return result.length > 0 ? result[0] : {};
   }
 }

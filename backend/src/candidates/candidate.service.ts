@@ -1,12 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { CreateCandidateDto } from "../dto/create-candidate.dto";
-import { CandidateDto } from "../dto/candidates.dto";
+import { CandidatesDto } from "../dto/candidates.dto";
 import { CandidatesEntity } from "../entities/candidates.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AiResultEntity } from "entities/candidate_ai_result.entity";
 import { CandidateDocsEntity } from "entities/candidate-documents.entity";
 import { CandidateDocsDto } from "dto/candidate-docs.dto";
+import { CandidateProfEntity } from "entities/candidate-profile.entity";
+import { CandidateDto } from "dto/candidate-dto";
 
 @Injectable()
 export class CandidatesService {
@@ -17,6 +19,8 @@ export class CandidatesService {
     private aiResultRepository: Repository<AiResultEntity>,
     @InjectRepository(CandidateDocsEntity)
     private candidateDocsRepository: Repository<CandidateDocsEntity>,
+    @InjectRepository(CandidateProfEntity)
+    private candidateProfRepository: Repository<CandidateProfEntity>,
   ) {}
 
   async create(data: CreateCandidateDto) {
@@ -31,16 +35,24 @@ export class CandidatesService {
     candidate.created_at = data.created_at;
 
     const res = await candidate.save();
-    return new CandidateDto(res);
+    return new CandidatesDto(res);
   }
 
   async getList() {
     const candidates = await this.candidateRepository.find();
-    return candidates.map((item) => new CandidateDto(item));
+    return candidates.map((item) => new CandidatesDto(item));
   }
 
   async findCandidateById(candidateId: number) {
-    return this.candidateRepository.findOneBy({ id: candidateId });
+    const candidate: any = await this.candidateRepository.findOne({
+      where: { id: candidateId },
+    });
+
+    const profile: any = await this.candidateProfRepository.findOne({
+      where: { candidate_id: candidateId },
+    });
+
+    return new CandidateDto(candidate, profile);
   }
 
   async lastResult() {

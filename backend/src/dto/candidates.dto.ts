@@ -1,6 +1,6 @@
 import { CandidatesEntity } from "entities/candidates.entity";
 
-export class CandidateDto {
+export class CandidatesDto {
   id!: number;
   full_name!: string;
   phone!: string;
