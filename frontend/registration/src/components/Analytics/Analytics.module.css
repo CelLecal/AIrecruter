@@ -31,6 +31,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
     border: 1px solid transparent;
     box-sizing: border-box;
+    border-color: #a0aabf2d;
 }
 
 .card:hover {
@@ -96,6 +97,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
     border: 1px solid transparent;
     box-sizing: border-box;
+    border-color: #a0aabf2d;
 }
 
 
@@ -233,6 +235,7 @@
     border: 1px solid transparent;
     display: flex;
     flex-direction: column;
+    border-color: #a0aabf2d;
 }
 
 /* диаграмма */
@@ -379,6 +382,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
     border: 1px solid transparent;
     box-sizing: border-box;
+    border-color: #a0aabf2d;
 }
 
 .categoriesBarsContainer {
@@ -447,6 +451,8 @@
     border-radius: 20px;
     padding: 1.5rem;
     box-sizing: border-box;
+    border: 1px solid transparent;
+    border-color: #a0aabf2d;
 }
 
 /* эффективность */

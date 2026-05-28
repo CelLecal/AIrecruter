@@ -91,6 +91,7 @@
     flex-direction: column;
     gap: 0.8rem;
     border: 1px solid transparent;
+    border: 1px solid #a0aabf2d;
 }
 
 .vacancyCard:hover {
