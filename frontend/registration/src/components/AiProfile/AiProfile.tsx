@@ -18,7 +18,7 @@ const DecisionPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>Принятие решения</h1>
+        <h1>AI профиль</h1>
         <p>Оцените кандидата и примите окончательное решение</p>
       </div>
 
