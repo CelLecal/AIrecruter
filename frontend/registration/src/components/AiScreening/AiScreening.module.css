@@ -1,0 +1,349 @@
+* {
+  box-sizing: border-box;
+}
+
+.pageContainer {
+  flex: 1;
+  padding: 32px 40px;
+  background: #0A0C10;
+  overflow-y: auto;
+  color: white;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.pageHeader {
+  margin-bottom: 1.5rem;
+}
+.pageHeader h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+.pageHeader p {
+  font-size: 1rem;
+  color: #A0AABF;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ----------- Левая часть ---------- */
+.chatSection {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background: #1A1D26;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.chatHeader {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+.chatHeader h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+.candidateStatus {
+  display: inline-block;
+  font-size: 0.8rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(79, 250, 142, 0.8);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.chatMessages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  display: flex;
+}
+.userMessage {
+  justify-content: flex-end;
+}
+.aiMessage {
+  justify-content: flex-start;
+}
+.messageBubble {
+  max-width: 70%;
+  background: #0F1117;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: white;
+  position: relative;
+}
+.userMessage .messageBubble {
+  background: #4e46e549;
+  border-bottom-right-radius: 4px;
+  border: 1px solid #4F46E5;
+}
+.aiMessage .messageBubble {
+  background: #2A2D3A;
+  border-bottom-left-radius: 4px;
+}
+.timestamp {
+  font-size: 0.7rem;
+  color: #9CA3AF;
+  margin-left: 0.5rem;
+}
+
+.inputArea {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0.5rem;
+}
+.inputArea input {
+  flex: 1;
+  background: #0F1117;
+  border: 1px solid #2A2D3A;
+  border-radius: 15px;
+  padding: 0.6rem 1rem;
+  color: white;
+  outline: none;
+}
+.inputArea input:focus {
+  border-color: #4F46E5;
+}
+.inputArea button {
+  background: #4F46E5;
+  border: none;
+  border-radius: 15px;
+  padding: 0.6rem 1.2rem;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.inputArea button:hover {
+  background: #6366f1;
+}
+
+/* -------------правая часть ----------- */
+.rightWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.resultSection {
+  background: #1A1D26;
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.resultSection h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.scoreCircle {
+  text-align: center;
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+.scoreLabel {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #A0AABF;
+  margin-top: 0.5rem;
+}
+
+.matchContainer {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(79, 250, 142, 0.8);
+  border-radius: 16px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+.matchTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #4ffa8e;
+  margin-bottom: 0.25rem;
+}
+.matchText {
+  font-size: 0.85rem;
+  color: #A0AABF;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.detailList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+  color: white;
+}
+.success {
+  color: #A0AABF;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* ---------- кнопки---------- */
+.actionButton {
+  background: transparent;
+  height: 50px;
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  font-size: 1rem;
+}
+.actionButton:hover {
+  background: currentColor;
+  color: white;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.requestDocsBtn {
+  border-color: #4ffa8e;
+  background: #4ffa8e;
+  color: #000000;
+}
+.requestDocsBtn:hover {
+  background: #22c55e;
+  box-shadow: 0 0 20px #40d677;
+}
+
+.continueBtn {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+.continueBtn:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.rejectBtn {
+  border-color: #ef4444;
+  background: rgba(170, 42, 42, 0.286);
+  color: #ef4444;
+}
+.rejectBtn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* ------------ аи-анализ------------- */
+.aiAnalysis {
+  background: #1A1D26;
+  border-radius: 20px;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aiAnalysis h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.strengths {
+  background: rgba(34, 197, 94, 0.041);
+  border: 1px solid rgba(79, 250, 142, 0.8);
+  border-radius: 16px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+}
+.recommendations {
+  background: rgba(34, 124, 197, 0.041);
+  border: 1px solid rgba(79, 159, 250, 0.8);
+  border-radius: 16px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.strengths:last-child, .recommendations:last-child {
+  margin-bottom: 0;
+}
+
+.strengths h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #4ffa8e;
+}
+
+.recommendations h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #4fa7fa;
+}
+
+.strengths ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.strengths li {
+  font-size: 0.85rem;
+  color: #A0AABF;
+  margin-bottom: 0.3rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.strengths li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #4ffa8e;
+}
+
+.recommendations p {
+  font-size: 0.85rem;
+  color: #A0AABF;
+  margin: 0;
+  line-height: 1.4;
+}

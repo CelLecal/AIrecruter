@@ -187,7 +187,7 @@ const CandidatesProfile: React.FC = () => {
             <h3><i className="fa fa-tasks"></i> Действия</h3>
             <div className={styles.actionButtons}>
               <button className={styles.actionPrimary}>Подготовить оформление →</button>
-              <button className={styles.actionHr} onClick={handleDecision}>Решение HR</button>
+              <button className={styles.actionHr} onClick={handleDecision}>Сформировать AI профиль</button>
               <button className={styles.actionSecondary}>Запросить уточнение</button>
               <button className={styles.actionDanger}>Отклонить</button>
             </div>
