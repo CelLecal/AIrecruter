@@ -1,0 +1,736 @@
+.settings {
+  background: #0a0c10;
+  color: #e2e8f0;
+
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.subtitle {
+  color: #8f9bb3;
+  font-size: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+}
+
+/* Горизонтальное меню */
+.topMenu {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #2a2d3a;
+  padding-bottom: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.topMenu button {
+  background: transparent;
+  border: none;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #9aa4bf;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: 0.1s;
+}
+
+.topMenu button:hover {
+  background: #1f2937;
+  color: white;
+}
+
+.topMenu button.active {
+  background: #4e46e5;
+  color: white;
+}
+
+.container {
+  background: #0f1117;
+  color: #ffffff;
+  padding: 30px 40px;
+  min-height: 100vh;
+  border-radius: 50px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.card {
+  background: #1a1d26;
+  border-radius: 16px;
+  padding: 18px 24px;
+  margin-bottom: 20px;
+  border: 1px solid #2a2d3a;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cardHeader h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+}
+
+.active {
+  background: #2e7d32;
+  padding: 4px 12px;
+  border-radius: 30px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.paused {
+  background: #b76e2e;
+  padding: 4px 12px;
+  border-radius: 30px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.info {
+  display: flex;
+  gap: 20px;
+  color: #a0aabf;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.editBtn, .deleteBtn {
+  background: transparent;
+  border: 1px solid #4b5568;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: #cbd5e6;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.editBtn:hover {
+  background: #2d2f3e;
+  border-color: #8883e4;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #f87171;
+  color: #f87171;
+}
+
+.createButton {
+  background: #4e46e5;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.createButton:hover {
+  background: #6d28d9;
+}
+
+ /* 2 по счету */
+
+.rulesContainer {
+    background: #0f1117;
+  color: #ffffff;
+  padding: 30px 40px;
+  min-height: 100vh;
+  border-radius: 50px;
+}
+
+.rulesTitle {
+    font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.rulesCard {
+  background: #11141c;
+  border: 1px solid #2a2d3a;
+  border-radius: 20px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.rulesCard h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #cbd5e6;
+}
+
+.rulesRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid #2a2d3a;
+}
+
+.rulesRow span:first-child {
+  color: #9aa4bf;
+  font-size: 15px;
+}
+
+.rulesInput {
+  background: #1e2a3a;
+  border: none;
+  border-radius: 30px;
+  padding: 6px 16px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  width: 120px;
+  text-align: center;
+  outline: none;
+}
+
+.rulesInput:focus {
+  outline: 1px solid #4e46e5;
+}
+
+.rulesCheckboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.rulesCheckboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #cbd5e6;
+}
+
+.customCheckbox {
+  font-size: 18px;
+  user-select: none;
+  width: 24px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.rulesSaveButton {
+  background: #4e46e5;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.rulesSaveButton:hover {
+  background: #6d28d9;
+}
+
+.createButtonTemplate {
+    background: #4e46e5;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+
+ /* 3 по счету */
+
+ .templatesContainer {
+  background: #0f1117;
+  color: #ffffff;
+  padding: 30px 40px;
+  min-height: 100vh;
+  border-radius: 50px;
+}
+
+.templatesTitle {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.templatesList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.templateCard {
+  background: #11141c;
+  border: 1px solid #2a2d3a;
+  border-radius: 20px;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.templateInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.templateName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f0f3fa;
+}
+
+.templateMeta {
+  font-size: 14px;
+  color: #9aa4bf;
+}
+
+.templateActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.editButton {
+  background: #4e46e5;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.editButton:hover {
+  background: #6d28d9;
+}
+
+.deleteButton {
+  background: transparent;
+  border: 1px solid #e5484d;
+  border-radius: 30px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteButton i {
+  font-size: 16px;
+  color: #e5484d;
+  transition: color 0.2s;
+}
+
+.deleteButton:hover {
+  background: #e5484d20;
+  border-color: #ff6b6b;
+}
+
+.deleteButton:hover i {
+  color: #ff6b6b;
+}
+
+
+ /* 4 по счету */
+
+ .usersContainer {
+  background: #0f1117;
+  color: #ffffff;
+  padding: 30px 40px;
+  min-height: 100vh;
+  border-radius: 50px;
+}
+
+.usersTitle {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.usersList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.userCard {
+  background: #11141c;
+  border: 1px solid #2a2d3a;
+  border-radius: 20px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.userAvatar {
+  width: 56px;
+  height: 56px;
+  background: #1e2a3a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: #a78bfa;
+  flex-shrink: 0;
+}
+
+.userInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f0f3fa;
+}
+
+.userMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.userEmail {
+  font-size: 14px;
+  color: #9aa4bf;
+}
+
+.userRole {
+  font-size: 14px;
+  color: #cbd5e6;
+  background: #1e2a3a;
+  padding: 2px 10px;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.userStatus {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+
+.active {
+  background: #2e7d3220;
+  color: #6fcf97;
+  border: 1px solid #2e7d32;
+}
+
+.inactive {
+  background: #e5484d20;
+  color: #e5484d;
+  border: 1px solid #e5484d;
+}
+
+.addButton {
+  background: #4e46e5;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addButton:hover {
+  background: #6d28d9;
+}
+
+ /* 5 по счету */
+
+
+
+.intgContainer {
+  background: #0f1117;
+  color: #ffffff;
+  padding: 30px 40px;
+  min-height: 100vh;
+  border-radius: 50px;
+}
+
+.intgTitle {
+    font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.intgGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.intgCard {
+  background: #11141c;
+  border: 1px solid #2a2d3a;
+  border-radius: 20px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: 0.1s;
+}
+
+.intgCard:hover {
+  border-color: #4e46e5;
+}
+
+.intgName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f0f3fa;
+}
+
+.intgDesc {
+  font-size: 14px;
+  color: #9aa4bf;
+  line-height: 1.4;
+}
+
+.intgFooterRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.intgStatusConnected, .intgStatusDisconnected {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 30px;
+}
+
+.intgStatusConnected {
+  background: #2e7d3220;
+  color: #6fcf97;
+  border: 1px solid #2e7d32;
+}
+
+.intgStatusDisconnected {
+  background: #77747420;
+  color: gray;
+  border: 1px solid #404042;
+}
+
+.intgBtnSettings, .intgBtnConnect {
+  border: none;
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.intgBtnSettings {
+    background: #77747420;
+  color: white;
+}
+
+.intgBtnSettings:hover {
+  background: #6d28d9;
+}
+
+.intgBtnConnect {
+  background: transparent;
+  border: 1px solid #1fdf4f;
+  color: #1fdf4f;
+}
+
+
+
+ /* 6 по счету */
+
+
+
+.scrContainer {
+  background: #0f1117;
+  color: #ffffff;
+  padding: 30px 40px;
+  min-height: 100vh;
+  border-radius: 50px;
+}
+
+.scrTitle {
+    font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.scrList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.scrCard {
+  background: #11141c;
+  border: 1px solid #7b8092;
+  border-radius: 20px;
+  padding: 20px 24px;
+  transition: 0.1s;
+}
+
+.scrCard:hover {
+  border-color: #78787e;
+}
+
+.scrName {
+  font-size: 20px;
+  font-weight: 700;
+  color: #f0f3fa;
+  margin-bottom: 12px;
+}
+
+.scrMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: #9aa4bf;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.scrMetaRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scrEditBtn {
+  background: transparent;
+  border: none;
+  color: #a78bfa;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 20px;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrEditBtn:hover {
+  background: #4e46e520;
+  color: #c4b5fd;
+}
+
+
+.scrStatusActive, .scrStatusInactive {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 30px;
+}
+
+.scrStatusActive {
+  background: #2e7d3220;
+  color: #6fcf97;
+  border: 1px solid #2e7d32;
+}
+
+.scrStatusInactive {
+  background: #e5484d20;
+  color: #e5484d;
+  border: 1px solid #e5484d;
+}
+
+.scrQuestions {
+  font-size: 14px;
+  color: #9aa4bf;
+  line-height: 1.5;
+  padding-top: 12px;
+  border-top: 1px solid #2a2d3a;
+}
+
+.scrFooter {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.scrCreateButton {
+  background: #4e46e5;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.scrCreateButton:hover {
+  background: #6d28d9;
+}
+
