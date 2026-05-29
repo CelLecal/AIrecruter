@@ -15,7 +15,6 @@ interface Candidate {
 
 const Candidates: React.FC = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [, setAnalyze] = useState(null)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,19 +34,6 @@ const Candidates: React.FC = () => {
         setLoading(false);
       });
   }, []);
-
-  const analyzeButtonClick = async (candidateId: number) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`http://localhost:3000/candidates/${candidateId}/analyze-ai`);
-      const result = await response.json();
-      return setAnalyze(result);
-    } catch (error) {
-      console.error('Ошибка:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const headerSection = (
     <>
@@ -121,7 +107,7 @@ const Candidates: React.FC = () => {
         </div>
         <Link to={`/dashboard/candidates/${candidate.id}`} style={{ textDecoration: 'none' }}>
           <button className={styles.openButton}>
-            <i className="fa fa-eye" aria-hidden="true" onClick={() => analyzeButtonClick(candidate.id)}></i> Открыть</button>
+            <i className="fa fa-eye" aria-hidden="true" ></i> Открыть</button>
         </Link>
       </div>
     );
