@@ -13,6 +13,7 @@ const Settings: React.FC = () => {
     if (activeTab === 'users') return <Users />;
     if (activeTab === 'integrations') return <Integrations />;
     if (activeTab === 'scenarios') return <Scenarios />;
+    if (activeTab === 'aimodel') return <Aimodel />;
     return <Rules />;
   };
 
@@ -59,6 +60,12 @@ const Settings: React.FC = () => {
             onClick={() => setActiveTab('scenarios')}
           >
             Сценарии чат-бота
+          </button>
+          <button
+            className={activeTab === 'aimodel' ? styles.active : ''}
+            onClick={() => setActiveTab('aimodel')}
+          >
+            выбор AI-провайдера и модели
           </button>
         </div>
 
@@ -511,5 +518,40 @@ const Scenarios: React.FC = () => (
     </div>
   </div>
 );
+
+const Aimodel: React.FC = () => {
+  const [selected, setSelected] = useState<string>('deepseek');
+
+  return (
+    <div className={styles.aiContainer}>
+      <h1 className={styles.aiTitle}>Выбор AI-провайдера и модели</h1>
+
+      <div className={styles.aiButtons}>
+        <button
+          className={`${styles.aiBtn} ${selected === 'deepseek' ? styles.active : ''}`}
+          onClick={() => setSelected('deepseek')}
+        >
+          DeepSeek
+        </button>
+        <button
+          className={`${styles.aiBtn} ${selected === 'gpt' ? styles.active : ''}`}
+          onClick={() => setSelected('gpt')}
+        >
+          GPT
+        </button>
+        <button
+          className={`${styles.aiBtn} ${selected === 'claude' ? styles.active : ''}`}
+          onClick={() => setSelected('claude')}
+        >
+          Claude
+        </button>
+      </div>
+
+      <div className={styles.aiFooter}>
+        <button className={styles.aiSaveBtn}>Сохранить</button>
+      </div>
+    </div>
+  );
+};
 
 export default Settings;
