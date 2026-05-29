@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './AiScreening.module.css';
+import { useParams } from 'react-router-dom';
 
 interface Message {
   id: number;
@@ -7,8 +8,30 @@ interface Message {
   sender: 'user' | 'ai';
   timestamp: Date;
 }
+interface Candidate {
+  id: number;
+  full_name: string;
+  city: string;
+  phone: string;
+  email: string;
+  birth_date: string;
+  current_status: string;
+  risk_level: string;
+  license_category: string;
+  experience_years: number;
+  hiring_score: number;
+  ai_summary: string;
+  hr_recommendation: string;
+  created_at: string;
+  passport?: string;
+  birth_place?: string;
+  issue_date?: string;
+  work_schedule_preference: string;
+}
 
 const AiScreening: React.FC = () => {
+   const { id } = useParams<{ id: string }>();
+  const [candidate, setCandidate] = useState<Candidate | null>(null);
   const [messages, setMessages] = useState<Message[]>([
     { id: 1, text: 'Здравствуйте! Я помогу провести предварительный отбор. Какая у вас категория водительских прав?', sender: 'ai', timestamp: new Date(2026, 2, 26, 14, 32) },
     { id: 2, text: 'С и Е', sender: 'user', timestamp: new Date(2026, 2, 26, 14, 32) },
@@ -19,19 +42,24 @@ const AiScreening: React.FC = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  
   const messagesEndRef = useRef<HTMLDivElement>(null);
+ useEffect(() => {
 
-  const screeningResult = {
-    score: 92,
-    matchDetails: [
-      { label: 'Категория прав: C, E', value: 'Соответствует требованиям', status: 'success' },
-      { label: 'Опыт: 8 лет', value: 'Превышает минимум (3 года)', status: 'success' },
-      { label: 'График: сменный 2/2', value: 'Подходит под вакансию', status: 'success' },
-      { label: 'Город: Москва', value: 'Требуемый регион', status: 'success' },
-      { label: 'ADR сертификат', value: 'Дополнительное преимущество', status: 'success' },
-    ],
-  };
-
+    fetch(`http://localhost:3000/candidates/${1}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Кандидат не найден');
+        return res.json();
+      })
+      .then((data) => {
+        setCandidate(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [id]);
+  
+  
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -48,11 +76,21 @@ const AiScreening: React.FC = () => {
       setIsTyping(false);
     }, 800);
   };
+  if (!candidate) return null;
+  const screeningResult = {
+    
+    matchDetails: [
+      { label: `Категория прав: ${candidate.license_category}`, value: 'Соответствует требованиям', status: 'success' },
+      { label: `Опыт: ${candidate.experience_years} лет`, value: 'Превышает минимум (3 года)', status: 'success' },
+      { label: `График: ${candidate.work_schedule_preference}`, value: 'Подходит под вакансию', status: 'success' },
+      { label: `Город: ${candidate.city}`, value: 'Требуемый регион', status: 'success' },
+      { label: 'ADR сертификат', value: 'Дополнительное преимущество', status: 'success' },
+    ],
+  };
 
   const radius = 54;
   const circumference = 2 * Math.PI * radius;
-  const dashOffset = circumference - (screeningResult.score / 100) * circumference;
-
+  
   return (
     <div className={styles.pageContainer}>
       <div className={styles.pageHeader}>
@@ -63,7 +101,7 @@ const AiScreening: React.FC = () => {
         {/* Левая колонка */}
         <div className={styles.chatSection}>
           <div className={styles.chatHeader}>
-            <h2>Петров Сергей Иванович</h2>
+            <h2>{candidate.full_name}</h2>
             <span className={styles.candidateStatus}>Активен</span>
           </div>
           <div className={styles.chatMessages}>
@@ -101,8 +139,8 @@ const AiScreening: React.FC = () => {
             <div className={styles.scoreCircle}>
               <svg width="120" height="120" viewBox="0 0 120 120">
                 <circle cx="60" cy="60" r={radius} fill="none" stroke="#2A2D3A" strokeWidth="8" />
-                <circle cx="60" cy="60" r={radius} fill="none" stroke="#4ffa8e" strokeWidth="8" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={dashOffset} transform="rotate(-90 60 60)" />
-                <text x="60" y="60" textAnchor="middle" dy="8" fill="white" fontSize="28" fontWeight="bold">{screeningResult.score}%</text>
+                <circle cx="60" cy="60" r={radius} fill="none" stroke="#4ffa8e" strokeWidth="8" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={candidate.hiring_score} transform="rotate(-90 60 60)" />
+                <text x="60" y="60" textAnchor="middle" dy="8" fill="white" fontSize="28" fontWeight="bold">{candidate.hiring_score}%</text>
               </svg>
             </div>
             <div className={styles.matchContainer}>
