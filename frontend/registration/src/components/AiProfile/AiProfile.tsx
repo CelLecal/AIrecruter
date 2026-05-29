@@ -1,12 +1,55 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './AiProfile.module.css';
 
+interface Candidate {
+  id: number;
+  full_name: string;
+  city: string;
+  phone: string;
+  email: string;
+  birth_date: string;
+  current_status: string;
+  risk_level: string;
+  license_category: string;
+  experience_years: number;
+  hiring_score: number;
+  ai_summary: string;
+  hr_recommendation: string;
+  created_at: string;
+  passport?: string;
+  birth_place?: string;
+  issue_date?: string;
+}
 const DecisionPage: React.FC = () => {
   const navigate = useNavigate();
+    const { id } = useParams<{ id: string }>();
   const [comment, setComment] = useState('');
   const maxLength = 500;
+  const [candidates, setCandidate] = useState<Candidate | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
 
+    fetch(`http://localhost:3000/candidates/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Кандидат не найден');
+        return res.json();
+      })
+      .then((data) => {
+        setCandidate(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [id]);
+    if (loading) return <div className={styles.loader}>Загрузка кандидатов...</div>;
+    if (error) return <div className={styles.errorMessage}>{error}</div>;
+    if (!candidates) return null;
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value.slice(0, maxLength));
   };
@@ -29,13 +72,13 @@ const DecisionPage: React.FC = () => {
             <div className={styles.topRow}>
               <div className={styles.initials}>СП</div>
               <div className={styles.info}>
-                <h2>Петров Сергей Иванович</h2>
-                <p>38 лет - Москва - Категории C, E - Стаж 8 лет</p>
+                <h2>{candidates.full_name}</h2>
+                <p>38 лет - {candidates.city} - Категории {candidates.license_category} - Стаж {candidates.experience_years} лет</p>
               </div>
             </div>
             <div className={styles.metrics}>
               <div className={styles.metric}>
-                <div className={styles.check}>92%</div>
+                <div className={styles.check}>{candidates.hiring_score}%</div>
                 <span>Скрининг пройден</span>
               </div>
               <div className={styles.metric}>
@@ -115,11 +158,10 @@ const DecisionPage: React.FC = () => {
             </div>
             <div className={styles.recommendationCard}>
               <p>
-                Кандидат показал отличные результаты на всех этапах отбора. Все документы подтверждены, есть
-                дополнительные сертификаты.
+                {candidates.hr_recommendation}
               </p>
               <ul>
-                <li><i className="fas fa-check"></i> Высокое соответствие (92%)</li>
+                <li><i className="fas fa-check"></i> Высокое соответствие ({candidates.hiring_score}%)</li>
                 <li><i className="fas fa-check"></i> Низкий уровень риска</li>
                 <li><i className="fas fa-check"></i> Документы проверены</li>
               </ul>
