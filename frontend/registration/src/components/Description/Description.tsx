@@ -1,16 +1,58 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './Description.module.css';
 
+interface Desc {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  shift_type: string;
+  required_license_category: string;
+  min_experience_years: number;
+  status: string;
+}
+
 const DescriptionPage: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
+    const [desc, setDesc] = useState<Desc | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+useEffect(() => {
+  if (!id) return;
+
+
+  fetch(`http://localhost:3000/vacancies/${id}`)
+    .then((res) => {
+      if (!res.ok) throw new Error('Вакансия не найдена');
+      return res.json();
+    })
+    .then((data) => {
+      setDesc(data);
+      setLoading(false);
+    })
+    .catch((err) => {
+      setError(err.message);
+      setLoading(false);
+    });
+}, [id]);
+
+
+
+        if (loading) return <div className={styles.loader}>Загрузка вакансии...</div>;
+        if (error) return <div className={styles.errorMessage}>{error}</div>;
+        if (!desc) return <div className={styles.profileContainer}>Вакансия не найдена</div>;
     return (
         <div className={styles.vacancyContainer}>
             <div className={styles.vacancyHeader}>
-                <h1>Водитель автобуса</h1>
+                <h1>{desc.title}</h1>
                 <div className={styles.headerMeta}>
-                    <span><i className="fa fa-building"></i> Отдел: Транспортный отдел</span>
-                    <span><i className="fa fa-map-marker-alt"></i> Локация: Москва</span>
-                    <span><i className="fa fa-id-card"></i> Категория прав: D</span>
-                    <span><i className="fa fa-clock"></i> Минимальный стаж: 5 лет</span>
+                    <span><i className="fa fa-building"></i> Отдел: {desc.department}</span>
+                    <span><i className="fa fa-map-marker-alt"></i> Локация: {desc.location}</span>
+                    <span><i className="fa fa-id-card"></i> Категория прав: {desc.required_license_category}</span>
+                    <span><i className="fa fa-clock"></i> Минимальный стаж: {desc.min_experience_years} лет</span>
                 </div>
             </div>
 
@@ -27,8 +69,8 @@ const DescriptionPage: React.FC = () => {
                     <div className={styles.card}>
                         <h3><i className="fa fa-check-circle"></i> Требования</h3>
                         <ul className={styles.requirementsList}>
-                            <li><i className="fa fa-id-card"></i> Наличие водительского удостоверения категории <strong>D</strong> (обязательно)</li>
-                            <li><i className="fa fa-chart-line"></i> Стаж управления автобусом от 5 лет</li>
+                            <li><i className="fa fa-id-card"></i> Наличие водительского удостоверения категории <strong>{desc.required_license_category}</strong> (обязательно)</li>
+                            <li><i className="fa fa-chart-line"></i> Стаж управления автобусом от {desc.min_experience_years} лет</li>
                             <li><i className="fa fa-clock"></i> Отсутствие лишений и грубых нарушений ПДД за последние 3 года</li>
                             <li><i className="fa fa-users"></i> Коммуникабельность, ответственность, знание устройства автобуса</li>
                         </ul>
@@ -37,7 +79,7 @@ const DescriptionPage: React.FC = () => {
                     <div className={styles.card}>
                         <h3><i className="fa fa-certificate"></i> Необходимые лицензии и сертификаты</h3>
                         <div className={styles.licenses}>
-                            <div className={styles.licenseBadge}>Категория D</div>
+                            <div className={styles.licenseBadge}>Категория {desc.required_license_category}</div>
                             <div className={styles.licenseBadge}>Медицинская справка</div>
                             <div className={styles.licenseBadge}>Карта водителя</div>
                         </div>
@@ -48,7 +90,7 @@ const DescriptionPage: React.FC = () => {
                     <div className={styles.card}>
                         <h3><i className="fa fa-briefcase"></i> Условия работы</h3>
                         <ul className={styles.conditionsList}>
-                            <li><i className="fa fa-calendar"></i> График: сменный (5/2)</li>
+                            <li><i className="fa fa-calendar"></i> График: {desc.shift_type} (5/2)</li>
                             <li><i className="fa fa-ruble-sign"></i> Заработная плата: 80 000 – 110 000 ₽</li>
                             <li><i className="fa fa-home"></i> Официальное трудоустройство по ТК РФ</li>
                             <li><i className="fa fa-car"></i> Предоставление исправного автобуса </li>
@@ -80,6 +122,7 @@ const DescriptionPage: React.FC = () => {
             </div>
         </div>
     );
+
 };
 
 export default DescriptionPage;

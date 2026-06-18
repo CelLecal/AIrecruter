@@ -107,7 +107,7 @@ const VacanciesPage: React.FC = () => {
                         </div>
                     </div>
                     <div className={styles.cardActions}>
-                        <Link to="/dashboard/description/${vacancy.id}">
+                        <Link to={`/dashboard/description/${vacancy.id}`}>
                             <button className={styles.detailsButton}>Подробнее</button>
                         </Link>
                     </div>

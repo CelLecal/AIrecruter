@@ -15,4 +15,9 @@ export class VacanciesService {
     const vacancies = await this.vacanciesRepository.find();
     return vacancies.map((item) => new VacancyDto(item));
   }
+  async getVacancy(vacancyId: number) {
+    return await this.vacanciesRepository.findOne({
+      where: { id: vacancyId },
+    });
+  }
 }

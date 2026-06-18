@@ -10,7 +10,7 @@ interface Candidate {
   fit_score: number;
   license_category: string;
   experience_years: number;
-  risk_level: string;
+  hiring_score: number;
 }
 
 const Candidates: React.FC = () => {
@@ -103,7 +103,7 @@ const Candidates: React.FC = () => {
         </div>
         <div className={styles.cardStatusRow}>
           <span className={styles.statusBadge}>{candidate.current_status}</span>
-          <span className={styles.riskBadge}>{candidate.risk_level}</span>
+          <span className={styles.riskBadge}>{candidate.hiring_score}</span>
         </div>
         <Link to={`/dashboard/candidates/${candidate.id}`} style={{ textDecoration: 'none' }}>
           <button className={styles.openButton}>

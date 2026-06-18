@@ -9,6 +9,7 @@ import { CandidateDocsEntity } from "entities/candidate-documents.entity";
 import { CandidateDocsDto } from "dto/candidate-docs.dto";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
 import { CandidateDto } from "dto/candidate-dto";
+import { CandidateProfDto } from "dto/candidate-prof.dto";
 
 @Injectable()
 export class CandidatesService {
@@ -39,8 +40,15 @@ export class CandidatesService {
   }
 
   async getList() {
-    const candidates = await this.candidateRepository.find();
-    return candidates.map((item) => new CandidatesDto(item));
+    const [candidates, candidatesProf] = await Promise.all([
+      this.candidateRepository.find(),
+      this.candidateProfRepository.find(),
+    ]);
+
+    return {
+      candidates: candidates.map((item) => new CandidatesDto(item)),
+      candidatesProf: candidatesProf.map((item) => new CandidateProfDto(item)),
+    };
   }
 
   async findCandidateById(candidateId: number) {
