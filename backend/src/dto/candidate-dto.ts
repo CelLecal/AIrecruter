@@ -1,5 +1,6 @@
 import { CandidatesEntity } from "entities/candidates.entity";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
+import { CandidateDocsEntity } from "entities/candidate-documents.entity";
 
 export class CandidateDto {
   id!: number;

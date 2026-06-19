@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { CreateCandidateDto } from "../dto/create-candidate.dto";
 import { CandidatesDto } from "../dto/candidates.dto";
 import { CandidatesEntity } from "../entities/candidates.entity";
@@ -9,7 +9,7 @@ import { CandidateDocsEntity } from "entities/candidate-documents.entity";
 import { CandidateDocsDto } from "dto/candidate-docs.dto";
 import { CandidateProfEntity } from "entities/candidate-profile.entity";
 import { CandidateDto } from "dto/candidate-dto";
-import { CandidateProfDto } from "dto/candidate-prof.dto";
+import { NotFoundError } from "rxjs";
 
 @Injectable()
 export class CandidatesService {
@@ -48,14 +48,20 @@ export class CandidatesService {
   }
 
   async findCandidateById(candidateId: number) {
-    const candidate: any = await this.candidateRepository.findOne({
+    const candidate = await this.candidateRepository.findOne({
       where: { id: candidateId },
     });
 
-    const profile: any = await this.candidateProfRepository.findOne({
+    const profile = await this.candidateProfRepository.findOne({
       where: { candidate_id: candidateId },
     });
 
+    if (!candidate) {
+      throw NotFoundException;
+    }
+    if (!profile) {
+      throw NotFoundException;
+    }
     return new CandidateDto(candidate, profile);
   }
 

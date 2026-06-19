@@ -28,6 +28,7 @@ export class CandidatesController {
     }
     return candidate;
   }
+
   @Get(":id/ai-result")
   lastResult() {
     return this.candidatesService.lastResult();

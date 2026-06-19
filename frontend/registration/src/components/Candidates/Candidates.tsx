@@ -23,24 +23,6 @@ const Candidates: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-    //для склонения "год"
-    const getYearString = (age: number) => {
-    const cases = ['лет', 'год', 'года'];
-    const remainder100 = age % 100;
-    const remainder10 = age % 10;
-    
-    if (remainder100 > 10 && remainder100 < 20) {
-        return cases[0];
-    }
-    if (remainder10 === 1) {
-        return cases[1];
-    }
-    if (remainder10 >= 2 && remainder10 <= 4) {
-        return cases[2]
-    }
-    return cases[0];
-}
-
   useEffect(() => {
     fetch('http://localhost:3000/candidates')
       .then((res) => {
@@ -119,7 +101,7 @@ const Candidates: React.FC = () => {
           </div>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Стаж:</span>
-            <span>{prof.experience_years ? `${prof.experience_years} ${getYearString(prof.experience_years)}` : null}</span>
+            <span>{prof.experience_years ? `${prof.experience_years} лет` : null}</span>
           </div>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Соответствие:</span>
@@ -135,8 +117,7 @@ const Candidates: React.FC = () => {
             <i className="fa fa-eye" aria-hidden="true" ></i> Открыть</button>
         </Link>
       </div>
-      )
-    };
+    )};
 
     return (
       <>

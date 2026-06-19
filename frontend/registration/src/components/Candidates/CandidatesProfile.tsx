@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './CandidatesProfile.module.css';
 
+interface Documents {
+  id: number;
+  candidate_id: number;
+  document_type: string;
+  file_name: string;
+  file_path: string;
+  upload_status: string;
+  uploaded_at: Date;
+}
+
 interface Candidate {
   id: number;
   full_name: string;
@@ -22,10 +32,13 @@ interface Candidate {
   issue_date?: string;
 }
 
+
+
 const CandidatesProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [candidate, setCandidate] = useState<Candidate | null>(null);
+  const [docs, setDocs] = useState<Documents | null>(null)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -47,6 +60,24 @@ const CandidatesProfile: React.FC = () => {
       });
   }, [id]);
 
+    useEffect(() => {
+
+    fetch(`http://localhost:3000/candidate-documents/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Кандидат не найден');
+        return res.json();
+      })
+      .then((data) => {
+        setDocs(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [id]);
+
   const handleDecision = () => {
   if (candidate) {
     navigate(`/dashboard/aiprofile/${candidate.id}`, { state: { candidate } });
@@ -56,6 +87,7 @@ const CandidatesProfile: React.FC = () => {
   if (loading) return <div className={styles.profileContainer}>Загрузка...</div>;
   if (error) return <div className={styles.profileContainer}>Ошибка: {error}</div>;
   if (!candidate) return <div className={styles.profileContainer}>Кандидат не найден</div>;
+ if (!docs) return <div className={styles.profileContainer}>Документы не найдены</div>;
 
     //для склонения "год"
     const getYearString = (age: number) => {
@@ -91,7 +123,6 @@ const CandidatesProfile: React.FC = () => {
     const age = new Date().getFullYear() - date.getFullYear();
     return `${date.toLocaleDateString('ru-RU')} (${age}  ${getYearString(age)})`;
   };
-
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileHeader}>
@@ -216,10 +247,7 @@ const CandidatesProfile: React.FC = () => {
           <div className={styles.card}>
             <h3><i className="fa fa-file-alt"></i> Проверенные документы</h3>
             <div className={styles.docList}>
-              <div className={styles.docItem}><i className="fa fa-check-circle"></i> Паспорт</div>
-              <div className={styles.docItem}><i className="fa fa-check-circle"></i> Вод. удостоверение</div>
-              <div className={styles.docItem}><i className="fa fa-check-circle"></i> Диплом</div>
-              <div className={styles.docItem}><i className="fa fa-check-circle"></i> ADR сертификат</div>
+              <div className={styles.docItem}><i className="fa fa-check-circle">{docs.document_type}</i> {}</div>
             </div>
             <a href="#" className={styles.viewAllLink}>Просмотреть все документы →</a>
           </div>
