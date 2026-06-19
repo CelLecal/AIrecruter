@@ -110,12 +110,19 @@ const CandidatesProfile: React.FC = () => {
 
   const getRiskClass = (risk?: string) => {
     switch (risk?.toLowerCase()) {
-      case 'низкий риск': return styles.riskLow;
-      case 'средний риск': return styles.riskMedium;
-      case 'высокий риск': return styles.riskHigh;
+      case 'низкий': return styles.riskLow;
+      case 'средний': return styles.riskMedium;
+      case 'высокий': return styles.riskHigh;
       default: return '';
     }
   };
+
+const getScoreClassNum = (score: number) => {
+  if (score > 70) return styles.riskLow;
+  if (score >= 30 && score <= 70) return styles.riskMedium;
+  if (score < 30) return styles.riskHigh;
+  return '';
+};
 
   const formatBirthDate = (dateStr: string) => {
     if (!dateStr) return '—';
@@ -278,7 +285,7 @@ const CandidatesProfile: React.FC = () => {
             <h3><i className="fa fa-chart-line"></i> Оценка рисков</h3>
             <div className={styles.riskRow}>
               <span>Соответствие требованиям</span>
-              <span className={styles.riskValueHigh}>{candidate.hiring_score ?? 0}%</span>
+              <span className={getScoreClassNum(candidate.hiring_score)}>{candidate.hiring_score ?? 0}%</span>
             </div>
             <div className={styles.riskRow}>
               <span>Общий риск</span>

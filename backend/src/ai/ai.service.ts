@@ -88,109 +88,139 @@ export class AiService {
     const vacancy: any = await this.vacancyRepository.findOneBy({
       id: application.vacancy_id,
     });
-    const [summaryText, fitAssessment, riskAssessment, recommendationText] =
-      await Promise.all([
-        this.askAboutCandidate(
-          "Напиши короткую сводку по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
-            candidatesInfo.full_name +
-            "Дата рождения:" +
-            candidatesInfo.birth_date +
-            "Город:" +
-            candidatesInfo.city +
-            "Стаж работы:" +
-            profInfo.experience_years +
-            "Категория прав:" +
-            profInfo.license_category +
-            "Выбранный график работы:" +
-            profInfo.work_schedule_preference +
-            "Выбранная вакансия:" +
-            vacancy.title +
-            "Место работы:" +
-            vacancy.location +
-            "График:" +
-            vacancy.shift_type +
-            "Необходимая категория прав:" +
-            vacancy.required_license_category +
-            "Минималный опыт:" +
-            vacancy.min_experience_years,
-          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
-        ),
-        this.askAboutCandidate(
-          "Оцени соответствие кандидата вакансии. Без лишних слов и очень коротко. Его данные: Имя:" +
-            candidatesInfo.full_name +
-            "Дата рождения:" +
-            candidatesInfo.birth_date +
-            "Город:" +
-            candidatesInfo.city +
-            "Стаж работы:" +
-            profInfo.experience_years +
-            "Категория прав:" +
-            profInfo.license_category +
-            "Выбранный график работы:" +
-            profInfo.work_schedule_preference +
-            "Выбранная вакансия:" +
-            vacancy.title +
-            "Место работы:" +
-            vacancy.location +
-            "График:" +
-            vacancy.shift_type +
-            "Необходимая категория прав:" +
-            vacancy.required_license_category +
-            "Минималный опыт:" +
-            vacancy.min_experience_years,
-          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
-        ),
-        this.askAboutCandidate(
-          "Кратко опиши риски при найме этого кандидата на эту вакансию. Без лишних слов и очень коротко. Его данные: Имя:" +
-            candidatesInfo.full_name +
-            "Дата рождения:" +
-            candidatesInfo.birth_date +
-            "Город:" +
-            candidatesInfo.city +
-            "Стаж работы:" +
-            profInfo.experience_years +
-            "Категория прав:" +
-            profInfo.license_category +
-            "Выбранный график работы:" +
-            profInfo.work_schedule_preference +
-            "Выбранная вакансия:" +
-            vacancy.title +
-            "Место работы:" +
-            vacancy.location +
-            "График:" +
-            vacancy.shift_type +
-            "Необходимая категория прав:" +
-            vacancy.required_license_category +
-            "Минималный опыт:" +
-            vacancy.min_experience_years,
-          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
-        ),
-        this.askAboutCandidate(
-          "Напиши рекомендации для HR по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
-            candidatesInfo.full_name +
-            "Дата рождения:" +
-            candidatesInfo.birth_date +
-            "Город:" +
-            candidatesInfo.city +
-            "Стаж работы:" +
-            profInfo.experience_years +
-            "Категория прав:" +
-            profInfo.license_category +
-            "Выбранный график работы:" +
-            profInfo.work_schedule_preference +
-            "Выбранная вакансия:" +
-            vacancy.title +
-            "Место работы:" +
-            vacancy.location +
-            "График:" +
-            vacancy.shift_type +
-            "Необходимая категория прав:" +
-            vacancy.required_license_category +
-            "Минималный опыт:" +
-            vacancy.min_experience_years,
-          //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
-        ),
-      ]);
+    const [
+      summaryText,
+      fitAssessment,
+      riskAssessment,
+      recommendationText,
+      score,
+    ] = await Promise.all([
+      this.askAboutCandidate(
+        "Напиши короткую сводку по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
+          candidatesInfo.full_name +
+          "Дата рождения:" +
+          candidatesInfo.birth_date +
+          "Город:" +
+          candidatesInfo.city +
+          "Стаж работы:" +
+          profInfo.experience_years +
+          "Категория прав:" +
+          profInfo.license_category +
+          "Выбранный график работы:" +
+          profInfo.work_schedule_preference +
+          "Выбранная вакансия:" +
+          vacancy.title +
+          "Место работы:" +
+          vacancy.location +
+          "График:" +
+          vacancy.shift_type +
+          "Необходимая категория прав:" +
+          vacancy.required_license_category +
+          "Минималный опыт:" +
+          vacancy.min_experience_years,
+        //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
+      ),
+      this.askAboutCandidate(
+        "Оцени соответствие кандидата вакансии. Без лишних слов и очень коротко. Его данные: Имя:" +
+          candidatesInfo.full_name +
+          "Дата рождения:" +
+          candidatesInfo.birth_date +
+          "Город:" +
+          candidatesInfo.city +
+          "Стаж работы:" +
+          profInfo.experience_years +
+          "Категория прав:" +
+          profInfo.license_category +
+          "Выбранный график работы:" +
+          profInfo.work_schedule_preference +
+          "Выбранная вакансия:" +
+          vacancy.title +
+          "Место работы:" +
+          vacancy.location +
+          "График:" +
+          vacancy.shift_type +
+          "Необходимая категория прав:" +
+          vacancy.required_license_category +
+          "Минималный опыт:" +
+          vacancy.min_experience_years,
+        //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
+      ),
+      this.askAboutCandidate(
+        "Кратко опиши риски при найме этого кандидата на эту вакансию. Без лишних слов и очень коротко. Его данные: Имя:" +
+          candidatesInfo.full_name +
+          "Дата рождения:" +
+          candidatesInfo.birth_date +
+          "Город:" +
+          candidatesInfo.city +
+          "Стаж работы:" +
+          profInfo.experience_years +
+          "Категория прав:" +
+          profInfo.license_category +
+          "Выбранный график работы:" +
+          profInfo.work_schedule_preference +
+          "Выбранная вакансия:" +
+          vacancy.title +
+          "Место работы:" +
+          vacancy.location +
+          "График:" +
+          vacancy.shift_type +
+          "Необходимая категория прав:" +
+          vacancy.required_license_category +
+          "Минималный опыт:" +
+          vacancy.min_experience_years,
+        //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
+      ),
+      this.askAboutCandidate(
+        "Напиши рекомендации для HR по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
+          candidatesInfo.full_name +
+          "Дата рождения:" +
+          candidatesInfo.birth_date +
+          "Город:" +
+          candidatesInfo.city +
+          "Стаж работы:" +
+          profInfo.experience_years +
+          "Категория прав:" +
+          profInfo.license_category +
+          "Выбранный график работы:" +
+          profInfo.work_schedule_preference +
+          "Выбранная вакансия:" +
+          vacancy.title +
+          "Место работы:" +
+          vacancy.location +
+          "График:" +
+          vacancy.shift_type +
+          "Необходимая категория прав:" +
+          vacancy.required_license_category +
+          "Минималный опыт:" +
+          vacancy.min_experience_years,
+        //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
+      ),
+      this.askAboutCandidate(
+        "Напиши одним числом насколько кандидат соотвествует вакансии в процентах. Без лишних слов, одним числом. Его данные: Имя:" +
+          candidatesInfo.full_name +
+          "Дата рождения:" +
+          candidatesInfo.birth_date +
+          "Город:" +
+          candidatesInfo.city +
+          "Стаж работы:" +
+          profInfo.experience_years +
+          "Категория прав:" +
+          profInfo.license_category +
+          "Выбранный график работы:" +
+          profInfo.work_schedule_preference +
+          "Выбранная вакансия:" +
+          vacancy.title +
+          "Место работы:" +
+          vacancy.location +
+          "График:" +
+          vacancy.shift_type +
+          "Необходимая категория прав:" +
+          vacancy.required_license_category +
+          "Минималный опыт:" +
+          vacancy.min_experience_years,
+        //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
+      ),
+    ]);
     await AiEntity.update(
       { candidate_id: candidates.id },
       {
@@ -202,10 +232,14 @@ export class AiService {
         model_name: settings.model_name,
       },
     );
-
+    const hiringScore = parseInt(score);
     await CandidateProfEntity.update(
       { candidate_id: candidates.id },
-      { ai_summary: summaryText, hr_recommendation: recommendationText },
+      {
+        ai_summary: summaryText,
+        hr_recommendation: recommendationText,
+        hiring_score: hiringScore,
+      },
     );
 
     const resAnalyze = await AiEntity.findOneBy({

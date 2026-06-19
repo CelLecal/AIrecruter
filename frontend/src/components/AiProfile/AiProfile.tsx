@@ -47,12 +47,50 @@ const DecisionPage: React.FC = () => {
         setLoading(false);
       });
   }, [id]);
+
+  const formatBirthDate = (dateStr: string) => {
+    if (!dateStr) return '—';
+    const date = new Date(dateStr);
+    const age = new Date().getFullYear() - date.getFullYear();
+    return `${age}  ${getYearString(age)}`;
+  };
+    const getRiskClass = (risk?: string) => {
+    switch (risk?.toLowerCase()) {
+      case 'низкий': return 'Низкий уровень риска';
+      case 'средний': return  'Средний уровень риска';
+      case 'высокий': return  'Высокий уровень риска';
+      default: return '';
+    }
+  };
+
+    const getYearString = (age: number) => {
+    const cases = ['лет', 'год', 'года'];
+    const remainder100 = age % 100;
+    const remainder10 = age % 10;
+    
+    if (remainder100 > 10 && remainder100 < 20) {
+        return cases[0];
+    }
+    if (remainder10 === 1) {
+        return cases[1];
+    }
+    if (remainder10 >= 2 && remainder10 <= 4) {
+        return cases[2]
+    }
+    return cases[0];
+}
     if (loading) return <div className={styles.loader}>Загрузка кандидатов...</div>;
     if (error) return <div className={styles.errorMessage}>{error}</div>;
     if (!candidates) return null;
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value.slice(0, maxLength));
   };
+const getScoreClassNum = (score: number) => {
+  if (score > 70) return 'Высокое соотвествие';
+  if (score >= 30 && score <= 70) return 'Среднее соотвествие';
+  if (score < 30) return 'Низкое соотвествие';
+  return '';
+};
 
   const goBack = () => {
     navigate(-1); // возврат на предыдущую страницу
@@ -73,7 +111,7 @@ const DecisionPage: React.FC = () => {
               <div className={styles.initials}>СП</div>
               <div className={styles.info}>
                 <h2>{candidates.full_name}</h2>
-                <p>38 лет - {candidates.city} - Категории {candidates.license_category} - Стаж {candidates.experience_years} лет</p>
+                <p>{formatBirthDate(candidates.birth_date)} {getYearString(38)} - {candidates.city} - Категории {candidates.license_category} - Стаж {candidates.experience_years} {getYearString(candidates.experience_years)}</p>
               </div>
             </div>
             <div className={styles.metrics}>
@@ -161,8 +199,8 @@ const DecisionPage: React.FC = () => {
                 {candidates.hr_recommendation}
               </p>
               <ul>
-                <li><i className="fas fa-check"></i> Высокое соответствие ({candidates.hiring_score}%)</li>
-                <li><i className="fas fa-check"></i> Низкий уровень риска</li>
+                <li><i className="fas fa-check"></i> {getScoreClassNum(candidates.hiring_score)} ({candidates.hiring_score}%)</li>
+                <li><i className="fas fa-check"></i> {getRiskClass(candidates.risk_level)}</li>
                 <li><i className="fas fa-check"></i> Документы проверены</li>
               </ul>
             </div>
