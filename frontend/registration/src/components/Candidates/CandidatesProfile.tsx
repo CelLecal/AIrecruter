@@ -57,6 +57,25 @@ const CandidatesProfile: React.FC = () => {
   if (error) return <div className={styles.profileContainer}>Ошибка: {error}</div>;
   if (!candidate) return <div className={styles.profileContainer}>Кандидат не найден</div>;
 
+    //для склонения "год"
+    const getYearString = (age: number) => {
+    const cases = ['лет', 'год', 'года'];
+    const remainder100 = age % 100;
+    const remainder10 = age % 10;
+    
+    if (remainder100 > 10 && remainder100 < 20) {
+        return cases[0];
+    }
+    if (remainder10 === 1) {
+        return cases[1];
+    }
+    if (remainder10 >= 2 && remainder10 <= 4) {
+        return cases[2]
+    }
+    return cases[0];
+}
+
+
   const getRiskClass = (risk?: string) => {
     switch (risk?.toLowerCase()) {
       case 'низкий риск': return styles.riskLow;
@@ -70,7 +89,7 @@ const CandidatesProfile: React.FC = () => {
     if (!dateStr) return '—';
     const date = new Date(dateStr);
     const age = new Date().getFullYear() - date.getFullYear();
-    return `${date.toLocaleDateString('ru-RU')} (${age} лет)`;
+    return `${date.toLocaleDateString('ru-RU')} (${age}  ${getYearString(age)})`;
   };
 
   return (
@@ -141,7 +160,7 @@ const CandidatesProfile: React.FC = () => {
             </div>
             <div className={styles.infoRow}>
               <span className={styles.label}>Общий стаж вождения:</span>
-              <span>{candidate.experience_years ? `${candidate.experience_years} лет` : '—'}</span>
+              <span>{candidate.experience_years ? `${candidate.experience_years} ${getYearString(candidate.experience_years)}` : '—'}</span>
             </div>
             <div className={styles.infoRow}>
               <span className={styles.label}>Стаж грузовых перевозок:</span>

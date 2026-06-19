@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   BaseEntity,
+  OneToOne,
 } from "typeorm";
+
+import { CandidateProfEntity } from "./candidate-profile.entity"; // Проверьте путь
 
 @Entity("candidates")
 export class CandidatesEntity extends BaseEntity {
@@ -31,4 +34,8 @@ export class CandidatesEntity extends BaseEntity {
 
   @CreateDateColumn()
   created_at!: Date;
+
+  // Настройка связи: у кандидата есть один профиль
+  @OneToOne(() => CandidateProfEntity, (profile) => profile.candidate)
+  profile!: CandidateProfEntity;
 }

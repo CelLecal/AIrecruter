@@ -40,15 +40,11 @@ export class CandidatesService {
   }
 
   async getList() {
-    const [candidates, candidatesProf] = await Promise.all([
-      this.candidateRepository.find(),
-      this.candidateProfRepository.find(),
-    ]);
-
-    return {
-      candidates: candidates.map((item) => new CandidatesDto(item)),
-      candidatesProf: candidatesProf.map((item) => new CandidateProfDto(item)),
-    };
+    return await this.candidateRepository.find({
+      relations: {
+        profile: true,
+      },
+    });
   }
 
   async findCandidateById(candidateId: number) {

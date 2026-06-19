@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  OneToOne, // Добавлено
+  JoinColumn, // Добавлено
+} from "typeorm";
+import { CandidatesEntity } from "./candidates.entity"; // Проверьте путь
 
 @Entity("candidate_profiles")
 export class CandidateProfEntity extends BaseEntity {
@@ -28,4 +36,9 @@ export class CandidateProfEntity extends BaseEntity {
 
   @Column()
   hr_recommendation!: string;
+
+  // Настройка связи с указанием существующей колонки candidate_id
+  @OneToOne(() => CandidatesEntity, (candidate) => candidate.profile)
+  @JoinColumn({ name: "candidate_id" })
+  candidate!: CandidatesEntity;
 }

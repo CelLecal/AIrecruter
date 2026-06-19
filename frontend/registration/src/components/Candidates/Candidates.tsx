@@ -2,21 +2,44 @@ import React, { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Candidates.module.css';
 
+interface CandidateProf {
+  license_category: string;
+  experience_years: number;
+  hiring_score: number;
+}
+
 interface Candidate {
   id: number;
   full_name: string;
   city: string;
   current_status: string;
   fit_score: number;
-  license_category: string;
-  experience_years: number;
-  hiring_score: number;
+  profile: CandidateProf
 }
+
 
 const Candidates: React.FC = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+    //для склонения "год"
+    const getYearString = (age: number) => {
+    const cases = ['лет', 'год', 'года'];
+    const remainder100 = age % 100;
+    const remainder10 = age % 10;
+    
+    if (remainder100 > 10 && remainder100 < 20) {
+        return cases[0];
+    }
+    if (remainder10 === 1) {
+        return cases[1];
+    }
+    if (remainder10 >= 2 && remainder10 <= 4) {
+        return cases[2]
+    }
+    return cases[0];
+}
 
   useEffect(() => {
     fetch('http://localhost:3000/candidates')
@@ -74,7 +97,9 @@ const Candidates: React.FC = () => {
     const firstRow = candidates.slice(0, 3);
     const secondRow = candidates.slice(3, 6);
 
-    const renderCard = (candidate: Candidate) => (
+    const renderCard = (candidate: Candidate) => {
+      const prof = candidate.profile;
+      return (
       <div key={candidate.id} className={styles.candidateCard}>
         <div className={styles.cardHeader}>
           <div className={styles.cardAvatar}>
@@ -90,11 +115,11 @@ const Candidates: React.FC = () => {
         <div className={styles.cardDetails}>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Категория прав:</span>
-            <span>{candidate.license_category}</span>
+            <span>{prof.license_category}</span>
           </div>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Стаж:</span>
-            <span>{candidate.experience_years ? `${candidate.experience_years} лет` : null}</span>
+            <span>{prof.experience_years ? `${prof.experience_years} ${getYearString(prof.experience_years)}` : null}</span>
           </div>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Соответствие:</span>
@@ -103,14 +128,15 @@ const Candidates: React.FC = () => {
         </div>
         <div className={styles.cardStatusRow}>
           <span className={styles.statusBadge}>{candidate.current_status}</span>
-          <span className={styles.riskBadge}>{candidate.hiring_score}</span>
+          <span className={styles.riskBadge}>{prof.hiring_score}</span>
         </div>
         <Link to={`/dashboard/candidates/${candidate.id}`} style={{ textDecoration: 'none' }}>
           <button className={styles.openButton}>
             <i className="fa fa-eye" aria-hidden="true" ></i> Открыть</button>
         </Link>
       </div>
-    );
+      )
+    };
 
     return (
       <>
