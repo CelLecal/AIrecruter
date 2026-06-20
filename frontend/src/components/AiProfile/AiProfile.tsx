@@ -111,7 +111,7 @@ const getScoreClassNum = (score: number) => {
               <div className={styles.initials}>СП</div>
               <div className={styles.info}>
                 <h2>{candidates.full_name}</h2>
-                <p>{formatBirthDate(candidates.birth_date)} {getYearString(38)} - {candidates.city} - Категории {candidates.license_category} - Стаж {candidates.experience_years} {getYearString(candidates.experience_years)}</p>
+                <p>{formatBirthDate(candidates.birth_date)}  - {candidates.city} - Категории {candidates.license_category} - Стаж {candidates.experience_years} {getYearString(candidates.experience_years)}</p>
               </div>
             </div>
             <div className={styles.metrics}>
@@ -128,7 +128,7 @@ const getScoreClassNum = (score: number) => {
                 <span>ADR сертификат</span>
               </div>
               <div className={styles.metric}>
-                <div className={styles.warning}>Низкий</div>
+                <div className={styles.warning}>{candidates.risk_level}</div>
                 <span>Уровень риска</span>
               </div>
             </div>

@@ -94,6 +94,7 @@ export class AiService {
       riskAssessment,
       recommendationText,
       score,
+      risk,
     ] = await Promise.all([
       this.askAboutCandidate(
         "Напиши короткую сводку по кандидату. Без лишних слов и очень коротко. Его данные: Имя:" +
@@ -220,6 +221,31 @@ export class AiService {
           vacancy.min_experience_years,
         //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
       ),
+      this.askAboutCandidate(
+        "Напиши одним словом (Низкий, Средний или Высокий) насколько велики риски при выборе кандидата на эту вакансию. Без лишних поясняющих слов, одним словом из списка. Его данные: Имя:" +
+          candidatesInfo.full_name +
+          "Дата рождения:" +
+          candidatesInfo.birth_date +
+          "Город:" +
+          candidatesInfo.city +
+          "Стаж работы:" +
+          profInfo.experience_years +
+          "Категория прав:" +
+          profInfo.license_category +
+          "Выбранный график работы:" +
+          profInfo.work_schedule_preference +
+          "Выбранная вакансия:" +
+          vacancy.title +
+          "Место работы:" +
+          vacancy.location +
+          "График:" +
+          vacancy.shift_type +
+          "Необходимая категория прав:" +
+          vacancy.required_license_category +
+          "Минималный опыт:" +
+          vacancy.min_experience_years,
+        //+ "Документы:" + docsInfo.map((item) => new CandidateDocsDto(item)),
+      ),
     ]);
     await AiEntity.update(
       { candidate_id: candidates.id },
@@ -233,12 +259,14 @@ export class AiService {
       },
     );
     const hiringScore = parseInt(score);
+    const riskLevel = parseInt(risk);
     await CandidateProfEntity.update(
       { candidate_id: candidates.id },
       {
         ai_summary: summaryText,
         hr_recommendation: recommendationText,
         hiring_score: hiringScore,
+        risk_level: riskLevel,
       },
     );
 

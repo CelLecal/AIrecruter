@@ -37,6 +37,7 @@ interface Candidate {
 const CandidatesProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [prompt] = useState('')
   const [candidate, setCandidate] = useState<Candidate | null>(null);
   const [docs, setDocs] = useState<Documents | null>(null)
   const [loading, setLoading] = useState(true);
@@ -78,16 +79,34 @@ const CandidatesProfile: React.FC = () => {
       });
   }, [id]);
 
-  const handleDecision = () => {
-  if (candidate) {
-    navigate(`/dashboard/aiprofile/${candidate.id}`, { state: { candidate } });
-  }
-};
+
+  const handleClick = async () => {
+    setLoading(true);
+    
+    try {
+      const res = await fetch(`http://localhost:3000/candidates/${id}/analyze-ai`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: prompt })
+      });
+      
+      const data = await res.json();
+      
+      localStorage.setItem('result', JSON.stringify(data));
+        if (candidate) {
+navigate(`/dashboard/aiprofile/${candidate.id}`, { state: { candidate } });
+        }
+    } 
+    finally{    
+      setLoading(false);
+    }
+
+  };
 
   if (loading) return <div className={styles.profileContainer}>Загрузка...</div>;
   if (error) return <div className={styles.profileContainer}>Ошибка: {error}</div>;
   if (!candidate) return <div className={styles.profileContainer}>Кандидат не найден</div>;
- if (!docs) return <div className={styles.profileContainer}>Документы не найдены</div>;
+  if (!docs) return <div className={styles.profileContainer}>Документы не найдены</div>;
 
     //для склонения "год"
     const getYearString = (age: number) => {
@@ -244,7 +263,7 @@ const getScoreClassNum = (score: number) => {
             <h3><i className="fa fa-tasks"></i> Действия</h3>
             <div className={styles.actionButtons}>
               <button className={styles.actionPrimary}>Подготовить оформление →</button>
-              <button className={styles.actionHr} onClick={handleDecision}>Сформировать AI профиль</button>
+              <button className={styles.actionHr} id="AnalyzeAi" onClick={handleClick}>Сформировать AI профиль</button>
               <button className={styles.actionSecondary}>Запросить уточнение</button>
               <button className={styles.actionDanger}>Отклонить</button>
             </div>
