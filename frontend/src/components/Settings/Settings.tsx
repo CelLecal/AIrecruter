@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import dashboardStyles from '../Dashboard/Dashboard.module.css';
 import styles from './Settings.module.css';
-import Documents from '../DocumentsCheck/Documents'; 
+
 const Settings: React.FC = () => {
+
   const [activeTab, setActiveTab] = useState('vacancies');
 
   const renderContent = () => {
@@ -13,7 +14,6 @@ const Settings: React.FC = () => {
     if (activeTab === 'integrations') return <Integrations />;
     if (activeTab === 'scenarios') return <Scenarios />;
     if (activeTab === 'aimodel') return <Aimodel />;
-    if (activeTab === 'documents') return <Documents />; 
     return <Rules />;
   };
 
@@ -22,6 +22,7 @@ const Settings: React.FC = () => {
       <div className={styles.settings}>
         <h1>Настройки</h1>
         <p className={styles.subtitle}>Управление параметрами системы подбора персонала</p>
+
 
         <div className={styles.topMenu}>
           <button
@@ -49,12 +50,6 @@ const Settings: React.FC = () => {
             Пользователи и роли
           </button>
           <button
-            className={activeTab === 'documents' ? styles.active : ''}
-            onClick={() => setActiveTab('documents')}
-          >
-            Документы
-          </button>
-          <button
             className={activeTab === 'integrations' ? styles.active : ''}
             onClick={() => setActiveTab('integrations')}
           >
@@ -74,6 +69,7 @@ const Settings: React.FC = () => {
           </button>
         </div>
 
+        {/* Контент */}
         <div className={styles.content}>{renderContent()}</div>
       </div>
     </div>
@@ -86,13 +82,17 @@ const Rules: React.FC = () => {
   const [minAge, setMinAge] = useState(21);
   const [categories, setCategories] = useState('C, E');
   const [minScore, setMinScore] = useState(85);
+
+
   const [autoLowRisk, setAutoLowRisk] = useState(true);
   const [autoCheckDocs, setAutoCheckDocs] = useState(true);
   const [autoNotifyHr, setAutoNotifyHr] = useState(true);
+
   const [rejectMissingCat, setRejectMissingCat] = useState(true);
   const [rejectMismatch, setRejectMismatch] = useState(true);
   const [rejectExpired, setRejectExpired] = useState(true);
   const [rejectLowExp, setRejectLowExp] = useState(true);
+
 
   const renderCheckbox = (checked: boolean, onChange: () => void) => (
     <span className={styles.customCheckbox} onClick={onChange}>
@@ -134,6 +134,7 @@ const Rules: React.FC = () => {
         </div>
       </div>
 
+
       <div className={styles.rulesCard}>
         <h2>Автоматическое одобрение</h2>
         <div className={styles.rulesRow}>
@@ -160,6 +161,7 @@ const Rules: React.FC = () => {
           </label>
         </div>
       </div>
+
 
       <div className={styles.rulesCard}>
         <h2>Критерии автоматического отклонения</h2>
@@ -188,9 +190,12 @@ const Rules: React.FC = () => {
   );
 };
 
+
 const Vacancies: React.FC = () => (
+
   <div className={styles.container}>
     <h1>Активные вакансии</h1>
+
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <h2>Водитель категории C, E</h2>
@@ -205,6 +210,7 @@ const Vacancies: React.FC = () => (
         <button className={styles.deleteBtn}>🗑️ Удалить</button>
       </div>
     </div>
+
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <h2>Водитель-дальнобойщик</h2>
@@ -219,6 +225,7 @@ const Vacancies: React.FC = () => (
         <button className={styles.deleteBtn}>🗑️ Удалить</button>
       </div>
     </div>
+
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <h2>Водитель автобуса категории D</h2>
@@ -233,14 +240,20 @@ const Vacancies: React.FC = () => (
         <button className={styles.deleteBtn}>🗑️ Удалить</button>
       </div>
     </div>
+
     <button className={styles.createButton}>+ Создать вакансию</button>
   </div>
+
 );
+
+
 
 const Templates: React.FC = () => (
   <div className={styles.templatesContainer}>
     <h1 className={styles.templatesTitle}>Шаблоны документов</h1>
+
     <div className={styles.templatesList}>
+
       <div className={styles.templateCard}>
         <div className={styles.templateInfo}>
           <div className={styles.templateName}>Трудовой договор (водитель)</div>
@@ -248,9 +261,13 @@ const Templates: React.FC = () => (
         </div>
         <div className={styles.templateActions}>
           <button className={styles.editButton}>Редактировать</button>
-          <button className={styles.deleteButton}><i className="fa fa-trash"></i></button>
+          <button className={styles.deleteButton}>
+            <i className="fa fa-trash"></i>
+          </button>
         </div>
       </div>
+
+
       <div className={styles.templateCard}>
         <div className={styles.templateInfo}>
           <div className={styles.templateName}>Карточка сотрудника Т-2</div>
@@ -258,9 +275,13 @@ const Templates: React.FC = () => (
         </div>
         <div className={styles.templateActions}>
           <button className={styles.editButton}>Редактировать</button>
-          <button className={styles.deleteButton}><i className="fa fa-trash"></i></button>
+          <button className={styles.deleteButton}>
+            <i className="fa fa-trash"></i>
+          </button>
         </div>
       </div>
+
+
       <div className={styles.templateCard}>
         <div className={styles.templateInfo}>
           <div className={styles.templateName}>Должностная инструкция</div>
@@ -268,9 +289,13 @@ const Templates: React.FC = () => (
         </div>
         <div className={styles.templateActions}>
           <button className={styles.editButton}>Редактировать</button>
-          <button className={styles.deleteButton}><i className="fa fa-trash"></i></button>
+          <button className={styles.deleteButton}>
+            <i className="fa fa-trash"></i>
+          </button>
         </div>
       </div>
+
+
       <div className={styles.templateCard}>
         <div className={styles.templateInfo}>
           <div className={styles.templateName}>Договор о материальной ответственности</div>
@@ -278,9 +303,14 @@ const Templates: React.FC = () => (
         </div>
         <div className={styles.templateActions}>
           <button className={styles.editButton}>Редактировать</button>
-          <button className={styles.deleteButton}><i className="fa fa-trash"></i></button>
+          <button className={styles.deleteButton}>
+            <i className="fa fa-trash"></i>
+          </button>
         </div>
       </div>
+
+
+
     </div>
     <button className={styles.createButtonTemplate}>+ Создать вакансию</button>
   </div>
@@ -289,7 +319,9 @@ const Templates: React.FC = () => (
 const Users: React.FC = () => (
   <div className={styles.usersContainer}>
     <h1 className={styles.usersTitle}>Пользователи системы</h1>
+
     <div className={styles.usersList}>
+
       <div className={styles.userCard}>
         <div className={styles.userAvatar}>ИА</div>
         <div className={styles.userInfo}>
@@ -301,6 +333,8 @@ const Users: React.FC = () => (
         </div>
         <div className={`${styles.userStatus} ${styles.active}`}>Активен</div>
       </div>
+
+
       <div className={styles.userCard}>
         <div className={styles.userAvatar}>МП</div>
         <div className={styles.userInfo}>
@@ -312,6 +346,8 @@ const Users: React.FC = () => (
         </div>
         <div className={`${styles.userStatus} ${styles.active}`}>Активен</div>
       </div>
+
+
       <div className={styles.userCard}>
         <div className={styles.userAvatar}>АС</div>
         <div className={styles.userInfo}>
@@ -323,6 +359,8 @@ const Users: React.FC = () => (
         </div>
         <div className={`${styles.userStatus} ${styles.active}`}>Активен</div>
       </div>
+
+
       <div className={styles.userCard}>
         <div className={styles.userAvatar}>ПК</div>
         <div className={styles.userInfo}>
@@ -335,6 +373,7 @@ const Users: React.FC = () => (
         <div className={`${styles.userStatus} ${styles.inactive}`}>Неактивен</div>
       </div>
     </div>
+
     <button className={styles.addButton}>+ Добавить пользователя</button>
   </div>
 );
@@ -342,7 +381,9 @@ const Users: React.FC = () => (
 const Integrations: React.FC = () => (
   <div className={styles.intgContainer}>
     <h1 className={styles.intgTitle}>Интеграции с внешними сервисами</h1>
+
     <div className={styles.intgGrid}>
+
       <div className={styles.intgCard}>
         <div className={styles.intgName}>hh.ru</div>
         <div className={styles.intgDesc}>Автоматический импорт откликов</div>
@@ -351,6 +392,8 @@ const Integrations: React.FC = () => (
           <button className={styles.intgBtnSettings}>Настроить</button>
         </div>
       </div>
+
+
       <div className={styles.intgCard}>
         <div className={styles.intgName}>1С:ЗУП</div>
         <div className={styles.intgDesc}>Синхронизация кадровых данных</div>
@@ -359,6 +402,11 @@ const Integrations: React.FC = () => (
           <button className={styles.intgBtnSettings}>Настроить</button>
         </div>
       </div>
+
+
+
+
+
       <div className={styles.intgCard}>
         <div className={styles.intgName}>Telegram Bot</div>
         <div className={styles.intgDesc}>Уведомления в Telegram</div>
@@ -367,6 +415,8 @@ const Integrations: React.FC = () => (
           <button className={styles.intgBtnSettings}>Настроить</button>
         </div>
       </div>
+
+
       <div className={styles.intgCard}>
         <div className={styles.intgName}>Email (SMTP)</div>
         <div className={styles.intgDesc}>Отправка уведомлений по почте</div>
@@ -375,6 +425,9 @@ const Integrations: React.FC = () => (
           <button className={styles.intgBtnSettings}>Настроить</button>
         </div>
       </div>
+
+
+
       <div className={styles.intgCard}>
         <div className={styles.intgName}>Авито</div>
         <div className={styles.intgDesc}>Импорт откликов с Авито</div>
@@ -383,6 +436,12 @@ const Integrations: React.FC = () => (
           <button className={styles.intgBtnConnect}>Подключить</button>
         </div>
       </div>
+
+
+
+
+
+
       <div className={styles.intgCard}>
         <div className={styles.intgName}>ЕСИА (Госуслуги)</div>
         <div className={styles.intgDesc}>Проверка документов через ЕСИА</div>
@@ -392,46 +451,60 @@ const Integrations: React.FC = () => (
         </div>
       </div>
     </div>
+
+
   </div>
 );
 
 const Scenarios: React.FC = () => (
   <div className={styles.scrContainer}>
     <h1 className={styles.scrTitle}>Сценарии чат-бота</h1>
+
     <div className={styles.scrList}>
+
       <div className={styles.scrCard}>
         <div className={styles.scrName}>Водитель грузового транспорта</div>
         <div className={styles.scrMeta}>
           <span>8 вопросов в сценарии</span>
           <div className={styles.scrMetaRight}>
             <span className={styles.scrStatusActive}>Активен</span>
-            <button className={styles.scrEditBtn}><i className="fa fa-pencil"></i></button>
+            <button className={styles.scrEditBtn}>
+              <i className="fa fa-pencil"></i>
+            </button>
           </div>
         </div>
         <div className={styles.scrQuestions}>
           Вопросы: категория прав, стаж, график работы, город, готовность к сменному режиму, дополнительные навыки...
         </div>
       </div>
+
+
       <div className={styles.scrCard}>
         <div className={styles.scrName}>Водитель автобуса</div>
         <div className={styles.scrMeta}>
           <span>10 вопросов в сценарии</span>
           <div className={styles.scrMetaRight}>
             <span className={styles.scrStatusActive}>Активен</span>
-            <button className={styles.scrEditBtn}><i className="fa fa-pencil"></i></button>
+            <button className={styles.scrEditBtn}>
+              <i className="fa fa-pencil"></i>
+            </button>
           </div>
         </div>
         <div className={styles.scrQuestions}>
           Вопросы: категория прав, стаж, график работы, город, готовность к сменному режиму, дополнительные навыки...
         </div>
       </div>
+
+
       <div className={styles.scrCard}>
         <div className={styles.scrName}>Дальнобойщик международных рейсов</div>
         <div className={styles.scrMeta}>
           <span>12 вопросов в сценарии</span>
           <div className={styles.scrMetaRight}>
             <span className={styles.scrStatusInactive}>Неактивен</span>
-            <button className={styles.scrEditBtn}><i className="fa fa-pencil"></i></button>
+            <button className={styles.scrEditBtn}>
+              <i className="fa fa-pencil"></i>
+            </button>
           </div>
         </div>
         <div className={styles.scrQuestions}>
@@ -439,6 +512,7 @@ const Scenarios: React.FC = () => (
         </div>
       </div>
     </div>
+
     <div className={styles.scrFooter}>
       <button className={styles.scrCreateButton}>+   Создать сценарий</button>
     </div>
@@ -447,9 +521,11 @@ const Scenarios: React.FC = () => (
 
 const Aimodel: React.FC = () => {
   const [selected, setSelected] = useState<string>('deepseek');
+
   return (
     <div className={styles.aiContainer}>
       <h1 className={styles.aiTitle}>Выбор AI-провайдера и модели</h1>
+
       <div className={styles.aiButtons}>
         <button
           className={`${styles.aiBtn} ${selected === 'deepseek' ? styles.active : ''}`}
@@ -470,6 +546,7 @@ const Aimodel: React.FC = () => {
           Claude
         </button>
       </div>
+
       <div className={styles.aiFooter}>
         <button className={styles.aiSaveBtn}>Сохранить</button>
       </div>
@@ -477,4 +554,4 @@ const Aimodel: React.FC = () => {
   );
 };
 
-export default Settings;
+export default Settings; 
