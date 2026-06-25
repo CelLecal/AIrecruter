@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dashboardStyles from '../Dashboard/Dashboard.module.css';
 import styles from './Settings.module.css';
+import axios from 'axios';
+
+
 
 const Settings: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState('vacancies');
-
+ 
   const renderContent = () => {
     if (activeTab === 'vacancies') return <Vacancies />;
     if (activeTab === 'rules') return <Rules />;
@@ -14,7 +17,10 @@ const Settings: React.FC = () => {
     if (activeTab === 'integrations') return <Integrations />;
     if (activeTab === 'scenarios') return <Scenarios />;
     if (activeTab === 'aimodel') return <Aimodel />;
+
+
     return <Rules />;
+        
   };
 
   return (
@@ -76,11 +82,18 @@ const Settings: React.FC = () => {
   );
 };
 
+  interface VacancyData {
+  title: string;
+  department: string;
+  location: string;
+  shift_type: string;
+  required_license_category: string;
+  min_experience_years: string | number;
+  status: string;
+}
 
 const Rules: React.FC = () => {
-  const [minExperience, setMinExperience] = useState(3);
-  const [minAge, setMinAge] = useState(21);
-  const [categories, setCategories] = useState('C, E');
+  
   const [minScore, setMinScore] = useState(85);
 
 
@@ -92,6 +105,65 @@ const Rules: React.FC = () => {
   const [rejectMismatch, setRejectMismatch] = useState(true);
   const [rejectExpired, setRejectExpired] = useState(true);
   const [rejectLowExp, setRejectLowExp] = useState(true);
+  const [vacancyData, setVacancyData] = useState<VacancyData>({
+  title: '',
+  department: '',
+  location: '',
+  required_license_category: '',
+  status: '',
+  shift_type: '',
+  min_experience_years: '',
+  })
+  const [, setLoading] = useState(true);
+  const [, setStatus] = useState<{type: 'error' | 'success', text: string} | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    
+    console.log(`Поле: ${name}, Значение: "${value}"`); // Отладка
+    
+    setVacancyData((prev) => ({
+      ...prev,  // ✅ Сохраняем все предыдущие значения
+      [name]:value,  // Для текста - оставляем как есть
+    }));
+  };
+
+  const handleSave = async () => {
+        if (!vacancyData.title.trim()) {
+      setStatus({ type: 'error', text: 'Название обязательно' });
+      return;
+    }
+    const dataToSend = {
+    title: vacancyData.title,
+    department: vacancyData.department,
+    location: vacancyData.location,
+    required_license_category: vacancyData.required_license_category,
+    status: vacancyData.status,
+    shift_type: vacancyData.shift_type,
+    min_experience_years: Number(vacancyData.min_experience_years) || 0,
+    }
+
+    setLoading(true);
+    setStatus(null);
+    
+    try {
+      const response = await axios.post('http://localhost:3000/vacancies', dataToSend);
+      
+      setStatus({
+        type: 'success',
+        text: response.data.message || 'Data saved successfully!'
+      });
+      
+    } catch (error) {
+      console.error('Error saving data:', error);
+      setStatus({
+        type: 'error',
+        text: 'Failed to save data'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   const renderCheckbox = (checked: boolean, onChange: () => void) => (
@@ -108,28 +180,22 @@ const Rules: React.FC = () => {
         <div className={styles.rulesRow}>
           <span>Минимальный стаж (лет)</span>
           <input
-            type="number"
+            type="text"
+            name="min_expirience_years"
             className={styles.rulesInput}
-            value={minExperience}
-            onChange={(e) => setMinExperience(Number(e.target.value))}
-          />
-        </div>
-        <div className={styles.rulesRow}>
-          <span>Минимальный возраст</span>
-          <input
-            type="number"
-            className={styles.rulesInput}
-            value={minAge}
-            onChange={(e) => setMinAge(Number(e.target.value))}
+            value={vacancyData.min_experience_years}
+            onChange={handleInputChange}
+            min="0"
           />
         </div>
         <div className={styles.rulesRow}>
           <span>Обязательные категории</span>
           <input
             type="text"
+            name="required_license_category"
             className={styles.rulesInput}
-            value={categories}
-            onChange={(e) => setCategories(e.target.value)}
+            value={vacancyData.required_license_category}
+            onChange={handleInputChange}
           />
         </div>
       </div>
@@ -185,66 +251,93 @@ const Rules: React.FC = () => {
         </div>
       </div>
 
-      <button className={styles.rulesSaveButton}>Сохранить правила</button>
+      <button onClick={handleSave} className={styles.rulesSaveButton}>Сохранить правила</button>
     </div>
+    
   );
 };
 
+  interface Vacancy {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  shift_type: string;
+  required_license_category: string;
+  min_experience_years: number;
+  status: string;
+}
+const Vacancies: React.FC = () => {
+  const [vacancies, setVacancies] = useState<Vacancy[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-const Vacancies: React.FC = () => (
+  useEffect(() => {
+    fetch('http://localhost:3000/vacancies')
+      .then((res) => {
+        if (!res.ok) throw new Error('Ошибка загрузки');
+        return res.json();
+      })
+      .then((data) => {
+        setVacancies(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError('Не удалось загрузить вакансии');
+        setLoading(false);
+      });
+  }, []);
 
-  <div className={styles.container}>
-    <h1>Активные вакансии</h1>
-
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <h2>Водитель категории C, E</h2>
-        <span className={styles.active}>Активна</span>
-      </div>
-      <div className={styles.info}>
-        <span>📍 Москва</span>
-        <span>👥 42 кандидата</span>
-      </div>
-      <div className={styles.actions}>
-        <button className={styles.editBtn}>✏️ Редактировать</button>
-        <button className={styles.deleteBtn}>🗑️ Удалить</button>
-      </div>
+const headerSection = (
+  <>
+    <div>
+      <div>
+      <h1>Активные вакансии</h1>
     </div>
-
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <h2>Водитель-дальнобойщик</h2>
-        <span className={styles.active}>Активна</span>
-      </div>
-      <div className={styles.info}>
-        <span>📍 Санкт-Петербург</span>
-        <span>👥 28 кандидатов</span>
-      </div>
-      <div className={styles.actions}>
-        <button className={styles.editBtn}>✏️ Редактировать</button>
-        <button className={styles.deleteBtn}>🗑️ Удалить</button>
-      </div>
-    </div>
-
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <h2>Водитель автобуса категории D</h2>
-        <span className={styles.paused}>На паузе</span>
-      </div>
-      <div className={styles.info}>
-        <span>📍 Казань</span>
-        <span>👥 15 кандидатов</span>
-      </div>
-      <div className={styles.actions}>
-        <button className={styles.editBtn}>✏️ Редактировать</button>
-        <button className={styles.deleteBtn}>🗑️ Удалить</button>
-      </div>
-    </div>
-
-    <button className={styles.createButton}>+ Создать вакансию</button>
+     <button className={styles.createButton}>+ Создать вакансию</button>
   </div>
-
+  </>
 );
+
+const renderContent = () => {
+    if (loading) return <div className={styles.loader}>Загрузка кандидатов...</div>;
+    if (error) return <div className={styles.errorMessage}>{error}</div>;
+    if (vacancies.length === 0) return <div className={styles.noData}>Нет вакансий</div>;
+
+    const firstRow = vacancies.slice(0, 3);
+    const secondRow = vacancies.slice(3, 6);
+
+  const renderCard = (vacancy: Vacancy) => {
+    return (
+    <div  key={vacancy.id} className={styles.card}>
+      <div className={styles.cardHeader}  >
+        <h2>{vacancy.title} категории {vacancy.required_license_category}</h2>
+        <span className={styles.active}>{vacancy.status}</span>
+      </div>
+      <div className={styles.info}>
+        <span>📍 {vacancy.location}</span>
+      </div>
+      <div className={styles.actions}>
+        <button className={styles.editBtn}>✏️ Редактировать</button>
+        <button className={styles.deleteBtn}>🗑️ Удалить</button>
+      </div>
+    </div>
+    )};
+     return (
+      <>
+        <div className={styles.cardsRow}>{firstRow.map(renderCard)}</div>
+        {secondRow.length > 0 && <div className={styles.cardsRow}>{secondRow.map(renderCard)}</div>}
+      </>
+    );
+};
+      return (
+    <div className={styles.container}>
+      {headerSection}
+      {renderContent()}
+    </div>
+  );
+}
 
 
 
@@ -308,9 +401,6 @@ const Templates: React.FC = () => (
           </button>
         </div>
       </div>
-
-
-
     </div>
     <button className={styles.createButtonTemplate}>+ Создать вакансию</button>
   </div>
@@ -531,19 +621,13 @@ const Aimodel: React.FC = () => {
           className={`${styles.aiBtn} ${selected === 'deepseek' ? styles.active : ''}`}
           onClick={() => setSelected('deepseek')}
         >
-          DeepSeek
+          DeepSeek 4 Flash
         </button>
         <button
           className={`${styles.aiBtn} ${selected === 'gpt' ? styles.active : ''}`}
           onClick={() => setSelected('gpt')}
         >
-          GPT
-        </button>
-        <button
-          className={`${styles.aiBtn} ${selected === 'claude' ? styles.active : ''}`}
-          onClick={() => setSelected('claude')}
-        >
-          Claude
+          DeepSeek
         </button>
       </div>
 

@@ -73,7 +73,7 @@ const VacanciesPage: React.FC = () => {
     const renderContent = () => {
         if (loading) return <div className={styles.loader}>Загрузка кандидатов...</div>;
         if (error) return <div className={styles.errorMessage}>{error}</div>;
-        if (vacancies.length === 0) return <div className={styles.noData}>Нет кандидатов</div>;
+        if (vacancies.length === 0) return <div className={styles.noData}>Нет вакансий</div>;
 
     const firstRow = vacancies.slice(0, 3);
     const secondRow = vacancies.slice(3, 6);
