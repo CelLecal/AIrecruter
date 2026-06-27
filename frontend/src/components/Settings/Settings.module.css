@@ -759,7 +759,6 @@ h1 {
 .aiButtons {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
   margin-bottom: 40px;
 }
 
@@ -773,11 +772,6 @@ h1 {
   color: #cbd5e6;
   cursor: pointer;
   transition: all 0.2s;
-}
-
-.aiBtn:hover {
-  border-color: #4e46e5;
-  color: white;
 }
 
 .aiBtn.active {
@@ -806,4 +800,10 @@ h1 {
 
 .aiSaveBtn:hover {
   background: #6d28d9;
+}
+.aiRadioInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }

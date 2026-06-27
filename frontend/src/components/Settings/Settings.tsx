@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 
+
 const Settings: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState('vacancies');
@@ -609,33 +610,113 @@ const Scenarios: React.FC = () => (
   </div>
 );
 
+
+interface Provider {
+  id: number;
+  provider_code: string;
+  model_name: string;
+  is_active: boolean;
+}
+
 const Aimodel: React.FC = () => {
-  const [selected, setSelected] = useState<string>('deepseek');
+  const [providers, setProviders] = useState<Provider[]>([]);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+
+  useEffect(() => {
+    fetch('http://localhost:3000/settings/ai/providers')
+      .then((res) => {
+        if (!res.ok) throw new Error('Ошибка сервера');
+        return res.json();
+      })
+      .then((data: Provider[]) => {
+        console.log("Данные с бэкенда:", data);
+        setProviders(data);
+        const active = data.find((p) => p.is_active);
+        if (active) setSelectedId(active.id);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError('Не удалось загрузить провайдеров');
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleSave = () => {
+    if (!selectedId) {
+      alert('Пожалуйста, выберите провайдера');
+      return;
+    }
+
+    fetch(`http://localhost:3000/settings/ai/${selectedId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({})
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        setProviders((prev) =>
+          prev.map((p) => ({
+            ...p,
+            is_active: p.id === selectedId,
+          }))
+        );
+        alert('Сохранено!');
+      })
+      .catch(() => alert('Ошибка при сохранении'));
+  };
+
+  if (loading) return <div className={styles.center}>Загрузка...</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
+  if (providers.length === 0) return <div>Провайдеры не найдены</div>;
 
   return (
     <div className={styles.aiContainer}>
       <h1 className={styles.aiTitle}>Выбор AI-провайдера и модели</h1>
 
       <div className={styles.aiButtons}>
-        <button
-          className={`${styles.aiBtn} ${selected === 'deepseek' ? styles.active : ''}`}
-          onClick={() => setSelected('deepseek')}
-        >
-          DeepSeek 4 Flash
-        </button>
-        <button
-          className={`${styles.aiBtn} ${selected === 'gpt' ? styles.active : ''}`}
-          onClick={() => setSelected('gpt')}
-        >
-          DeepSeek
-        </button>
+        {providers.map((provider) => {
+          const isSelected = selectedId === provider.id;
+          const inputId = `provider-${provider.id}`;
+
+          return (
+            <div key={provider.id} className={styles.aiBtnWrapper}>
+              <input
+                type="radio"
+                id={inputId} 
+                name='provider-group'
+                value={provider.id}
+                checked={isSelected}
+                onChange={() => {
+                  console.log('Кликнули на ID:', provider.id);
+                  setSelectedId(provider.id);
+                }}
+                className={styles.aiRadioInput}
+              />
+              <label 
+                htmlFor={inputId} 
+                className={`${styles.aiBtn} ${isSelected ? styles.active : ''}`}
+              >
+                {provider.model_name}
+              </label>
+            </div>
+          );
+        })}
       </div>
 
       <div className={styles.aiFooter}>
-        <button className={styles.aiSaveBtn}>Сохранить</button>
+        <button
+          className={styles.aiSaveBtn}
+          onClick={handleSave}
+          disabled={!selectedId}
+        >
+          Сохранить
+        </button>
       </div>
     </div>
   );
 };
 
-export default Settings; 
+export default Settings;

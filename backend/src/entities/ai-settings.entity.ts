@@ -1,14 +1,17 @@
 import {
   Entity,
   Column,
-  CreateDateColumn,
   BaseEntity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity("ai_provider_settings")
 export class SettingsEntity extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
+  id!: number;
+
+  @Column()
   provider_code!: string;
 
   @Column()
@@ -23,6 +26,6 @@ export class SettingsEntity extends BaseEntity {
   @Column()
   is_active!: boolean;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updated_at!: Date;
 }

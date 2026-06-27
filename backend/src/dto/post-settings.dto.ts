@@ -1,5 +1,10 @@
+// activate.dto.ts
+import { IsString, IsNotEmpty, IsBoolean } from "class-validator";
+
 export class PostSettingsDto {
-  provider_code!: string;
-  model_name!: string;
-  api_key!: string;
+  @IsString()
+  @IsNotEmpty()
+  id!: number;
+  @IsBoolean()
+  is_active!: boolean;
 }

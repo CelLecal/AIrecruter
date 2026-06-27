@@ -1,6 +1,5 @@
-import { Controller, Get, Post, Body } from "@nestjs/common";
+import { Controller, Get, Post, Param } from "@nestjs/common";
 import { SettingsService } from "./settings.service";
-import { PostSettingsDto } from "../dto/post-settings.dto";
 
 @Controller("settings")
 export class SettingsController {
@@ -11,9 +10,9 @@ export class SettingsController {
     const data = await this.settingsService.currentSettings();
     return data;
   }
-  @Post("ai")
-  saveProvSettings(@Body() data: PostSettingsDto) {
-    return this.settingsService.saveProvSettings(data);
+  @Post("ai/:id")
+  saveProvSettings(@Param("id") id: string) {
+    return this.settingsService.saveProvSettings(id);
   }
   @Get("ai/providers")
   currentProv() {
