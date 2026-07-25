@@ -2,7 +2,7 @@ import React from 'react';
 import dashboardStyles from '../Dashboard/Dashboard.module.css';
 import styles from './Analytics.module.css';
 
-function Analytics() {
+const Analytics: React.FC = () => {
     return (
         <div className={dashboardStyles.rightContent}>
             <div className={styles.header}>
