@@ -41,8 +41,6 @@
 
 ### Шаг 1: Клонирование репозитория
 
-### Шаг 1: Клонирование репозитория
-
 bash
 
 git clone https://github.com/CelLecal/a-irecruter-juzl.git
