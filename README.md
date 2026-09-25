@@ -1,4 +1,4 @@
-# 🤖 AI-рекрутер: Умный подбор персонала для транспортных компаний
+# AI-рекрутер: Умный подбор персонала для транспортных компаний
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361dafb)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=white)
