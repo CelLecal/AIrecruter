@@ -28,7 +28,7 @@
 ## 🛠 Стек технологий
 
 - **Frontend:** React (Vite), TypeScript
-- **Frontend:** NestJS, TypeScript
+- **Backend:** NestJS, TypeScript
 - **Состояние и роутинг:** React.
 - **Сборка и линтинг:** Vite.
 - **Деплой / Инфраструктура:** Vercel.
